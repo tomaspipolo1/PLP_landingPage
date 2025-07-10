@@ -22,6 +22,11 @@ export function UserNav({ compact = false }: { compact?: boolean }) {
     logout()
   }
 
+  const handlePortalUsuario = () => {
+    setOpen(false)
+    window.open('https://panda-2025-wzw4.vercel.app/usuario-basico', '_blank')
+  }
+
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
@@ -45,7 +50,7 @@ export function UserNav({ compact = false }: { compact?: boolean }) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Portal usuario</DropdownMenuItem>
+        <DropdownMenuItem onClick={handlePortalUsuario}>Portal usuario</DropdownMenuItem>
         <DropdownMenuItem>Mis Entidades</DropdownMenuItem>
         <DropdownMenuItem>Ayuda</DropdownMenuItem>
         <DropdownMenuSeparator />
