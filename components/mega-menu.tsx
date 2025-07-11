@@ -87,8 +87,8 @@ const menuItems: MenuItem[] = [
         label: "Licitaciones",
         href: "/proveedores/licitaciones",
         items: [
-          { label: "Publicas", href: "/proveedores/licitaciones/publicas" },
-          { label: "Cerradas", href: "/proveedores/licitaciones/cerradas" },
+          { label: "Publicas", href: "/licitaciones/abiertas" },
+          { label: "Cerradas", href: "/licitaciones/cerradas" },
         ],
       },
     ],
