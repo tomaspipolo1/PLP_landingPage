@@ -78,6 +78,22 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
+    label: "Proveedores",
+    href: "/puerto",
+    items: [
+      { label: "Listado proveedores", href: "/proveedores/Listado-proveedores" },
+      { label: "Empresa de servicios portuarios", href: "/puerto/autoridades" },
+      {
+        label: "Licitaciones",
+        href: "/proveedores/licitaciones",
+        items: [
+          { label: "Publicas", href: "/proveedores/licitaciones/publicas" },
+          { label: "Cerradas", href: "/proveedores/licitaciones/cerradas" },
+        ],
+      },
+    ],
+  },
+  {
     label: "Servicios",
     href: "/servicios",
     items: [
