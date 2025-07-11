@@ -79,7 +79,7 @@ const menuItems: MenuItem[] = [
   },
   {
     label: "Proveedores",
-    href: "/puerto",
+    href: "/proveedores",
     items: [
       { label: "Listado proveedores", href: "/proveedores/Listado-proveedores" },
       { label: "Empresa de servicios portuarios", href: "/puerto/autoridades" },
