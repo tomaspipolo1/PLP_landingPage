@@ -73,12 +73,12 @@ export function Header() {
       <div className={`relative z-10 transition-all duration-300 ease-in-out ${scrolled ? "py-1" : "py-3"}`}>
         <div className="container mx-auto px-4 flex items-center justify-between">
           {/* Logo - shrinks when scrolled */}
-          <div className="flex items-center">
+          <div className="flex items-center md:-ml-4 lg:-ml-8 xl:-ml-12 2xl:-ml-16">
             <Link href="/">
               <img
                 src="/logo-plp-white.png"
                 alt="PLP Logo"
-                className={`transition-all duration-300 ml-8 ${scrolled ? "h-10" : "h-14"}`}
+                className={`transition-all duration-300 ml-0 ${scrolled ? "h-10" : "h-14"}`}
               />
             </Link>
 
@@ -94,7 +94,7 @@ export function Header() {
           </div>
 
           {/* Search and User Nav - slightly smaller when scrolled */}
-          <div className={`flex items-center space-x-6 transition-all duration-300 ${scrolled ? "scale-95" : ""}`}>
+          <div className={`flex items-center space-x-6 transition-all duration-300 md:-mr-4 lg:-mr-8 xl:-mr-12 2xl:-mr-16 ${scrolled ? "scale-95" : ""}`}>
             <SearchBar compact={scrolled} />
             {isLoggedIn ? <UserNav compact={scrolled} /> : <LoginButtons compact={scrolled} />}
           </div>

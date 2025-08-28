@@ -27,87 +27,100 @@ type MenuItem = {
 // Estructura del menú según lo especificado
 const menuItems: MenuItem[] = [
   {
-    label: "El Puerto",
+    label: "Institucional",
     href: "/puerto",
     items: [
+      { label: "Sobre nosotros", href: "/puerto/nosotros" },
+      { label: "Autoridad portuaria", href: "/puerto/autoridad-portuaria" },
+      { label: "Estructura", href: "/puerto/estructura" },
       { label: "Historia del puerto", href: "/puerto/historia" },
-      { label: "Ubicación estratégica", href: "/puerto/ubicacion" },
-      { label: "Autoridades", href: "/puerto/autoridades" },
-      { label: "Plan estratégico", href: "/puerto/plan-estrategico" },
-      { label: "Proyecto", href: "/puerto/proyecto" },
     ],
   },
   {
-    label: "Comercial",
-    href: "/comercial",
-    items: [
-      { label: "Mapa interactivo", href: "/comercial/mapa" },
-      { label: "Servicio Ferroviario", href: "/comercial/servicio-ferroviario" },
-      { label: "Tarifario", href: "/comercial/tarifario" },
-      {
-        label: "Terminales",
-        href: "/comercial/terminales",
-        items: [
-          { label: "Contenedores", href: "/comercial/terminales/contenedores" },
-          { label: "Graneles líquidos", href: "/comercial/terminales/graneles-liquidos" },
-          { label: "Graneles sólidos", href: "/comercial/terminales/graneles-solidos" },
-          { label: "Muelle uso público", href: "/comercial/terminales/muelle-uso-publico" },
-          { label: "Cabecera Río Santiago Oeste", href: "/comercial/terminales/cabecera-rio-santiago" },
-        ],
-      },
-      {
-        label: "Accesos",
-        href: "/comercial/accesos",
-        items: [
-          { label: "Vial", href: "/comercial/accesos/vial" },
-          { label: "Náutico", href: "/comercial/accesos/nautico" },
-          { label: "Ferroviario", href: "/comercial/accesos/ferroviario" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Prensa",
-    href: "/prensa",
-    items: [
-      { label: "Noticias", href: "/prensa/noticias" },
-      { label: "Eventos", href: "/prensa/eventos" },
-      { label: "Certificaciones de calidad", href: "/prensa/certificaciones" },
-      { label: "Comunidad", href: "/prensa/comunidad" },
-      { label: "Galería de imágenes", href: "/prensa/galeria" },
-    ],
-  },
-  {
-    label: "Proveedores",
-    href: "/proveedores",
-    items: [
-      { label: "Listado proveedores", href: "/proveedores/Listado-proveedores" },
-      { label: "Empresa de servicios portuarios", href: "/puerto/autoridades" },
-      {
-        label: "Licitaciones",
-        href: "/proveedores/licitaciones",
-        items: [
-          { label: "Publicas", href: "/licitaciones/abiertas" },
-          { label: "Cerradas", href: "/licitaciones/cerradas" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Servicios",
+    label: "Servicios y Negocios",
     href: "/servicios",
     items: [
-      { label: "Acceso portal", href: "/servicios/acceso-portal" },
-      { label: "Ayudas a la navegación", href: "/servicios/ayudas-navegacion" },
-      { label: "Estadísticas", href: "/servicios/estadisticas" },
-      { label: "Documentación Portuaria", href: "/servicios/documentacion" },
+      { label: "Vision comercial", 
+        href: "/servicios/vision-comercial",
+        items: [
+          { label: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
+          { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
+        ],
+       },
+      { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
+      { label: "Mapa interactivo", href: "/servicios/mapa" },
+      {
+        label: "Terminales",
+        href: "/servicios/terminales", 
+        items: [
+          { label: "Terminal de Contenedores TecPlata", href: "/servicios/terminales/contenedores" },
+          { label: "YPF", href: "/servicios/terminales/ypf" },
+          { label: "Coopetro", href: "/servicios/terminales/coopetro" },
+          { label: "Areneras", href: "/servicios/terminales/areneras" },
+        ],
+      },
+      {
+        label: "Operadores y organismos",
+        href: "/servicios/operadores-organismos",
+        items: [
+          { label: "Zona franca", href: "/servicios/operadores-organismos/zona-franca" },
+          { label: "Aduana", href: "/servicios/operadores-organismos/aduana" },
+          { label: "Migraciones", href: "/servicios/operadores-organismos/migraciones" },
+          { label: "Prefectura", href: "/servicios/operadores-organismos/prefectura" },
+          { label: "Prácticos", href: "/servicios/operadores-organismos/practicos" },
+          { label: "Sanidad de Fronteras", href: "/servicios/operadores-organismos/sanidad-fronteras" },
+          { label: "Empresas de Servicios Portuarios", href: "/servicios/operadores-organismos/empresas-servicios-portuarios" },
+        ],
+      },
+      {
+        label: "Conexiones intermodales",
+        href: "/servicios/conexiones-intermodales",
+        items: [
+          { label: "Servicios transporte terrestre", href: "/servicios/conexiones-intermodales/transporte-terrestre" },
+          { label: "Servicios a los buques", href: "/servicios/conexiones-intermodales/servicios-buques" },
+        ],
+      },
+      { label: "Tarifario", href: "/servicios/tarifario" },
+    ],
+  },
+  {
+    label: "Comunicación",
+    href: "/comunicacion",
+    items: [
+      { label: "Noticias", href: "/comunicacion/noticias" },
+      { label: "Galeria", href: "/comunicacion/galeria" },
+      { label: "Publicaciones y descargas", href: "/comunicacion/descargas" },
+    ],
+  },
+  {
+    label: "Comunidad y visitas",
+    href: "/comunidad",
+    items: [
+      { label: "Museo", href: "/comunidad/museo" },
+      { label: "Visitas educativas y guiadas", href: "/comunidad/visitas-educativas" },
+      { label: "Eventos", href: "/comunidad/eventos" },
+    ],
+  },
+  {
+    label: "Calidad y sostenibilidad",
+    href: "/calidad",
+    items: [
+      { label: "Certificaciones", href: "/calidad/certificaciones" },
+      { label: "Normas y políticas", href: "/calidad/normas-politicas" },
+    ],
+  },
+  {
+    label: "Innovación y futuro",
+    href: "/innovacion",
+    items: [
+      { label: "Digitalización y tecnología", href: "/innovacion/digitalizacion-tecnologia" },
+      { label: "Proyectos estratégicos", href: "/innovacion/proyectos-estrategicos" },
     ],
   },
   {
     label: "Contacto",
     href: "/contacto",
     items: [
-      { label: "Datos de contacto", href: "/contacto/datos" },
       { label: "Formulario de contacto", href: "/contacto/formulario" },
       { label: "Trabajá con nosotros", href: "/contacto/trabaja" },
     ],
@@ -158,7 +171,7 @@ export function MegaMenu() {
         {menuItems.map((item) => (
           <li key={item.href} className="relative">
             <button
-              className={`flex items-center px-4 py-2 text-base font-medium transition-colors hover:text-blue-300 text-white text-shadow ${
+              className={`flex items-center px-4 py-2 text-base font-medium transition-colors hover:text-blue-300 text-white text-shadow whitespace-nowrap ${
                 activeMenu === item.label ? "text-blue-300" : "text-white"
               }`}
               onClick={() => setActiveMenu(activeMenu === item.label ? null : item.label)}
