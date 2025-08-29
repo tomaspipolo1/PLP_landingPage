@@ -58,45 +58,48 @@ export function Header() {
           scrolled ? "h-5 overflow-hidden opacity-0" : "h-5 opacity-100"
         }`}
       >
-        <div className="container mx-auto px-4 flex justify-end items-center space-x-6 text-sm h-full">
-          <a href="#" className="hover:underline text-white text-shadow">
+        <div className="container mx-auto px-2 sm:px-3 md:px-4 flex justify-end items-center space-x-3 sm:space-x-4 md:space-x-6 text-xs sm:text-sm h-full">
+          <a href="#" className="hover:underline text-white text-shadow whitespace-nowrap">
             Contacto
           </a>
-          <div className="flex items-center text-white text-shadow">
+          <div className="flex items-center text-white text-shadow whitespace-nowrap">
             <span>Español</span>
-            <ChevronDown className="h-4 w-4 ml-1" />
+            <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1" />
           </div>
         </div>
       </div>
 
       {/* Main navigation bar - shrinks when scrolled */}
-      <div className={`relative z-10 transition-all duration-300 ease-in-out ${scrolled ? "py-1" : "py-3"}`}>
-        <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className={`relative z-10 transition-all duration-300 ease-in-out ${scrolled ? "py-1" : "py-2 sm:py-3"}`}>
+        <div className="container mx-auto px-2 sm:px-3 md:px-4 flex items-center justify-between gap-2 sm:gap-3 md:gap-4">
           {/* Logo - shrinks when scrolled */}
-          <div className="flex items-center md:-ml-4 lg:-ml-8 xl:-ml-12 2xl:-ml-16">
+          <div className="flex items-center flex-shrink-0">
             <Link href="/">
               <img
                 src="/logo-plp-white.png"
                 alt="PLP Logo"
-                className={`transition-all duration-300 ml-0 ${scrolled ? "h-10" : "h-14"}`}
+                className={`transition-all duration-300 h-8 sm:h-9 md:h-10 lg:h-12 xl:h-14 2xl:h-16 ${
+                  scrolled ? "h-6 sm:h-7 md:h-8 lg:h-10 xl:h-12 2xl:h-14" : ""
+                }`}
               />
             </Link>
-
-            {/* Mobile Menu */}
-            <div className="md:hidden ml-4">
-              <MobileMenu />
-            </div>
           </div>
 
-          {/* Mega Menu Navigation - solo visible en desktop */}
-          <div className={`hidden md:block transition-all duration-300 ${scrolled ? "scale-95" : ""}`}>
+          {/* Mega Menu Navigation - responsive text sizes */}
+          <div className={`hidden xl:block transition-all duration-300 flex-1 flex justify-center min-w-0 ${scrolled ? "scale-95" : ""}`}>
             <MegaMenu />
           </div>
 
-          {/* Search and User Nav - slightly smaller when scrolled */}
-          <div className={`flex items-center space-x-6 transition-all duration-300 md:-mr-4 lg:-mr-8 xl:-mr-12 2xl:-mr-16 ${scrolled ? "scale-95" : ""}`}>
+          {/* Search and User Nav - compact and responsive */}
+          <div className={`flex items-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4 xl:space-x-5 transition-all duration-300 flex-shrink-0 ${
+            scrolled ? "scale-95" : ""
+          }`}>
             <SearchBar compact={scrolled} />
             {isLoggedIn ? <UserNav compact={scrolled} /> : <LoginButtons compact={scrolled} />}
+            {/* Mobile Menu - moved to the right side */}
+                    <div className="xl:hidden">
+          <MobileMenu />
+        </div>
           </div>
         </div>
       </div>

@@ -4,9 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X, ChevronRight, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 
-// Definición de tipos para la estructura del menú (igual que en mega-menu.tsx)
+// Definición de tipos para la estructura del menú
 type SubSubmenuItem = {
   label: string
   href: string
@@ -24,171 +23,234 @@ type MenuItem = {
   items: SubmenuItem[]
 }
 
-// Importamos la misma estructura de menú que usamos en el mega-menu
+// Estructura del menú
 const menuItems: MenuItem[] = [
   {
-    label: "El Puerto",
+    label: "Institucional",
     href: "/puerto",
     items: [
+      { label: "Sobre nosotros", href: "/puerto/nosotros" },
+      { label: "Autoridad portuaria", href: "/puerto/autoridad-portuaria" },
+      { label: "Estructura", href: "/puerto/estructura" },
       { label: "Historia del puerto", href: "/puerto/historia" },
-      { label: "Ubicación estratégica", href: "/puerto/ubicacion" },
-      { label: "Autoridades", href: "/puerto/autoridades" },
-      { label: "Plan estratégico", href: "/puerto/plan-estrategico" },
-      { label: "Proyecto", href: "/puerto/proyecto" },
     ],
   },
   {
-    label: "Comercial",
-    href: "/comercial",
-    items: [
-      { label: "Mapa interactivo", href: "/comercial/mapa" },
-      { label: "Servicio Ferroviario", href: "/comercial/servicio-ferroviario" },
-      { label: "Tarifario", href: "/comercial/tarifario" },
-      {
-        label: "Terminales",
-        href: "/comercial/terminales",
-        items: [
-          { label: "Contenedores", href: "/comercial/terminales/contenedores" },
-          { label: "Graneles líquidos", href: "/comercial/terminales/graneles-liquidos" },
-          { label: "Graneles sólidos", href: "/comercial/terminales/graneles-solidos" },
-          { label: "Muelle uso público", href: "/comercial/terminales/muelle-uso-publico" },
-          { label: "Cabecera Río Santiago Oeste", href: "/comercial/terminales/cabecera-rio-santiago" },
-        ],
-      },
-      {
-        label: "Accesos",
-        href: "/comercial/accesos",
-        items: [
-          { label: "Vial", href: "/comercial/accesos/vial" },
-          { label: "Náutico", href: "/comercial/accesos/nautico" },
-          { label: "Ferroviario", href: "/comercial/accesos/ferroviario" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Prensa",
-    href: "/prensa",
-    items: [
-      { label: "Noticias", href: "/prensa/noticias" },
-      { label: "Eventos", href: "/prensa/eventos" },
-      { label: "Certificaciones de calidad", href: "/prensa/certificaciones" },
-      { label: "Comunidad", href: "/prensa/comunidad" },
-      { label: "Galería de imágenes", href: "/prensa/galeria" },
-    ],
-  },
-  {
-    label: "Servicios",
+    label: "Servicios y Negocios",
     href: "/servicios",
     items: [
-      { label: "Acceso portal", href: "/servicios/acceso-portal" },
-      { label: "Ayudas a la navegación", href: "/servicios/ayudas-navegacion" },
-      { label: "Estadísticas", href: "/servicios/estadisticas" },
-      { label: "Documentación Portuaria", href: "/servicios/documentacion" },
+      { label: "Vision comercial", 
+        href: "/servicios/vision-comercial",
+        items: [
+          { label: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
+          { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
+        ],
+       },
+      { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
+      { label: "Mapa interactivo", href: "/servicios/mapa" },
+      {
+        label: "Terminales",
+        href: "/servicios/terminales", 
+        items: [
+          { label: "Terminal de Contenedores TecPlata", href: "/servicios/terminales/contenedores" },
+          { label: "YPF", href: "/servicios/terminales/ypf" },
+          { label: "Coopetro", href: "/servicios/terminales/coopetro" },
+          { label: "Areneras", href: "/servicios/terminales/areneras" },
+        ],
+      },
+      {
+        label: "Operadores y organismos",
+        href: "/servicios/operadores-organismos",
+        items: [
+          { label: "Zona franca", href: "/servicios/operadores-organismos/zona-franca" },
+          { label: "Aduana", href: "/servicios/operadores-organismos/aduana" },
+          { label: "Migraciones", href: "/servicios/operadores-organismos/migraciones" },
+          { label: "Prefectura", href: "/servicios/operadores-organismos/prefectura" },
+          { label: "Prácticos", href: "/servicios/operadores-organismos/practicos" },
+          { label: "Sanidad de Fronteras", href: "/servicios/operadores-organismos/sanidad-fronteras" },
+          { label: "Empresas de Servicios Portuarios", href: "/servicios/operadores-organismos/empresas-servicios-portuarios" },
+        ],
+      },
+      {
+        label: "Conexiones intermodales",
+        href: "/servicios/conexiones-intermodales",
+        items: [
+          { label: "Servicios transporte terrestre", href: "/servicios/conexiones-intermodales/transporte-terrestre" },
+          { label: "Servicios a los buques", href: "/servicios/conexiones-intermodales/servicios-buques" },
+        ],
+      },
+      { label: "Tarifario", href: "/servicios/tarifario" },
+    ],
+  },
+  {
+    label: "Comunicación",
+    href: "/comunicacion",
+    items: [
+      { label: "Noticias", href: "/comunicacion/noticias" },
+      { label: "Galeria", href: "/comunicacion/galeria" },
+      { label: "Publicaciones y descargas", href: "/comunicacion/descargas" },
+    ],
+  },
+  {
+    label: "Comunidad y visitas",
+    href: "/comunidad",
+    items: [
+      { label: "Museo", href: "/comunidad/museo" },
+      { label: "Visitas educativas y guiadas", href: "/comunidad/visitas-educativas" },
+      { label: "Eventos", href: "/comunidad/eventos" },
+    ],
+  },
+  {
+    label: "Calidad y sostenibilidad",
+    href: "/calidad",
+    items: [
+      { label: "Certificaciones", href: "/calidad/certificaciones" },
+      { label: "Normas y políticas", href: "/calidad/normas-politicas" },
+    ],
+  },
+  {
+    label: "Innovación y futuro",
+    href: "/innovacion",
+    items: [
+      { label: "Digitalización y tecnología", href: "/innovacion/digitalizacion-tecnologia" },
+      { label: "Proyectos estratégicos", href: "/innovacion/proyectos-estrategicos" },
     ],
   },
   {
     label: "Contacto",
     href: "/contacto",
     items: [
-      { label: "Datos de contacto", href: "/contacto/datos" },
       { label: "Formulario de contacto", href: "/contacto/formulario" },
       { label: "Trabajá con nosotros", href: "/contacto/trabaja" },
     ],
   },
 ]
 
-// Componente para el menú móvil
 export function MobileMenu() {
   const [open, setOpen] = useState(false)
-  const [expandedItems, setExpandedItems] = useState<string[]>([])
+  const [expandedItem, setExpandedItem] = useState<string | null>(null)
   const [expandedSubItems, setExpandedSubItems] = useState<string[]>([])
 
   const toggleItem = (label: string) => {
-    setExpandedItems((prev) => (prev.includes(label) ? prev.filter((item) => item !== label) : [...prev, label]))
+    // Acordeón: solo un menú principal puede estar expandido
+    if (expandedItem === label) {
+      setExpandedItem(null)
+      setExpandedSubItems([])
+    } else {
+      setExpandedItem(label)
+      setExpandedSubItems([])
+    }
   }
 
   const toggleSubItem = (label: string) => {
-    setExpandedSubItems((prev) => (prev.includes(label) ? prev.filter((item) => item !== label) : [...prev, label]))
+    setExpandedSubItems((prev) => 
+      prev.includes(label) ? prev.filter((item) => item !== label) : [...prev, label]
+    )
   }
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="md:hidden">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Abrir menú</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="w-[500px] sm:w-[900px] p-0">
-        <div className="flex flex-col h-full">
-          <div className="p-4 border-b">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold">Menú</h2>
-              <SheetClose asChild>
-                <Button variant="ghost" size="icon">
-                  <X className="h-5 w-5" />
-                  <span className="sr-only">Cerrar</span>
-                </Button>
-              </SheetClose>
-            </div>
+    <div className="relative">
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        className="xl:hidden text-white hover:text-blue-300 hover:bg-white/10"
+        onClick={() => setOpen(!open)}
+      >
+        <Menu className="h-5 w-5" />
+        <span className="sr-only">Abrir menú</span>
+      </Button>
+
+      {/* Mobile Menu Dropdown */}
+      {open && (
+        <div className="absolute top-full right-0 mt-2 w-80 max-h-[70vh] bg-gradient-to-b from-black/90 via-black/80 to-black/70 backdrop-blur-md text-white shadow-lg rounded-b-lg border border-white/10 z-50">
+          {/* Header fijo */}
+          <div className="flex items-center justify-between p-4 border-b border-blue-400/50">
+            <h2 className="text-lg font-bold">Menú</h2>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-white hover:text-blue-300 hover:bg-white/10"
+              onClick={() => setOpen(false)}
+            >
+              <X className="h-5 w-5" />
+              <span className="sr-only">Cerrar</span>
+            </Button>
           </div>
 
-          <div className="flex-1 overflow-auto py-2">
-            <nav className="flex flex-col">
+          {/* Contenido scrolleable */}
+          <div className="overflow-y-auto max-h-[calc(70vh-80px)]">
+            <nav className="p-4 space-y-1">
               {menuItems.map((item) => (
-                <div key={item.href} className="border-b border-gray-100">
+                <div key={item.href} className="border-b border-white/20 last:border-b-0">
                   <button
-                    className="flex items-center justify-between w-full p-4 text-left"
+                    className={`flex items-center justify-between w-full p-3 text-left transition-colors rounded ${
+                      expandedItem === item.label 
+                        ? 'text-blue-300 bg-white/10' 
+                        : 'text-white hover:text-blue-300 hover:bg-white/5'
+                    }`}
                     onClick={() => toggleItem(item.label)}
                   >
                     <span className="font-medium">{item.label}</span>
-                    <ChevronDown
-                      className={`h-5 w-5 transition-transform ${
-                        expandedItems.includes(item.label) ? "rotate-180" : ""
-                      }`}
-                    />
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs text-gray-400 bg-white/10 px-2 py-1 rounded-full">
+                        {item.items.length}
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          expandedItem === item.label ? "rotate-180" : ""
+                        }`}
+                      />
+                    </div>
                   </button>
 
-                  {expandedItems.includes(item.label) && (
-                    <div className="pl-4 pr-2 pb-2">
+                  {/* Submenús expandidos */}
+                  {expandedItem === item.label && (
+                    <div className="pl-4 pr-2 pb-3 bg-black/20 rounded-lg mt-2">
                       {item.items.map((subItem) => (
-                        <div key={subItem.href} className="mb-1">
+                        <div key={subItem.href} className="mb-2">
                           {subItem.items ? (
                             <>
                               <button
-                                className="flex items-center justify-between w-full p-2 text-left text-sm"
+                                className="flex items-center justify-between w-full p-2 text-left text-sm text-gray-300 hover:text-blue-300 transition-colors rounded hover:bg-white/5"
                                 onClick={() => toggleSubItem(subItem.label)}
                               >
                                 <span>{subItem.label}</span>
-                                <ChevronRight
-                                  className={`h-4 w-4 transition-transform ${
-                                    expandedSubItems.includes(subItem.label) ? "rotate-90" : ""
-                                  }`}
-                                />
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-xs text-gray-500 bg-white/5 px-1.5 py-0.5 rounded">
+                                    {subItem.items.length}
+                                  </span>
+                                  <ChevronRight
+                                    className={`h-4 w-4 transition-transform ${
+                                      expandedSubItems.includes(subItem.label) ? "rotate-90" : ""
+                                    }`}
+                                  />
+                                </div>
                               </button>
 
+                              {/* Submenu de tercer nivel */}
                               {expandedSubItems.includes(subItem.label) && (
-                                <div className="pl-4 py-1">
+                                <div className="pl-4 py-1 bg-black/10 rounded-lg mt-1">
                                   {subItem.items.map((subSubItem) => (
-                                    <SheetClose asChild key={subSubItem.href}>
-                                      <Link
-                                        href={subSubItem.href}
-                                        className="block p-2 text-sm text-gray-600 hover:text-blue-600"
-                                      >
-                                        {subSubItem.label}
-                                      </Link>
-                                    </SheetClose>
+                                    <Link
+                                      key={subSubItem.href}
+                                      href={subSubItem.href}
+                                      className="block p-2 text-xs text-gray-400 hover:text-blue-300 transition-colors rounded hover:bg-white/5"
+                                      onClick={() => setOpen(false)}
+                                    >
+                                      {subSubItem.label}
+                                    </Link>
                                   ))}
                                 </div>
                               )}
                             </>
                           ) : (
-                            <SheetClose asChild>
-                              <Link href={subItem.href} className="block p-2 text-sm hover:text-blue-600">
-                                {subItem.label}
-                              </Link>
-                            </SheetClose>
+                            <Link 
+                              href={subItem.href} 
+                              className="block p-2 text-sm text-gray-300 hover:text-blue-300 transition-colors rounded hover:bg-white/5"
+                              onClick={() => setOpen(false)}
+                            >
+                              {subItem.label}
+                            </Link>
                           )}
                         </div>
                       ))}
@@ -199,7 +261,7 @@ export function MobileMenu() {
             </nav>
           </div>
         </div>
-      </SheetContent>
-    </Sheet>
+      )}
+    </div>
   )
 }
