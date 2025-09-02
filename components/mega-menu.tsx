@@ -121,8 +121,8 @@ const menuItems: MenuItem[] = [
     label: "Contacto",
     href: "/contacto",
     items: [
-      { label: "Formulario de contacto", href: "/contacto/formulario" },
-      { label: "Trabajá con nosotros", href: "/contacto/trabaja" },
+      { label: "Formulario de contacto", href: "/contacto" },
+      { label: "Trabajá con nosotros", href: "https://docs.google.com/forms/d/e/1FAIpQLScqP8q8xXZjCvbruYrh02RLZiLz8qr1LyCnMypkN57J73wfww/viewform?usp=sharing" },
     ],
   },
 ]
