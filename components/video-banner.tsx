@@ -3,7 +3,7 @@ import { NewsTicker } from "./news-ticker"
 
 export function VideoBanner() {
   return (
-    <section className="w-full h-screen relative">
+    <section className="w-full h-screen relative -mt-[var(--header-height,80px)]">
       {/* Video a pantalla completa - autoplay, loop, muted, sin controles */}
       <video
         src="/puerto-video-loop.mp4"

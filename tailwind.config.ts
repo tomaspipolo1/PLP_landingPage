@@ -11,6 +11,34 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+        plp: {
+          // Colores principales
+          primary: "#002A5B",     // Azul institucional principal
+          secondary: "#0077B6",   // Azul secundario (usado en botones/acciones)
+          accent: "#00B4D8",      // Azul acento para highlights
+          
+          // Variantes con transparencia
+          "primary-light": "rgba(0, 42, 91, 0.1)",
+          "primary-hover": "rgba(0, 42, 91, 0.9)",
+          
+          // Fondos y overlays
+          overlay: "rgba(0, 42, 91, 0.8)",
+          "overlay-light": "rgba(0, 42, 91, 0.05)",
+          
+          // Grises institucionales
+          gray: {
+            50: "#F8FAFC",
+            100: "#F1F5F9",
+            200: "#E2E8F0",
+            300: "#CBD5E1",
+            400: "#94A3B8",
+            500: "#64748B",
+            600: "#475569",
+            700: "#334155",
+            800: "#1E293B",
+            900: "#0F172A",
+          },
+        },
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

@@ -28,12 +28,12 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
   {
     label: "Institucional",
-    href: "/puerto",
+    href: "/institucional",
     items: [
-      { label: "Sobre nosotros", href: "/puerto/nosotros" },
-      { label: "Autoridad portuaria", href: "/puerto/autoridad-portuaria" },
-      { label: "Estructura", href: "/puerto/estructura" },
-      { label: "Historia del puerto", href: "/puerto/historia" },
+      { label: "Sobre nosotros", href: "/institucional/nosotros" },
+      { label: "Autoridad portuaria", href: "/institucional/autoridad-portuaria" },
+      { label: "Estructura", href: "/institucional/estructura" },
+      { label: "Historia del puerto", href: "/institucional/historia" },
     ],
   },
   {
@@ -47,15 +47,15 @@ const menuItems: MenuItem[] = [
           { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
         ],
        },
-      { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
-      { label: "Mapa interactivo", href: "/servicios/mapa" },
+      { label: "Ventajas competitivas", href: "/servicios/vision-comercial/ventajas-competitivas" },
+      { label: "Mapa interactivo", href: "/servicios/vision-comercial/mapa" },
       {
         label: "Terminales",
         href: "/servicios/terminales", 
         items: [
           { label: "Terminal de Contenedores TecPlata", href: "/servicios/terminales/contenedores" },
           { label: "YPF", href: "/servicios/terminales/ypf" },
-          { label: "Coopetro", href: "/servicios/terminales/coopetro" },
+          { label: "Copetro", href: "/servicios/terminales/copetro" },
           { label: "Areneras", href: "/servicios/terminales/areneras" },
         ],
       },
@@ -68,7 +68,6 @@ const menuItems: MenuItem[] = [
           { label: "Migraciones", href: "/servicios/operadores-organismos/migraciones" },
           { label: "Prefectura", href: "/servicios/operadores-organismos/prefectura" },
           { label: "Prácticos", href: "/servicios/operadores-organismos/practicos" },
-          { label: "Sanidad de Fronteras", href: "/servicios/operadores-organismos/sanidad-fronteras" },
           { label: "Empresas de Servicios Portuarios", href: "/servicios/operadores-organismos/empresas-servicios-portuarios" },
         ],
       },
@@ -107,13 +106,14 @@ const menuItems: MenuItem[] = [
     items: [
       { label: "Certificaciones", href: "/calidad/certificaciones" },
       { label: "Normas y políticas", href: "/calidad/normas-politicas" },
+      { label: "Sostenibilidad", href: "/calidad/sostenibilidad" },
     ],
   },
   {
     label: "Innovación y futuro",
     href: "/innovacion",
     items: [
-      { label: "Digitalización y tecnología", href: "/innovacion/digitalizacion-tecnologia" },
+      { label: "Digitalización y tecnologíca", href: "/innovacion/digitalizacion-tecnologica" },
       { label: "Proyectos estratégicos", href: "/innovacion/proyectos-estrategicos" },
     ],
   },
@@ -194,15 +194,15 @@ export function MegaMenu() {
           className="fixed left-0 right-0 z-50 bg-[#002A5B]/80 backdrop-blur-md text-white shadow-lg"
           style={{ top: "var(--header-height, 80px)" }}
         >
-          <div className="flex justify-center w-full py-4 sm:py-5 md:py-6 lg:py-7 xl:py-8 2xl:py-10">
-            <div className="max-w-4xl w-full px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 2xl:gap-10">
+          <div className="flex justify-center w-full py-3 sm:py-4 md:py-5 lg:py-6 xl:py-6 2xl:py-7">
+            <div className="max-w-4xl w-full px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-6 2xl:gap-8">
                 {/* Primera columna con título de sección */}
                 <div className="flex flex-col items-start text-left">
-                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold mb-3 sm:mb-4 md:mb-5 lg:mb-6 border-b border-blue-400/50 pb-2 w-full">
+                  <h3 className="text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg font-bold mb-2.5 sm:mb-3 md:mb-4 lg:mb-5 border-b border-blue-400/50 pb-1.5 w-full">
                     {menuItems.find((item) => item.label === activeMenu)?.label}
                   </h3>
-                  <ul className="space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-3.5 xl:space-y-4 w-full">
+                  <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5 lg:space-y-3 xl:space-y-3.5 w-full">
                     {menuItems
                       .find((item) => item.label === activeMenu)
                       ?.items.map((subItem) => (
@@ -210,11 +210,11 @@ export function MegaMenu() {
                           {subItem.items && subItem.items.length > 0 ? (
                             <>
                               <button
-                                className="flex items-center hover:text-blue-300 transition-colors w-full text-left text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                                className="flex items-center hover:text-blue-300 transition-colors w-full text-left text-[11px] sm:text-xs md:text-xs lg:text-sm xl:text-base"
                                 onClick={(e) => toggleSubmenu(subItem.label, e)}
                               >
                                 <ChevronRight
-                                  className={`h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-5 lg:w-5 xl:h-5 xl:w-5 mr-1 sm:mr-1.5 md:mr-2 transition-transform ${
+                                  className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 mr-1 sm:mr-1.5 md:mr-2 transition-transform ${
                                     expandedSubmenus.includes(subItem.label) ? "rotate-90" : ""
                                   }`}
                                 />
@@ -223,12 +223,12 @@ export function MegaMenu() {
 
                               {/* Submenu de tercer nivel */}
                               {expandedSubmenus.includes(subItem.label) && (
-                                <ul className="mt-2 space-y-1.5 sm:space-y-2 md:space-y-2.5 lg:space-y-3 ml-3 sm:ml-4 md:ml-5 lg:ml-6">
+                                <ul className="mt-1.5 space-y-1.5 sm:space-y-2 md:space-y-2 lg:space-y-2.5 ml-3 sm:ml-4 md:ml-5 lg:ml-6">
                                   {subItem.items.map((subSubItem) => (
                                     <li key={subSubItem.href} className="text-left">
                                       <Link
                                         href={subSubItem.href}
-                                        className="block text-[0.65rem] sm:text-xs md:text-sm lg:text-base xl:text-lg text-gray-300 hover:text-blue-300 transition-colors"
+                                        className="block text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-xs xl:text-sm text-gray-300 hover:text-blue-300 transition-colors"
                                         onClick={() => setActiveMenu(null)}
                                       >
                                         {subSubItem.label}
@@ -241,7 +241,7 @@ export function MegaMenu() {
                           ) : (
                             <Link
                               href={subItem.href}
-                              className="block hover:text-blue-300 transition-colors text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                              className="block hover:text-blue-300 transition-colors text-[11px] sm:text-xs md:text-xs lg:text-sm xl:text-base"
                               onClick={() => setActiveMenu(null)}
                             >
                               {subItem.label}
@@ -253,18 +253,18 @@ export function MegaMenu() {
                 </div>
 
                 {/* Segunda columna - Enlaces destacados con íconos */}
-                <div className="flex flex-col bg-blue-700/80 backdrop-blur-sm p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 2xl:p-8 rounded-lg">
-                  <h4 className="font-bold mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-left w-full text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">Enlaces destacados</h4>
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6">
+                <div className="flex flex-col bg-blue-700/80 backdrop-blur-sm p-2 sm:p-2.5 md:p-3 lg:p-4 xl:p-5 2xl:p-6 rounded-lg">
+                  <h4 className="font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-4 text-left w-full text-[11px] sm:text-xs md:text-sm lg:text-base xl:text-lg">Enlaces destacados</h4>
+                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 xl:gap-4">
                     {enlacesDestacados.map((enlace) => (
                       <Link
                         key={enlace.href}
                         href={enlace.href}
-                        className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 lg:p-5 bg-blue-800/80 rounded-lg hover:bg-blue-600/90 transition-colors text-center group"
+                        className="flex flex-col items-center justify-center p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-blue-800/80 rounded-lg hover:bg-blue-600/90 transition-colors text-center group"
                         onClick={() => setActiveMenu(null)}
                       >
-                        <enlace.icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 mb-1 sm:mb-2 md:mb-2.5 lg:mb-3 group-hover:text-blue-300" />
-                        <span className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium">{enlace.label}</span>
+                        <enlace.icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 md:h-5.5 md:w-5.5 lg:h-6 lg:w-6 xl:h-7 xl:w-7 2xl:h-8 2xl:w-8 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 group-hover:text-blue-300" />
+                        <span className="text-[10px] sm:text-[11px] md:text-xs lg:text-sm xl:text-base font-medium">{enlace.label}</span>
                       </Link>
                     ))}
                   </div>

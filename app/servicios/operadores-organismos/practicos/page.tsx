@@ -1,0 +1,483 @@
+"use client"
+
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { 
+  Factory,
+  Ship,
+  Truck,
+  Train,
+  Globe,
+  Phone,
+  Mail,
+  MapPin,
+  ExternalLink,
+  Clock,
+  Users,
+  Award,
+  Leaf,
+  Zap,
+  ArrowRight,
+  TrendingUp,
+  Shield,
+  Settings,
+  Package,
+  Warehouse,
+  Building,
+  FileText,
+  CheckCircle,
+  DollarSign,
+  Car,
+  Anchor,
+  Search,
+  FileCheck,
+  Scale,
+  Gavel,
+  Database,
+  Plane,
+  Container,
+  Sailboat,
+  Passport,
+  UserCheck,
+  Navigation,
+  Compass,
+  Waves,
+  LifeBuoy,
+  Eye,
+  Fish,
+  AlertTriangle,
+  Lock,
+  ShipWheel,
+  AnchorIcon,
+  Map,
+  Route,
+  Target,
+  Zap as Lightning
+} from "lucide-react"
+import Link from "next/link"
+
+const servicios = [
+  {
+    id: 1,
+    titulo: "Pilotaje de buques",
+    descripcion: "Servicios de pilotaje experto para guiar buques de manera segura a través de las complejas aguas del Río de la Plata.",
+    icon: Ship,
+    caracteristicas: ["Pilotaje experto", "Navegación segura", "Conocimiento del río", "Maniobras especializadas"]
+  },
+  {
+    id: 2,
+    titulo: "Asesoramiento náutico",
+    descripcion: "Asesoramiento especializado al capitán sobre condiciones del río, peligros y canales de navegación.",
+    icon: Compass,
+    caracteristicas: ["Asesoramiento al capitán", "Condiciones del río", "Identificación de peligros", "Canales de navegación"]
+  },
+  {
+    id: 3,
+    titulo: "Maniobras críticas",
+    descripcion: "Control del buque en maniobras críticas como entrada, salida y atracada en el puerto.",
+    icon: Target,
+    caracteristicas: ["Control de maniobras", "Entrada al puerto", "Salida del puerto", "Atracada segura"]
+  },
+  {
+    id: 4,
+    titulo: "Seguridad marítima",
+    descripcion: "Garantía de la seguridad de personas, buque y medio ambiente durante las operaciones portuarias.",
+    icon: Shield,
+    caracteristicas: ["Seguridad de personas", "Protección del buque", "Cuidado ambiental", "Operaciones seguras"]
+  }
+]
+
+const estadisticas = [
+  { valor: "Pilotos", unidad: "Expertos", descripcion: "Puerto La Plata" },
+  { valor: "Conocimiento", unidad: "Profundo", descripcion: "Río de la Plata" },
+  { valor: "Maniobras", unidad: "Críticas", descripcion: "Entrada y salida" },
+  { valor: "Seguridad", unidad: "Garantizada", descripcion: "Personas y buques" },
+  { valor: "Experiencia", unidad: "Extensa", descripcion: "Navegación fluvial" },
+  { valor: "Asesoramiento", unidad: "Especializado", descripcion: "Al capitán" }
+]
+
+const funciones = [
+  {
+    titulo: "Pilotaje experto",
+    descripcion: "Guía de buques a través de las complejas aguas del Río de la Plata con conocimiento profundo del río.",
+    icon: Ship,
+    beneficios: ["Navegación segura", "Conocimiento del río", "Experiencia fluvial", "Maniobras precisas"]
+  },
+  {
+    titulo: "Asesoramiento al capitán",
+    descripcion: "Asesoramiento especializado sobre condiciones del río, peligros y canales de navegación.",
+    icon: Compass,
+    beneficios: ["Información actualizada", "Identificación de peligros", "Rutas seguras", "Condiciones del río"]
+  },
+  {
+    titulo: "Control de maniobras",
+    descripcion: "Toma del control del buque en maniobras críticas como entrada, salida y atracada.",
+    icon: Target,
+    beneficios: ["Control experto", "Maniobras críticas", "Precisión náutica", "Seguridad operativa"]
+  }
+]
+
+const serviciosEspecializados = [
+  {
+    titulo: "Pilotaje de entrada",
+    descripcion: "Servicios de pilotaje para la entrada segura de buques al puerto de La Plata.",
+    fecha: "Disponible",
+    impacto: "Entrada segura"
+  },
+  {
+    titulo: "Pilotaje de salida",
+    descripcion: "Servicios de pilotaje para la salida segura de buques del puerto de La Plata.",
+    fecha: "Disponible",
+    impacto: "Salida segura"
+  },
+  {
+    titulo: "Maniobras de atracada",
+    descripcion: "Control experto en maniobras de atracada y desatracada de buques.",
+    fecha: "Especializado",
+    impacto: "Atracada precisa"
+  }
+]
+
+const recursos = [
+  {
+    titulo: "Conocimiento del Río de la Plata",
+    fecha: "Actualizado",
+    descripcion: "Información detallada sobre las condiciones del río, bancos y canales de navegación.",
+    detalles: "Incluye mapas náuticos, información de mareas y condiciones hidrográficas del río"
+  },
+  {
+    titulo: "Procedimientos de pilotaje",
+    fecha: "Vigente",
+    descripcion: "Procedimientos y protocolos de pilotaje para diferentes tipos de buques.",
+    detalles: "Información detallada sobre maniobras, comunicaciones y protocolos de seguridad"
+  },
+  {
+    titulo: "Información meteorológica",
+    fecha: "En tiempo real",
+    descripcion: "Información meteorológica y condiciones del río para operaciones seguras.",
+    detalles: "Datos de viento, visibilidad, corrientes y condiciones que afectan la navegación"
+  }
+]
+
+export default function OperadoresPracticos() {
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <div className="relative w-full h-[400px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
+        <div className="absolute inset-0 bg-plp-overlay-light" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-plp-overlay/10 backdrop-blur-sm" />
+        <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl font-bold text-white text-shadow mb-4">Prácticos de Puerto La Plata</h1>
+            <p className="text-xl text-white/90 mb-6">
+              Pilotos experimentados que guían buques de manera segura y eficiente a través de las complejas aguas 
+              del Río de la Plata, garantizando la seguridad de personas, buques y medio ambiente.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
+                <Ship className="mr-2 h-5 w-5" />
+                Solicitar práctico
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
+                <Phone className="mr-2 h-5 w-5" />
+                Contactar
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 py-12">
+        {/* Introducción */}
+        <section className="mb-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-semibold text-plp-primary mb-6">Prácticos de Puerto La Plata - Pilotos Expertos</h2>
+              <p className="text-lg text-plp-gray-700 mb-6 leading-relaxed">
+                Los <strong>Prácticos de Puerto La Plata</strong> son pilotos experimentados que guían los buques de manera segura 
+                y eficiente a través de las complejas aguas del Río de la Plata y hacia/desde el puerto, 
+                asesorando al capitán y tomando el control del barco en maniobras críticas.
+              </p>
+              <p className="text-plp-gray-700 mb-6 leading-relaxed">
+                Su profundo conocimiento del río, sus peligros, bancos y canales, es fundamental para garantizar 
+                la seguridad de las personas, del buque y del medio ambiente durante las operaciones portuarias.
+              </p>
+              <div className="flex items-center gap-4">
+                <Badge className="bg-green-100 text-green-700">
+                  <Ship className="mr-1 h-3 w-3" />
+                  Pilotaje Experto
+                </Badge>
+                <Badge className="bg-blue-100 text-blue-700">
+                  <Compass className="mr-1 h-3 w-3" />
+                  Asesoramiento Náutico
+                </Badge>
+                <Badge className="bg-purple-100 text-purple-700">
+                  <Target className="mr-1 h-3 w-3" />
+                  Maniobras Críticas
+                </Badge>
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src="/puerto-plata-satellite.png"
+                alt="Prácticos de Puerto La Plata - Pilotos Expertos"
+                className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+              />
+              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm p-3 rounded-lg">
+                <p className="text-sm font-medium text-plp-primary">Prácticos</p>
+                <p className="text-xs text-plp-gray-600">Puerto La Plata</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Conexión con CGPLP */}
+        <section className="mb-12">
+          <Card className="p-8 bg-gradient-to-r from-plp-primary/5 to-plp-secondary/5 border border-plp-primary/20">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold text-plp-primary mb-4">Conexión con el CGPLP</h2>
+              <p className="text-plp-gray-700 max-w-3xl mx-auto">
+                Los Prácticos de Puerto La Plata operan en estrecha colaboración con el Consorcio de Gestión del Puerto La Plata (CGPLP), 
+                proporcionando servicios de pilotaje experto que garantizan la seguridad y eficiencia 
+                de las operaciones portuarias en el complejo.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+                  <Ship className="h-8 w-8 text-plp-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-plp-primary mb-2">Pilotaje experto</h3>
+                <p className="text-sm text-plp-gray-600">
+                  Guía segura de buques a través de las complejas aguas del Río de la Plata hacia el puerto.
+                </p>
+              </div>
+              <div className="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+                  <Compass className="h-8 w-8 text-plp-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-plp-primary mb-2">Asesoramiento náutico</h3>
+                <p className="text-sm text-plp-gray-600">
+                  Asesoramiento especializado al capitán sobre condiciones del río y canales de navegación.
+                </p>
+              </div>
+              <div className="text-center p-6 bg-white rounded-lg shadow-sm">
+                <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+                  <Target className="h-8 w-8 text-plp-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-plp-primary mb-2">Maniobras críticas</h3>
+                <p className="text-sm text-plp-gray-600">
+                  Control del buque en maniobras críticas como entrada, salida y atracada en el puerto.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* Servicios */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Servicios especializados</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {servicios.map((servicio) => (
+              <Card key={servicio.id} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-plp-primary/10 rounded-lg">
+                    <servicio.icon className="h-6 w-6 text-plp-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-plp-primary">{servicio.titulo}</h3>
+                </div>
+                <p className="text-plp-gray-700 mb-4 leading-relaxed">{servicio.descripcion}</p>
+                <ul className="space-y-2">
+                  {servicio.caracteristicas.map((caracteristica, index) => (
+                    <li key={index} className="text-sm text-plp-gray-600 flex items-center gap-2">
+                      <div className="w-1 h-1 bg-plp-primary rounded-full" />
+                      {caracteristica}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Estadísticas */}
+        <section className="mb-12">
+          <Card className="p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold mb-2">Prácticos en números</h2>
+              <p className="text-white/90">Servicios y capacidades de pilotaje</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {estadisticas.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl font-bold mb-1">{stat.valor}</div>
+                  <div className="text-sm opacity-90">{stat.unidad}</div>
+                  <div className="text-xs opacity-75">{stat.descripcion}</div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </section>
+
+        {/* Funciones principales */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Funciones principales</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {funciones.map((funcion, index) => (
+              <Card key={index} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-plp-primary/10 rounded-lg">
+                    <funcion.icon className="h-6 w-6 text-plp-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-plp-primary">{funcion.titulo}</h3>
+                </div>
+                <p className="text-sm text-plp-gray-700 mb-4">{funcion.descripcion}</p>
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-xs font-medium text-plp-gray-600 mb-2">BENEFICIOS:</p>
+                    <ul className="space-y-1">
+                      {funcion.beneficios.map((beneficio, idx) => (
+                        <li key={idx} className="text-xs text-plp-gray-600 flex items-center gap-1">
+                          <div className="w-1 h-1 bg-plp-primary rounded-full" />
+                          {beneficio}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Servicios especializados */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Servicios especializados</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {serviciosEspecializados.map((servicio, index) => (
+              <Card key={index} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="mb-4">
+                  <Badge className="bg-green-100 text-green-700 text-xs">
+                    {servicio.fecha}
+                  </Badge>
+                </div>
+                <h3 className="text-lg font-semibold text-plp-primary mb-3">{servicio.titulo}</h3>
+                <p className="text-sm text-plp-gray-700 mb-4">{servicio.descripcion}</p>
+                <div className="p-3 bg-plp-primary/5 rounded-lg">
+                  <p className="text-xs font-medium text-plp-primary">IMPACTO:</p>
+                  <p className="text-sm font-semibold text-plp-gray-700">{servicio.impacto}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Recursos informativos */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Recursos informativos</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {recursos.map((recurso, index) => (
+              <Card key={index} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="mb-4">
+                  <Badge className="bg-blue-100 text-blue-700 text-xs">
+                    {recurso.fecha}
+                  </Badge>
+                </div>
+                <h3 className="text-lg font-semibold text-plp-primary mb-3">{recurso.titulo}</h3>
+                <p className="text-sm text-plp-gray-700 mb-4">{recurso.descripcion}</p>
+                <div className="p-3 bg-plp-primary/5 rounded-lg">
+                  <p className="text-xs font-medium text-plp-primary">DETALLES:</p>
+                  <p className="text-sm font-semibold text-plp-gray-700">{recurso.detalles}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Información de contacto */}
+        <section className="mb-12">
+          <Card className="p-8">
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h2 className="text-2xl font-semibold text-plp-primary mb-6">Información de contacto</h2>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-plp-primary" />
+                    <div>
+                      <p className="font-medium text-plp-gray-900">Ubicación</p>
+                      <p className="text-sm text-plp-gray-600">Oficinas de Prácticos en Puerto La Plata</p>
+                      <p className="text-sm text-plp-gray-600">Presencia en instalaciones portuarias</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-plp-primary" />
+                    <div>
+                      <p className="font-medium text-plp-gray-900">Teléfonos</p>
+                      <p className="text-sm text-plp-gray-600">Líneas de contacto para pilotaje</p>
+                      <p className="text-sm text-plp-gray-600">Emergencias y consultas</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-5 w-5 text-plp-primary" />
+                    <div>
+                      <p className="font-medium text-plp-gray-900">Email</p>
+                      <p className="text-sm text-plp-gray-600">practicos@puertolaplata.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="h-5 w-5 text-plp-primary" />
+                    <div>
+                      <p className="font-medium text-plp-gray-900">Horarios de atención</p>
+                      <p className="text-sm text-plp-gray-600">Lunes a Domingo: 24 horas</p>
+                      <p className="text-sm text-plp-gray-600">Servicios de pilotaje continuo</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-plp-primary mb-4">Sobre los Prácticos</h3>
+                <p className="text-plp-gray-700 mb-4 leading-relaxed">
+                  Los Prácticos de Puerto La Plata son pilotos experimentados que guían los buques de manera segura 
+                  y eficiente a través de las complejas aguas del Río de la Plata y hacia/desde el puerto, 
+                  asesorando al capitán y tomando el control del barco en maniobras críticas.
+                </p>
+                <p className="text-plp-gray-700 mb-6 leading-relaxed">
+                  Su profundo conocimiento del río, sus peligros, bancos y canales, es fundamental para garantizar 
+                  la seguridad de las personas, del buque y del medio ambiente durante las operaciones portuarias.
+                </p>
+                <div className="p-4 bg-plp-primary/5 rounded-lg">
+                  <p className="text-sm font-medium text-plp-primary mb-2">ESPECIALIDAD:</p>
+                  <p className="text-sm font-semibold text-plp-gray-700">Pilotaje experto y navegación fluvial</p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* CTA final */}
+        <section>
+          <Card className="p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white text-center">
+            <h3 className="text-2xl font-bold mb-4">¿Necesitas servicios de pilotaje?</h3>
+            <p className="text-lg mb-6 opacity-90">
+              Conecta con nuestro equipo para conocer más sobre los servicios de pilotaje experto, 
+              asesoramiento náutico y maniobras especializadas disponibles.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
+                <Ship className="mr-2 h-4 w-4" />
+                Solicitar práctico
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
+                <Phone className="mr-2 h-4 w-4" />
+                Contactar
+              </Button>
+            </div>
+          </Card>
+        </section>
+      </div>
+    </div>
+  )
+}

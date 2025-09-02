@@ -10,14 +10,11 @@ import { VideoBanner } from "@/components/video-banner"
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header is now a separate component */}
-      <Header />
-
       {/* Video Banner a pantalla completa con ticker integrado */}
       <VideoBanner />
 
       {/* El resto del contenido comienza después del banner */}
-      <main>
+      <main className="pt-[var(--header-height,80px)]">
         {/* Noticias y Redes Sociales */}
         <SocialFeed />
 
