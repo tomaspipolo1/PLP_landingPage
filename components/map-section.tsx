@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react"
+import Link from "next/link"
 
 export function MapSection() {
   return (
@@ -37,9 +38,11 @@ export function MapSection() {
           <div className="p-4 bg-white border-t border-gray-200">
             <div className="flex flex-wrap justify-between items-center">
               <div className="flex items-center mb-2 md:mb-0">
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-700 transition-colors">
-                  Ver mapa completo
-                </button>
+                <Link href="/servicios/vision-comercial/mapa">
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-700 transition-colors">
+                    Ver mapa completo
+                  </button>
+                </Link>
                 <span className="text-gray-600 text-sm">Haga clic en los marcadores para más información</span>
               </div>
 

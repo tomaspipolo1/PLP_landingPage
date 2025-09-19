@@ -39,7 +39,6 @@ import {
   Plane,
   Container,
   Sailboat,
-  Passport,
   UserCheck,
   Navigation,
   Compass,
@@ -68,7 +67,6 @@ import {
   Utensils,
   Bed,
   Bus,
-  Taxi,
   Bike,
   Car as CarIcon,
   Ship as ShipIcon,
@@ -76,6 +74,7 @@ import {
   Train as TrainIcon
 } from "lucide-react"
 import Link from "next/link"
+import { useCallback } from "react"
 
 // Categorías de servicios portuarios
 const categorias = [
@@ -122,6 +121,14 @@ const categorias = [
     color: "bg-indigo-500"
   }
 ]
+
+// Scroll helper to jump to a category section
+const scrollToCategory = (id: string) => {
+  const el = document.getElementById(`section-${id}`)
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+}
 
 // Empresas de servicios portuarios por categoría
 const empresas = {
@@ -298,18 +305,21 @@ export default function EmpresasServiciosPortuarios() {
 
         {/* Categorías de servicios */}
         <section className="mb-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {categorias.map((categoria) => (
               <Card 
                 key={categoria.id} 
-                className="p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 cursor-pointer"
+                className="p-4 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 cursor-pointer"
+                onClick={() => scrollToCategory(categoria.id)}
+                role="button"
+                aria-label={`Ver ${categoria.titulo}`}
               >
-                <div className={`mx-auto mb-4 p-3 ${categoria.color} rounded-full w-16 h-16 flex items-center justify-center`}>
-                  <categoria.icon className="h-8 w-8 text-white" />
+                <div className={`mx-auto mb-2 p-2 ${categoria.color} rounded-full w-12 h-12 flex items-center justify-center`}>
+                  <categoria.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-plp-primary mb-2">{categoria.titulo}</h3>
-                <p className="text-sm text-plp-gray-600">{categoria.descripcion}</p>
-                <Badge className="mt-3 bg-plp-primary/10 text-plp-primary">
+                <h3 className="text-sm font-semibold text-plp-primary mb-1">{categoria.titulo}</h3>
+                <p className="text-xs text-plp-gray-600 line-clamp-2">{categoria.descripcion}</p>
+                <Badge className="mt-2 bg-plp-primary/10 text-plp-primary">
                   {empresas[categoria.id as keyof typeof empresas]?.length || 0} empresas
                 </Badge>
               </Card>
@@ -319,7 +329,7 @@ export default function EmpresasServiciosPortuarios() {
 
         {/* Empresas por categoría */}
         {categorias.map((categoria) => (
-          <section key={categoria.id} className="mb-16">
+          <section key={categoria.id} id={`section-${categoria.id}`} className="mb-12 scroll-mt-24">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 ${categoria.color} rounded-lg`}>
@@ -330,62 +340,31 @@ export default function EmpresasServiciosPortuarios() {
               <p className="text-plp-gray-700">{categoria.descripcion}</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {empresas[categoria.id as keyof typeof empresas]?.map((empresa) => (
-                <Card key={empresa.id} className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="p-6">
-                    {/* Logo/Imagen */}
-                    <div className="mb-4">
-                      <img
-                        src={empresa.imagen}
-                        alt={`Logo de ${empresa.nombre}`}
-                        className="w-16 h-16 object-contain mx-auto"
-                      />
+                <Card key={empresa.id} className="border border-gray-100 shadow-sm">
+                  <div className="p-4">
+                    <div className="flex items-start gap-3">
+                      <img src={empresa.imagen} alt={`Logo de ${empresa.nombre}`} className="w-12 h-12 object-contain rounded" />
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-plp-primary truncate">{empresa.nombre}</h3>
+                        <div className="mt-1 space-y-1 text-xs text-plp-gray-700">
+                          <div className="flex items-center gap-1"><Phone className="h-3 w-3 text-plp-primary" /><span className="truncate">{empresa.telefono}</span></div>
+                          <div className="flex items-center gap-1"><Mail className="h-3 w-3 text-plp-primary" /><span className="truncate">{empresa.email}</span></div>
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Información de la empresa */}
-                    <div className="text-center mb-4">
-                      <h3 className="text-lg font-semibold text-plp-primary mb-2">{empresa.nombre}</h3>
-                      <p className="text-sm text-plp-gray-600 mb-3">{empresa.descripcion}</p>
-                    </div>
-
-                    {/* Servicios */}
-                    <div className="mb-4">
-                      <p className="text-xs font-medium text-plp-gray-600 mb-2">SERVICIOS:</p>
+                    <div className="mt-3">
                       <div className="flex flex-wrap gap-1">
-                        {empresa.servicios.map((servicio, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
+                        {empresa.servicios.slice(0,3).map((servicio, index) => (
+                          <Badge key={index} variant="outline" className="text-[10px]">
                             {servicio}
                           </Badge>
                         ))}
+                        {empresa.servicios.length > 3 && (
+                          <Badge variant="secondary" className="text-[10px]">+{empresa.servicios.length - 3}</Badge>
+                        )}
                       </div>
-                    </div>
-
-                    {/* Información de contacto */}
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Phone className="h-4 w-4 text-plp-primary" />
-                        <span className="text-plp-gray-700">{empresa.telefono}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-4 w-4 text-plp-primary" />
-                        <span className="text-plp-gray-700">{empresa.email}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-plp-primary" />
-                        <span className="text-plp-gray-700">{empresa.direccion}</span>
-                      </div>
-                    </div>
-
-                    {/* Botones de acción */}
-                    <div className="mt-4 flex gap-2">
-                      <Button size="sm" className="flex-1">
-                        <Phone className="mr-1 h-3 w-3" />
-                        Contactar
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        <ExternalLink className="h-3 w-3" />
-                      </Button>
                     </div>
                   </div>
                 </Card>

@@ -55,31 +55,6 @@ export default function DigitalizacionTecnologia() {
           ))}
         </div>
 
-        {/* Roadmap */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-plp-primary mb-4">Roadmap</h2>
-          <div className="relative overflow-hidden rounded-md border border-gray-100 shadow-sm">
-            <div className="absolute inset-0 bg-gradient-to-r from-plp-primary/10 via-transparent to-plp-secondary/10" />
-            <div className="relative grid md:grid-cols-3 gap-0">
-              {[
-                { title: "Q4 2025", items: ["MVP TOS Cloud", "App transportistas - turnos", "Inventario GEI 2025"] },
-                { title: "Q1 2026", items: ["IoT atraque - fase 1", "Interfaz Aduana/Prefectura", "Tablero operativo real-time"] },
-                { title: "Q2 2026", items: ["Gemelo digital beta", "Alertas ambientales con ML", "Portal desarrolladores (APIs)"] },
-              ].map((col) => (
-                <div key={col.title} className="p-6 border-t md:border-t-0 md:border-l border-gray-100 first:border-0">
-                  <h3 className="text-lg font-semibold text-plp-primary mb-2">{col.title}</h3>
-                  <ul className="space-y-2 text-sm text-plp-gray-700">
-                    {col.items.map((it) => (
-                      <li key={it} className="flex items-center gap-2">
-                        <ChevronRight className="h-4 w-4 text-plp-primary" /> {it}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="text-center">

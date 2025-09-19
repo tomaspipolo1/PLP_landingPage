@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { NavigationAids } from "@/components/navigation-aids"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Skeleton } from "@/components/ui/skeleton"
 import { 
   Ship,
   Anchor,
@@ -93,15 +95,22 @@ export default function VentajasCompetitivas() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
-        {/* Introducción */}
+        {/* Introducción con video (esqueleto) */}
         <section className="mb-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-semibold text-plp-primary mb-6">¿Por qué elegir el Puerto La Plata?</h2>
-            <p className="text-lg text-plp-gray-700 leading-relaxed">
-              Nuestro puerto se destaca por su ubicación estratégica, infraestructura de vanguardia y servicios especializados 
-              que garantizan operaciones eficientes y competitivas. Conectamos el mundo a través de una red multimodal 
-              que optimiza tiempos y costos para tu negocio.
-            </p>
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl font-semibold text-plp-primary mb-6 text-left">¿Por qué elegir el Puerto La Plata?</h2>
+              <p className="text-lg text-plp-gray-700 leading-relaxed">
+                Nuestro puerto se destaca por su ubicación estratégica, infraestructura de vanguardia y servicios
+                especializados que garantizan operaciones eficientes y competitivas. Conectamos el mundo a través
+                de una red multimodal que optimiza tiempos y costos para tu negocio.
+              </p>
+            </div>
+            <div className="max-w-xl md:ml-auto w-full">
+              <AspectRatio ratio={16/9}>
+                <Skeleton className="w-full h-full rounded-md bg-plp-gray-200/60" />
+              </AspectRatio>
+            </div>
           </div>
         </section>
 

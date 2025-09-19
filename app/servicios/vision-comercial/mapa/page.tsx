@@ -359,46 +359,6 @@ export default function MapaInteractivo() {
           </section>
         )}
 
-        {/* Lista de operadores */}
-        <section className="mb-12">
-          <h3 className="text-2xl font-semibold text-plp-primary mb-6">Todos los operadores</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mapOperators.map((operator) => {
-              const typeInfo = getOperatorTypeInfo(operator.type)
-              if (!typeInfo) return null
-              return (
-                <Card 
-                  key={operator.id} 
-                  className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                  onClick={() => setSelectedOperator(operator)}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-2 rounded-lg ${typeInfo.color} text-white`}>
-                      <typeInfo.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <Badge className={`${typeInfo.color} text-white text-xs`}>
-                        {typeInfo.label}
-                      </Badge>
-                    </div>
-                  </div>
-                  <h4 className="text-lg font-semibold text-plp-primary mb-2">{operator.name}</h4>
-                  <p className="text-sm text-plp-gray-700 mb-4 line-clamp-2">{operator.description}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-plp-gray-600">{operator.category}</span>
-                    <Link href={operator.website}>
-                      <Button size="sm" variant="outline">
-                        <ExternalLink className="h-3 w-3 mr-1" />
-                        Visitar
-                      </Button>
-                    </Link>
-                  </div>
-                </Card>
-              )
-            })}
-          </div>
-        </section>
-
         {/* CTA final */}
         <section>
           <Card className="p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white text-center">
@@ -412,7 +372,7 @@ export default function MapaInteractivo() {
                   Ver oportunidades
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100">
                 Contactar equipo comercial
               </Button>
             </div>

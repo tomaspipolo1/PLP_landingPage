@@ -3,71 +3,112 @@
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const timelineData = [
   {
     period: "1731-1879",
-    title: "Los Orígenes",
-    description: `El puerto de la Ensenada, antecesor del Puerto La Plata, nace de la necesidad de la Corona Española 
-    de fortificar las costas del Río de La Plata en el siglo XVII. Durante la época del Virreinato, los fondeaderos de 
-    Santa María del Buen Aire, la Ensenada y Montevideo formaban un sistema de transporte estratégico militar.`,
-    details: `El surgimiento de la "estancia" pampeana y la introducción del "saladero" generaron el primer modelo 
-    productivo exportador argentino. Ensenada y Berisso se convirtieron en principales centros saladeriles. En 1810 
-    Ensenada se constituyó como el primer asentamiento urbano de la región.`,
-    image: "/placeholder.jpg", // TODO: Reemplazar con imagen histórica
-    imageAlt: "Puerto La Plata en sus orígenes"
+    title: "Antecesor y primeras poblaciones",
+    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+    imageAlt: "Puerto La Plata en sus orígenes",
+    intro:
+      "Surge el Puerto de la Ensenada ante la necesidad que tuvo la Corona Española de fortificar las costas del Río de la Plata en el siglo XVII, como parte de un sistema de transporte con un valor estratégico militar de incalculable importancia geopolítica.",
+    items: [
+      {
+        year: "1731",
+        text:
+          "Inicio del trazado defensivo de la Ensenada como punto estratégico del Río de la Plata.",
+      },
+      { year: "", text: "Aparecen los saladeros." },
+      { year: "1801", text: "Ensenada es el primer asentamiento urbano de la región." },
+      { year: "1871", text: "Tolosa es el segundo asentamiento urbano de la región." },
+      { year: "1879", text: "Don Juan Berisso instaló dos saladeros, dando origen a la futura localidad homónima." },
+    ],
   },
   {
     period: "1882-1890",
     title: "La Fundación",
-    description: `La fundación de La Plata en 1882 fue consecuencia directa de la federalización de Buenos Aires. 
-    La ubicación se eligió estratégicamente sobre un puerto de aguas profundas para asegurar el comercio internacional.`,
-    details: `El Puerto fue inaugurado el 30 de marzo de 1890, bajo la dirección del ingeniero holandés J. A. Waldorp. 
-    Las obras costaron 18 millones de pesos oro y emplearon 4.500 obreros. El diseño siguió ideas racionalistas e 
-    higienistas, conectándose con el Eje Fundacional de la ciudad.`,
-    image: "/placeholder.jpg",
-    imageAlt: "Construcción del Puerto La Plata"
+    images: ["/placeholder.jpg", "/placeholder.jpg"],
+    imageAlt: "Construcción del Puerto La Plata",
+    items: [
+      {
+        year: "1882",
+        text:
+          "La fundación de La Plata -ciudad Capital de la provincia de Buenos Aires- tuvo en cuenta la ubicación del territorio sobre un Puerto de aguas profundas hasta el cual pudieran llegar las embarcaciones de mayor calado, para asegurar la actividad comercial del primer estado argentina.",
+      },
+      {
+        year: "1883",
+        text:
+          "Comienzan las obras de construcción del Puerto, dispuestas por decreto del presidente Julio A. Roca en 1882. Las mismas estuvieron a cargo de la empresa Lavalle, Medici y Cía. y dirigidas por el ingeniero holandés J. A. Waldorp, con un costo de 18 millones de pesos oro y 4.500 obreros.",
+      },
+      {
+        year: "1890",
+        text:
+          "El 30 de marzo se realizó la inauguración del Puerto La Plata, aunque el primer buque de gran calado - Cordoan, proveniente de Marsella- ingresó en octubre de 1888, cuando los trabajos de construcción todavía estaban en curso.",
+      },
+    ],
   },
   {
     period: "1904-1925",
-    title: "Crecimiento Industrial",
-    description: `En 1904 el Puerto se traspasó a la Nación. Este período se caracterizó por el movimiento de productos 
-    agrícola-ganaderos y la instalación de importantes industrias.`,
-    details: `La instalación de los frigoríficos Armour (1904) y Swift (1915) en Berisso marcó un hito. La construcción 
-    del Ferrocarril Provincial y un elevador de granos potenció su alcance. En 1925 se inauguró la Destilería de YPF, 
-    dando al Puerto su perfil petrolero.`,
-    image: "/placeholder.jpg",
-    imageAlt: "Frigoríficos históricos"
+    title: "Movimiento portuario",
+    images: ["/placeholder.jpg", "/placeholder.jpg"],
+    imageAlt: "Frigoríficos históricos",
+    intro: "En esta etapa, caracterizada por el movimiento de productos agrícola ganaderos para exportación, el Puerto comenzó a tener mayor movimiento gracias a la instalación de nuevos frigoríficos Armour (1904) y Swift (1915) en la localidad de Berisso. Otro hecho significativo fue la construcción del Ferrocarril Provincial, conectado directamente al Puerto La Plata, y la construcción de un elevador de granos.",
+    items: [
+      { year: "1904", text: "El Puerto fue traspasado al Gobierno Nacional" },
+      { year: "1920", text: "Se derivaron los talleres navales y depósitos explosivos desde el Puerto de Buenos Aires." },
+      { year: "1925", text: "Se inauguró la Destilería de YPF S.E. que dio al Puerto una fisonomía de puerto petrolero." },
+      { year: "Segunda Guerra Mundial", text: "Se incrementó el movimiento de carnes, pero al final de la misma decreció ostensiblemente, transformándose en Puerto de cabotaje." },
+    ],
   },
   {
     period: "1936-1960",
     title: "Complejo Industrial",
-    description: `Se configura el complejo portuario industrial con la instalación del Astillero Río Santiago (1936), 
-    la Cooperativa Argentina Textil (1940) y la Fábrica Militar de Ácido Sulfúrico (1952).`,
-    details: `Esta época marcó la transformación definitiva hacia un puerto industrial diversificado, combinando 
-    actividades portuarias tradicionales con desarrollo industrial.`,
-    image: "/placeholder.jpg",
-    imageAlt: "Complejo industrial portuario"
+    images: ["/placeholder.jpg"],
+    imageAlt: "Complejo industrial portuario",
+    items: [
+      { year: "1936", text: "Instalación del Astillero Río Santiago." },
+      { year: "1940", text: "Cooperativa Argentina Textil en funcionamiento." },
+      { year: "1952", text: "Fábrica Militar de Ácido Sulfúrico y consolidación del complejo industrial." },
+    ],
   },
   {
     period: "1960-1999",
     title: "Especialización",
-    description: `Entre 1960 y 1990 se produjo la especialización del Puerto. Se instalaron Petroquímica Ipako (1962), 
-    Propulsora Siderúrgica (1969), Petroquímica General Mosconi (1974) y Copetro S.A (1978).`,
-    details: `La creación del Polo Tecnológico (1989) y el Polígono Industrial (1990) en el ex-frigorífico Swift 
-    marcaron la modernización. En 1999 se crea el Consorcio de Gestión del Puerto La Plata.`,
-    image: "/placeholder.jpg",
-    imageAlt: "Puerto moderno"
+    images: ["/placeholder.jpg", "/placeholder.jpg"],
+    imageAlt: "Puerto moderno",
+    intro: "Aunque en esta época se produce la paralización de la actividad frigorífica, el surgimiento de varias empresas dio forma a la actual configuración del complejo portuario industrial.",
+    items: [
+      { year: "1962", text: "Petroquímica Ipako." },
+      { year: "1969", text: "Propulsora." },
+      { year: "1969", text: "Siderúrgica." },
+      { year: "1974", text: "Petroquímica Gral. Mosconi." },
+      { year: "1978", text: "Copetro S.A." },
+      { year: "1989", text: "Polo Tecnológico e Informático de Berisso." },
+      { year: "1991", text: "Surge Zona Franca La Plata." },
+      { year: "1991", text: "Transferencia del Puerto a la provincia de Buenos Aires." },
+    ],
   },
   {
     period: "1999-Actualidad",
-    title: "Puerto Moderno",
-    description: `Del modelo agroexportador original al nuevo paradigma de carga contenerizada, el Puerto La Plata 
-    ha evolucionado constantemente.`,
-    details: `El Plan Director actual busca atraer nuevas inversiones y acompañar el crecimiento de La Plata, 
-    Berisso y Ensenada, posicionándose como una alternativa confiable para el comercio nacional e internacional.`,
-    image: "/placeholder.jpg",
-    imageAlt: "Puerto La Plata actual"
+    title: "Primer puerto Argentino en el Rio de La Plata",
+    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+    imageAlt: "Puerto La Plata actual",
+    intro: "El Puerto ha fijado importantes objetivos para desarrollar su potencialidad, con el esfuerzo de toda la comunidad que lo rodea, permitirán el crecimiento de La Plata, Berisso y Ensenada.",
+    items: [
+      { year: "1999", text: "El 29 de septiembre se crea el Consorcio de Gestión del Puerto La Plata, iniciando una etapa caracterizada por una visión moderna, orientada al futuro." },
+      { year: "2000s", text: "Transición hacia la contenedorización y modernización de operaciones." },
+      { year: "2010s", text: "Inversiones en infraestructura y mejoras de conectividad regional." },
+      { year: "2014", text: "Con la inauguración de la terminal TecPlata, el Puerto La Plata amplió su mercado a la carga contenerizada." },
+      { year: "Actualidad", text: "Plan Director para impulsar nuevas inversiones y competitividad." },
+    ],
   }
 ]
 
@@ -106,9 +147,9 @@ export default function Historia() {
         {/* Línea de tiempo interactiva */}
         <div className="relative max-w-6xl mx-auto">
           {/* Timeline visual */}
-          <div className="hidden md:flex items-center justify-between mb-8 px-12 relative">
+          <div className="hidden md:flex items-center justify-between mb-12 px-12 relative h-28">
             {/* Línea base con segmentos */}
-            <div className="absolute top-2 left-0 right-0 flex items-center">
+            <div className="absolute left-0 right-0 flex items-center top-1/2 -translate-y-1/2">
               {/* Flecha izquierda */}
               <div className="absolute -left-2 -translate-y-1/2 top-1/2 w-3 h-3 border-t-2 border-l-2 border-plp-gray-300 transform -rotate-45" />
               {/* Flecha derecha */}
@@ -131,21 +172,24 @@ export default function Historia() {
               <button
                 key={period.period}
                 onClick={() => setCurrentPeriod(index)}
-                className={`relative flex flex-col items-center group ${
+                className={`relative flex flex-col items-center group pt-28 ${
                   index === currentPeriod ? "cursor-default" : "cursor-pointer"
                 }`}
               >
-                <div className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                  index === currentPeriod 
-                    ? "bg-plp-primary scale-150 ring-4 ring-plp-primary/20" 
-                    : index <= currentPeriod
-                      ? "bg-plp-primary"
-                      : "bg-plp-gray-300 group-hover:bg-plp-secondary"
-                }`} />
-                <span className={`mt-4 text-sm font-medium transition-all duration-300 ${
+                <div className="absolute top-1/2 -translate-y-1/2 z-10">
+                  <div className={`w-12 h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-300 shadow-sm ${
+                    index === currentPeriod
+                      ? "scale-[2.6] ring-4 ring-plp-primary/40"
+                      : "group-hover:scale-110"
+                  }`}>
+                    {/* Esqueleto para futura imagen del hito */}
+                    <Skeleton className={`w-full h-full ${index <= currentPeriod ? "bg-plp-primary/40" : "bg-plp-gray-200"}`} />
+                  </div>
+                </div>
+                <span className={`text-base font-medium transition-all duration-300 ${
                   index === currentPeriod
-                    ? "text-plp-primary scale-110"
-                    : "text-plp-gray-500 group-hover:text-plp-secondary"
+                    ? "mt-14 text-plp-primary text-lg scale-110"
+                    : " text-plp-gray-500 group-hover:text-plp-secondary"
                 }`}>
                   {period.period}
                 </span>
@@ -157,16 +201,25 @@ export default function Historia() {
           <div className="relative">
             <Card className="p-6 md:p-8 bg-white">
               <div className="grid md:grid-cols-2 gap-8">
-                {/* Imagen */}
-                <div className="relative aspect-video md:aspect-square bg-plp-gray-100 rounded-lg overflow-hidden">
-                  <img
-                    src={timelineData[currentPeriod].image}
-                    alt={timelineData[currentPeriod].imageAlt}
-                    className="object-cover w-full h-full"
-                  />
+                {/* Carrusel de imágenes del hito */}
+                <div className="relative bg-plp-gray-100 rounded-lg overflow-hidden">
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {timelineData[currentPeriod].images.map((src, i) => (
+                        <CarouselItem key={i} className="p-0">
+                          <div className="relative aspect-video md:aspect-square w-full h-full">
+                            {/* Esqueleto/placeholder para imágenes reales */}
+                            <img src={src} alt={timelineData[currentPeriod].imageAlt} className="object-cover w-full h-full" />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
                 </div>
 
-                {/* Texto */}
+                {/* Texto en formato de introducción + punteo por año */}
                 <div>
                   <div className="md:hidden mb-4 text-plp-primary font-medium">
                     {timelineData[currentPeriod].period}
@@ -174,12 +227,19 @@ export default function Historia() {
                   <h2 className="text-2xl md:text-3xl font-bold text-plp-primary mb-4">
                     {timelineData[currentPeriod].title}
                   </h2>
-                  <p className="text-plp-gray-600 mb-4 leading-relaxed">
-                    {timelineData[currentPeriod].description}
-                  </p>
-                  <p className="text-plp-gray-600 leading-relaxed">
-                    {timelineData[currentPeriod].details}
-                  </p>
+                  {timelineData[currentPeriod].intro && (
+                    <p className="text-plp-gray-600 leading-relaxed mb-4">
+                      {timelineData[currentPeriod].intro}
+                    </p>
+                  )}
+                  <ul className="space-y-4">
+                    {timelineData[currentPeriod].items.map((it, idx) => (
+                      <li key={idx} className="text-plp-gray-700 leading-relaxed">
+                        <span className="font-semibold text-plp-primary">{it.year}</span> {" "}
+                        <span className="text-plp-gray-600">{it.text}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </Card>

@@ -1,11 +1,12 @@
 import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { MapSection } from "@/components/map-section"
 import { NavigationAids } from "@/components/navigation-aids"
 import { StatisticsSection } from "@/components/statistics-section"
 import { AuthoritiesSection } from "@/components/authorities-section"
 import { SocialFeed } from "@/components/social-feed"
+import { EventosSection } from "@/components/eventos-section"
 import { VideoBanner } from "@/components/video-banner"
+import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 
 export default function Home() {
   return (
@@ -14,9 +15,12 @@ export default function Home() {
       <VideoBanner />
 
       {/* El resto del contenido comienza después del banner */}
-      <main className="pt-[var(--header-height,80px)]">
+      <main >
         {/* Noticias y Redes Sociales */}
         <SocialFeed />
+
+        {/* Eventos */}
+        <EventosSection />
 
         {/* Mapa Interactivo */}
         <MapSection />
@@ -31,8 +35,8 @@ export default function Home() {
 
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* Botón Scroll to Top */}
+      <ScrollToTopButton />
     </div>
   )
 }

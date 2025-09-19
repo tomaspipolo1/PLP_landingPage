@@ -377,25 +377,6 @@ export default function ServiciosBuques() {
           </Card>
         </section>
 
-        {/* Estadísticas */}
-        <section className="mb-12">
-          <Card className="p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-semibold mb-2">Servicios a los Buques en Números</h2>
-              <p className="text-white/90">Capacidades y características del sistema de servicios</p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {estadisticas.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl font-bold mb-1">{stat.valor}</div>
-                  <div className="text-sm opacity-90">{stat.unidad}</div>
-                  <div className="text-xs opacity-75">{stat.descripcion}</div>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </section>
-
         {/* Información de contacto */}
         <section className="mb-12">
           <Card className="p-8">

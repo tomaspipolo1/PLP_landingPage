@@ -2,8 +2,8 @@ import { Droplets, Wind, Thermometer, Waves } from "lucide-react"
 
 export function NavigationAids() {
   return (
-    <section className="py-12 bg-[#002A5B] text-white">
-      <div className="container mx-auto px-4">
+    <section className="py-12 text-white">
+      <div className="container mx-auto px-4 bg-[#002A5B] rounded-xl p-6 md:p-10">
         <h2 className="text-3xl font-medium text-center mb-12">AYUDAS A LA NAVEGACIÓN</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -124,14 +124,7 @@ export function NavigationAids() {
           </div>
         </div>
 
-        <div className="mt-8 text-center">
-          <a
-            href="/ayudas-navegacion"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md transition-colors"
-          >
-            Ver información detallada
-          </a>
-        </div>
+        
       </div>
     </section>
   )

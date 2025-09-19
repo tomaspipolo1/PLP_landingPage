@@ -351,49 +351,6 @@ export default function ServiciosTransporteTerrestre() {
           </div>
         </section>
 
-        {/* Empresas de logística */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Empresas de Logística</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {empresasLogistica.map((empresa) => (
-              <Card key={empresa.id} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-center mb-4">
-                  <h3 className="text-lg font-semibold text-plp-primary mb-2">{empresa.nombre}</h3>
-                  <div className="flex flex-wrap gap-1 justify-center mb-3">
-                    {empresa.servicios.map((servicio, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {servicio}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-plp-primary" />
-                    <span className="text-plp-gray-700">{empresa.telefono}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-plp-primary" />
-                    <span className="text-plp-gray-700">{empresa.email}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Globe className="h-4 w-4 text-plp-primary" />
-                    <span className="text-plp-gray-700">Cobertura: {empresa.cobertura}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Truck className="h-4 w-4 text-plp-primary" />
-                    <span className="text-plp-gray-700">Flota: {empresa.flota}</span>
-                  </div>
-                </div>
-                <Button className="w-full mt-4" size="sm">
-                  <Phone className="mr-1 h-3 w-3" />
-                  Contactar
-                </Button>
-              </Card>
-            ))}
-          </div>
-        </section>
-
         {/* Rutas principales */}
         <section className="mb-12">
           <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Rutas Principales</h2>
