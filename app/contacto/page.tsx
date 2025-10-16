@@ -126,46 +126,7 @@ export default function Contacto() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
-        {/* Información de contacto */}
-        <section className="mb-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
-                <Phone className="h-8 w-8 text-plp-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-plp-primary mb-2">Teléfono</h3>
-              <p className="text-plp-gray-700 mb-2">+54 221 123-4567</p>
-              <p className="text-sm text-plp-gray-600">Lun - Vie: 8:00 - 18:00</p>
-            </Card>
-
-            <Card className="p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
-                <Mail className="h-8 w-8 text-plp-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-plp-primary mb-2">Email</h3>
-              <p className="text-plp-gray-700 mb-2">comercial@puertolaplata.com</p>
-              <p className="text-sm text-plp-gray-600">Respuesta en 24h</p>
-            </Card>
-
-            <Card className="p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
-                <MapPin className="h-8 w-8 text-plp-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-plp-primary mb-2">Ubicación</h3>
-              <p className="text-plp-gray-700 mb-2">Puerto La Plata</p>
-              <p className="text-sm text-plp-gray-600">Buenos Aires, Argentina</p>
-            </Card>
-
-            <Card className="p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="mx-auto mb-4 p-3 bg-plp-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
-                <Clock className="h-8 w-8 text-plp-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-plp-primary mb-2">Horarios</h3>
-              <p className="text-plp-gray-700 mb-2">Lunes a Viernes</p>
-              <p className="text-sm text-plp-gray-600">8:00 - 18:00 hs</p>
-            </Card>
-          </div>
-        </section>
+      
 
         {/* Formulario y información adicional */}
         <div className="grid lg:grid-cols-2 gap-12">

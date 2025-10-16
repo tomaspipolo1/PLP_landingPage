@@ -59,28 +59,7 @@ export default function Sostenibilidad() {
           </Card>
         </section>
 
-        {/* KPIs */}
-        <section>
-          <h2 className="text-2xl font-semibold text-plp-primary mb-4">Indicadores (KPIs)</h2>
-          <div className="grid md:grid-cols-4 gap-4">
-            <Card className="p-5 text-center">
-              <p className="text-3xl font-bold text-plp-primary">-12%</p>
-              <p className="text-xs text-plp-gray-600">Emisiones directas (últimos 2 años)</p>
-            </Card>
-            <Card className="p-5 text-center">
-              <p className="text-3xl font-bold text-plp-primary">35%</p>
-              <p className="text-xs text-plp-gray-600">Energía con luminarias LED</p>
-            </Card>
-            <Card className="p-5 text-center">
-              <p className="text-3xl font-bold text-plp-primary">+18%</p>
-              <p className="text-xs text-plp-gray-600">Recupero y reciclaje de residuos</p>
-            </Card>
-            <Card className="p-5 text-center">
-              <p className="text-3xl font-bold text-plp-primary">0</p>
-              <p className="text-xs text-plp-gray-600">Incidentes ambientales reportables</p>
-            </Card>
-          </div>
-        </section>
+       
       </div>
     </div>
   )

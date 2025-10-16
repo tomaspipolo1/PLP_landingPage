@@ -16,7 +16,7 @@ export default function VisitasEducativas() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="relative w-full h-[220px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
+      <div className="relative w-full h-[400px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
         <div className="absolute inset-0 bg-plp-overlay-light" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-plp-overlay/10 backdrop-blur-sm" />
                  <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">

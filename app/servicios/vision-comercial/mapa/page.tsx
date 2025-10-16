@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { MapSection } from "@/components/map-section"
+import WorkingGoogleMap from "@/components/working-google-map"
 import { 
   Building2,
   Ship,
@@ -14,7 +14,9 @@ import {
   Info,
   ExternalLink,
   Layers,
-  Filter
+  Filter,
+  Download,
+  FileText
 } from "lucide-react"
 import Link from "next/link"
 
@@ -204,160 +206,16 @@ export default function MapaInteractivo() {
           </Card>
         </section>
 
-        {/* Mapa interactivo */}
+        {/* Mapa de Google Maps con KML */}
         <section className="mb-12">
-          <div className="relative">
-            {/* Mapa base */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative h-[600px] w-full bg-gradient-to-br from-blue-50 to-blue-100">
-                {/* Imagen de fondo del puerto */}
-                <img
-                  src="/puerto-plata-satellite.png"
-                  alt="Mapa del Puerto La Plata"
-                  className="w-full h-full object-cover opacity-80"
-                />
-
-                {/* Marcadores de operadores */}
-                {filteredOperators.map((operator) => {
-                  const typeInfo = getOperatorTypeInfo(operator.type)
-                  if (!typeInfo) return null
-                  return (
-                    <div
-                      key={operator.id}
-                      className={`absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 hover:scale-110 ${
-                        selectedOperator?.id === operator.id ? 'z-20' : 'z-10'
-                      }`}
-                      style={{
-                        left: `${operator.position.x}%`,
-                        top: `${operator.position.y}%`
-                      }}
-                      onClick={() => setSelectedOperator(operator)}
-                    >
-                      <div className={`${typeInfo.color} text-white p-3 rounded-lg shadow-lg min-w-[200px]`}>
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <typeInfo.icon className="h-4 w-4" />
-                            <span className="text-sm font-semibold">{operator.category}</span>
-                          </div>
-                          <Badge className="bg-white/20 text-white text-xs">
-                            {operator.type}
-                          </Badge>
-                        </div>
-                        <h4 className="text-sm font-bold mb-1">{operator.name}</h4>
-                        <p className="text-xs opacity-90 line-clamp-2">{operator.description}</p>
-                        <div className="flex gap-2 mt-2">
-                          <Link href={operator.website}>
-                            <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white border-white/30">
-                              <Info className="h-3 w-3 mr-1" />
-                              Info
-                            </Button>
-                          </Link>
-                          <Link href={operator.website}>
-                            <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/20">
-                              <ExternalLink className="h-3 w-3 mr-1" />
-                              Visitar
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* Controles del mapa */}
-              <div className="p-4 bg-white border-t border-gray-200">
-                <div className="flex flex-wrap justify-between items-center">
-                  <div className="flex items-center mb-2 md:mb-0">
-                    <span className="text-gray-600 text-sm">
-                      {filteredOperators.length} operadores mostrados
-                    </span>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <MapPin className="h-4 w-4 mr-2" />
-                      Ver ubicación
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Descargar mapa
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Card className="p-4">
+            <WorkingGoogleMap />
+          </Card>
         </section>
 
-        {/* Detalles del operador seleccionado */}
-        {selectedOperator && (
-          <section className="mb-12">
-            <Card className="p-6 border-2 border-plp-primary/20">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  {(() => {
-                    const typeInfo = getOperatorTypeInfo(selectedOperator.type)
-                    return typeInfo ? (
-                      <div className={`p-2 rounded-lg ${typeInfo.color} text-white`}>
-                        <typeInfo.icon className="h-6 w-6" />
-                      </div>
-                    ) : null
-                  })()}
-                  <div>
-                    <h3 className="text-xl font-bold text-plp-primary">{selectedOperator.name}</h3>
-                    <p className="text-sm text-plp-gray-600">{selectedOperator.category}</p>
-                  </div>
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setSelectedOperator(null)}
-                >
-                  Cerrar
-                </Button>
-              </div>
+        
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold text-plp-primary mb-2">Descripción</h4>
-                  <p className="text-plp-gray-700 mb-4">{selectedOperator.description}</p>
-                  
-                  <h4 className="font-semibold text-plp-primary mb-2">Servicios</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedOperator.details.servicios.map((servicio: string, index: number) => (
-                      <Badge key={index} variant="secondary" className="bg-plp-primary/10 text-plp-primary">
-                        {servicio}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
 
-                <div>
-                  <h4 className="font-semibold text-plp-primary mb-2">Información técnica</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-plp-gray-600">Superficie:</span>
-                      <span className="font-medium">{selectedOperator.details.superficie}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-plp-gray-600">Contacto:</span>
-                      <span className="font-medium">{selectedOperator.details.contacto}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-4">
-                    <Link href={selectedOperator.website}>
-                      <Button className="w-full bg-plp-primary hover:bg-plp-primary-hover">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Visitar página
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </section>
-        )}
 
         {/* CTA final */}
         <section>

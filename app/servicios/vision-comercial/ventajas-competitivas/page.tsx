@@ -195,10 +195,7 @@ export default function VentajasCompetitivas() {
           </Card>
         </section>
 
-                 {/* Enlaces útiles */}
-         <section className="mb-12">
-           <NavigationAids />
-         </section>
+
 
         {/* CTA final */}
         <section>

@@ -108,14 +108,7 @@ export default function NormasPoliticas() {
           </div>
         </section>
 
-        {/* Imagen central */}
-        <section className="mb-12">
-          <Card className="overflow-hidden">
-            <AspectRatio ratio={16/6} className="bg-plp-gray-100">
-              <Skeleton className="w-full h-full" />
-            </AspectRatio>
-          </Card>
-        </section>
+
 
         {/* Beneficios */}
         <section className="mb-12">

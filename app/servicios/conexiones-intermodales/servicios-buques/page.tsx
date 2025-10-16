@@ -355,86 +355,9 @@ export default function ServiciosBuques() {
           </div>
         </section>
 
-        {/* Link a Empresas de Servicios Portuarios */}
-        <section className="mb-12">
-          <Card className="p-8 bg-gradient-to-r from-plp-primary/5 to-plp-secondary/5 border border-plp-primary/20">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-semibold text-plp-primary mb-4">Empresas de Servicios Portuarios</h2>
-              <p className="text-plp-gray-700 max-w-3xl mx-auto">
-                Conoce las empresas habilitadas que prestan servicios en cada categoría. 
-                Todas las empresas cuentan con la habilitación correspondiente del CGPLP 
-                y están autorizadas para operar en el complejo portuario.
-              </p>
-            </div>
-            <div className="text-center">
-              <Link href="/servicios/operadores-organismos/empresas-servicios-portuarios">
-                <Button size="lg" className="bg-plp-primary hover:bg-plp-primary/90">
-                  <Building className="mr-2 h-5 w-5" />
-                  Ver Empresas de Servicios Portuarios
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        </section>
+        
 
-        {/* Información de contacto */}
-        <section className="mb-12">
-          <Card className="p-8">
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div>
-                <h2 className="text-2xl font-semibold text-plp-primary mb-6">Información de Contacto</h2>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-plp-primary" />
-                    <div>
-                      <p className="font-medium text-plp-gray-900">Teléfonos</p>
-                      <p className="text-sm text-plp-gray-600">+54 221 123-4567</p>
-                      <p className="text-sm text-plp-gray-600">Emergencias: +54 221 999-9999</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-plp-primary" />
-                    <div>
-                      <p className="font-medium text-plp-gray-900">Email</p>
-                      <p className="text-sm text-plp-gray-600">servicios@puertolaplata.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-plp-primary" />
-                    <div>
-                      <p className="font-medium text-plp-gray-900">Horarios de atención</p>
-                      <p className="text-sm text-plp-gray-600">Lunes a Viernes: 8:00 - 18:00 hs</p>
-                      <p className="text-sm text-plp-gray-600">Servicios de emergencia 24/7</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-plp-primary" />
-                    <div>
-                      <p className="font-medium text-plp-gray-900">Ubicación</p>
-                      <p className="text-sm text-plp-gray-600">Oficinas del CGPLP</p>
-                      <p className="text-sm text-plp-gray-600">Puerto La Plata, Buenos Aires</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-plp-primary mb-4">Sobre los Servicios</h3>
-                <p className="text-plp-gray-700 mb-4 leading-relaxed">
-                  El Consorcio de Gestión del Puerto La Plata coordina y gestiona todos los servicios 
-                  prestados a los buques, asegurando la calidad, eficiencia y seguridad de las operaciones portuarias.
-                </p>
-                <p className="text-plp-gray-700 mb-6 leading-relaxed">
-                  Las empresas de servicios portuarios están organizadas por categorías según el tipo de servicio 
-                  que ofrecen, garantizando especialización y experiencia en cada área.
-                </p>
-                <div className="p-4 bg-plp-primary/5 rounded-lg">
-                  <p className="text-sm font-medium text-plp-primary mb-2">ESPECIALIDAD:</p>
-                  <p className="text-sm font-semibold text-plp-gray-700">Coordinación integral de servicios portuarios</p>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </section>
+       
 
         {/* CTA final */}
         <section>
