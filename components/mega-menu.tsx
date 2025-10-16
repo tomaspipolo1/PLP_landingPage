@@ -40,9 +40,8 @@ const menuItems: MenuItem[] = [
     label: "Servicios y Negocios",
     href: "/servicios",
     items: [
-      { label: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
-      { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
       { label: "Ventajas competitivas", href: "/servicios/vision-comercial/ventajas-competitivas" },
+      { label: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
       { label: "Mapa interactivo", href: "/servicios/vision-comercial/mapa" },
       {
         label: "Terminales",
@@ -75,6 +74,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       { label: "Tarifario", href: "/servicios/tarifario" },
+      { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
     ],
   },
   {
