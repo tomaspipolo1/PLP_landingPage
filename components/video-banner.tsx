@@ -7,7 +7,7 @@ export function VideoBanner() {
     <section className="w-full h-screen relative -mt-[var(--header-height,80px)]">
       {/* Imagen hero a pantalla completa */}
       <img
-        src="/HERO.jpg"
+        src="/hero.jpg"
         alt="Puerto La Plata"
         className="absolute inset-0 w-full h-full object-cover"
       />
