@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
-import { ChevronDown, ChevronRight, LogIn, Anchor, Users, Award } from "lucide-react"
+import { ChevronDown, ChevronRight } from "lucide-react"
 
 // Definición de tipos para la estructura del menú
 type SubSubmenuItem = {
@@ -112,64 +112,65 @@ const menuItems: MenuItem[] = [
       { label: "Proyectos estratégicos", href: "/innovacion/proyectos-estrategicos" },
     ],
   },
-  {
-    label: "Contacto",
-    href: "/contacto",
-    items: [
-      { label: "Formulario de contacto", href: "/contacto" },
-      { label: "Trabajá con nosotros", href: "https://docs.google.com/forms/d/e/1FAIpQLScqP8q8xXZjCvbruYrh02RLZiLz8qr1LyCnMypkN57J73wfww/viewform?usp=sharing" },
-    ],
-  },
-]
-
-// Enlaces destacados con íconos
-const enlacesDestacados = [
-  { label: "Acceso al portal", href: "/servicios/acceso-portal", icon: LogIn },
-  { label: "Ayudas a la Navegación", href: "/servicios/ayudas-navegacion", icon: Anchor },
-  { label: "Comunidad", href: "/prensa/comunidad", icon: Users },
-  { label: "ISO 9001", href: "/prensa/certificaciones", icon: Award },
 ]
 
 export function MegaMenu() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const [expandedSubmenus, setExpandedSubmenus] = useState<string[]>([])
+  const [selectedSubmenu, setSelectedSubmenu] = useState<SubmenuItem | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
 
   // Cerrar el menú cuando se hace clic fuera de él
   useEffect(() => {
+    if (!activeMenu) return
+
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      const target = event.target as Node
+      if (menuRef.current && !menuRef.current.contains(target)) {
         setActiveMenu(null)
+        setSelectedSubmenu(null)
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside)
+    // Usar click en lugar de mousedown y agregar un pequeño delay
+    const timeoutId = setTimeout(() => {
+      document.addEventListener("click", handleClickOutside, true)
+    }, 0)
+    
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
+      clearTimeout(timeoutId)
+      document.removeEventListener("click", handleClickOutside, true)
     }
-  }, [])
+  }, [activeMenu])
 
-  // Función para alternar la expansión de un submenú
-  const toggleSubmenu = (label: string, e: React.MouseEvent) => {
+  // Manejar la selección de un submenú en el panel izquierdo
+  const handleSubmenuClick = (subItem: SubmenuItem, e: React.MouseEvent) => {
     e.preventDefault()
-    setExpandedSubmenus((prev) => (prev.includes(label) ? prev.filter((item) => item !== label) : [...prev, label]))
+    if (subItem.items && subItem.items.length > 0) {
+      setSelectedSubmenu(subItem)
+    }
   }
 
-  // Resetear los submenús expandidos cuando cambia el menú principal
+  // Resetear el submenú seleccionado cuando cambia el menú principal
   useEffect(() => {
-    setExpandedSubmenus([])
+    setSelectedSubmenu(null)
   }, [activeMenu])
 
   return (
-    <div className="hidden md:block relative" ref={menuRef}>
-      <ul className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 xl:gap-2.5 min-w-0 overflow-hidden">
+    <div className="hidden md:block relative overflow-visible" ref={menuRef}>
+      <ul className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 xl:gap-2.5 min-w-0 overflow-visible">
         {menuItems.map((item) => (
-          <li key={item.href} className="relative flex-shrink-0">
+          <li key={item.href} className="relative flex-shrink-0 overflow-visible">
             <button
+              ref={(el) => (buttonRefs.current[item.label] = el)}
               className={`flex items-center px-1 sm:px-1.5 md:px-2 lg:px-2.5 xl:px-3 py-1 sm:py-1.5 md:py-2 text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] lg:text-[0.85rem] xl:text-sm font-medium transition-colors hover:text-blue-300 text-white text-shadow whitespace-nowrap ${
                 activeMenu === item.label ? "text-blue-300" : "text-white"
               }`}
-              onClick={() => setActiveMenu(activeMenu === item.label ? null : item.label)}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setActiveMenu(activeMenu === item.label ? null : item.label)
+              }}
               aria-expanded={activeMenu === item.label}
             >
               {item.label}
@@ -179,96 +180,95 @@ export function MegaMenu() {
                 }`}
               />
             </button>
-          </li>
-        ))}
-      </ul>
 
-      {/* Mega Menu Dropdown - Separado de los elementos de lista para posicionamiento correcto */}
-      {activeMenu && (
-        <div
-          className="fixed left-0 right-0 z-50 bg-[#002A5B]/80 backdrop-blur-md text-white shadow-lg"
-          style={{ top: "var(--header-height, 80px)" }}
-        >
-          <div className="flex justify-center w-full py-3 sm:py-4 md:py-5 lg:py-6 xl:py-6 2xl:py-7">
-            <div className="max-w-4xl w-full px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-6 2xl:gap-8">
-                {/* Primera columna con título de sección */}
-                <div className="flex flex-col items-start text-left">
-                  <h3 className="text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg font-bold mb-2.5 sm:mb-3 md:mb-4 lg:mb-5 border-b border-blue-400/50 pb-1.5 w-full">
-                    {menuItems.find((item) => item.label === activeMenu)?.label}
-                  </h3>
-                  <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5 lg:space-y-3 xl:space-y-3.5 w-full">
+            {/* Dropdown desplegable debajo del item */}
+            {activeMenu === item.label && (
+              <div 
+                className="absolute top-full left-0 mt-2 z-[9999] flex rounded-lg overflow-hidden bg-[#1B1E4A] text-white" 
+                onClick={(e) => {
+                  e.stopPropagation()
+                  e.preventDefault()
+                }}
+                onMouseDown={(e) => {
+                  e.stopPropagation()
+                  e.preventDefault()
+                }}
+                style={{ 
+                  minWidth: '220px',
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  marginTop: '8px',
+                  zIndex: 9999,
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)'
+                }}
+              >
+                {/* Panel izquierdo - Navegación principal */}
+                <div className="flex flex-col bg-[#1B1E4A] min-w-[220px] p-3 sm:p-4">
+                  <ul className="space-y-1.5 sm:space-y-2 w-full">
                     {menuItems
-                      .find((item) => item.label === activeMenu)
-                      ?.items.map((subItem) => (
-                        <li key={subItem.href} className="text-left">
-                          {subItem.items && subItem.items.length > 0 ? (
-                            <>
+                      .find((menuItem) => menuItem.label === activeMenu)
+                      ?.items.map((subItem) => {
+                        const hasSubItems = subItem.items && subItem.items.length > 0
+                        const isSelected = selectedSubmenu?.label === subItem.label
+                        
+                        return (
+                          <li key={subItem.href} className="w-full">
+                            {hasSubItems ? (
                               <button
-                                className="flex items-center hover:text-blue-300 transition-colors w-full text-left text-[11px] sm:text-xs md:text-xs lg:text-sm xl:text-base"
-                                onClick={(e) => toggleSubmenu(subItem.label, e)}
+                                className={`flex items-center justify-between w-full text-left px-3 py-2 rounded transition-colors text-sm ${
+                                  isSelected
+                                    ? "bg-blue-600/30 text-blue-400"
+                                    : "hover:bg-blue-600/20 text-white"
+                                }`}
+                                onClick={(e) => handleSubmenuClick(subItem, e)}
+                                onMouseEnter={() => {
+                                  if (subItem.items && subItem.items.length > 0) {
+                                    setSelectedSubmenu(subItem)
+                                  }
+                                }}
                               >
-                                <ChevronRight
-                                  className={`h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 lg:h-4 lg:w-4 xl:h-4 xl:w-4 mr-1 sm:mr-1.5 md:mr-2 transition-transform ${
-                                    expandedSubmenus.includes(subItem.label) ? "rotate-90" : ""
-                                  }`}
-                                />
-                                {subItem.label}
+                                <span>{subItem.label}</span>
+                                <ChevronRight className="h-3.5 w-3.5 flex-shrink-0" />
                               </button>
-
-                              {/* Submenu de tercer nivel */}
-                              {expandedSubmenus.includes(subItem.label) && (
-                                <ul className="mt-1.5 space-y-1.5 sm:space-y-2 md:space-y-2 lg:space-y-2.5 ml-3 sm:ml-4 md:ml-5 lg:ml-6">
-                                  {subItem.items.map((subSubItem) => (
-                                    <li key={subSubItem.href} className="text-left">
-                                      <Link
-                                        href={subSubItem.href}
-                                        className="block text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-xs xl:text-sm text-gray-300 hover:text-blue-300 transition-colors"
-                                        onClick={() => setActiveMenu(null)}
-                                      >
-                                        {subSubItem.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </>
-                          ) : (
-                            <Link
-                              href={subItem.href}
-                              className="block hover:text-blue-300 transition-colors text-[11px] sm:text-xs md:text-xs lg:text-sm xl:text-base"
-                              onClick={() => setActiveMenu(null)}
-                            >
-                              {subItem.label}
-                            </Link>
-                          )}
-                        </li>
-                      ))}
+                            ) : (
+                              <Link
+                                href={subItem.href}
+                                className="block px-3 py-2 rounded transition-colors text-sm hover:bg-blue-600/20 text-white"
+                                onClick={() => setActiveMenu(null)}
+                              >
+                                {subItem.label}
+                              </Link>
+                            )}
+                          </li>
+                        )
+                      })}
                   </ul>
                 </div>
 
-                {/* Segunda columna - Enlaces destacados con íconos */}
-                <div className="flex flex-col bg-blue-700/80 backdrop-blur-sm p-2 sm:p-2.5 md:p-3 lg:p-4 xl:p-5 2xl:p-6 rounded-lg">
-                  <h4 className="font-bold mb-2 sm:mb-2.5 md:mb-3 lg:mb-4 text-left w-full text-[11px] sm:text-xs md:text-sm lg:text-base xl:text-lg">Enlaces destacados</h4>
-                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 xl:gap-4">
-                    {enlacesDestacados.map((enlace) => (
-                      <Link
-                        key={enlace.href}
-                        href={enlace.href}
-                        className="flex flex-col items-center justify-center p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-blue-800/80 rounded-lg hover:bg-blue-600/90 transition-colors text-center group"
-                        onClick={() => setActiveMenu(null)}
-                      >
-                        <enlace.icon className="h-4.5 w-4.5 sm:h-5 sm:w-5 md:h-5.5 md:w-5.5 lg:h-6 lg:w-6 xl:h-7 xl:w-7 2xl:h-8 2xl:w-8 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 group-hover:text-blue-300" />
-                        <span className="text-[10px] sm:text-[11px] md:text-xs lg:text-sm xl:text-base font-medium">{enlace.label}</span>
-                      </Link>
-                    ))}
+                {/* Panel derecho - Submenús */}
+                {selectedSubmenu && selectedSubmenu.items && selectedSubmenu.items.length > 0 && (
+                  <div className="flex flex-col bg-[#1B1E4A] min-w-[220px] p-3 sm:p-4 border-l border-blue-600/30">
+                    <ul className="space-y-1.5 sm:space-y-2 w-full">
+                      {selectedSubmenu.items.map((subSubItem) => (
+                        <li key={subSubItem.href} className="w-full">
+                          <Link
+                            href={subSubItem.href}
+                            className="block px-3 py-2 rounded transition-colors text-sm hover:bg-blue-600/20 text-white"
+                            onClick={() => setActiveMenu(null)}
+                          >
+                            {subSubItem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
+                )}
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

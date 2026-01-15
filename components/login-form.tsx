@@ -50,14 +50,17 @@ export function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-md bg-white rounded-lg shadow-xl overflow-hidden">
-      <div className="bg-[#002A5B] p-6 text-white text-center">
-        <img src="/logo-plp-white.png" alt="PLP Logo" className="h-16 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold">Iniciar Sesión</h1>
-        <p className="text-blue-200 mt-2">Acceda a su cuenta del Puerto La Plata</p>
+    <div className="w-full">
+      {/* Logo y título */}
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center mb-4">
+          <img src="/logo-plp.png" alt="PLP Logo" className="h-16" />
+        </div>
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">Ingresar al sistema</h1>
+        <p className="text-gray-600 text-sm">Acceda a su cuenta del Puerto La Plata</p>
       </div>
 
-      <div className="p-6">
+      <div>
         {error && <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -72,8 +75,8 @@ export function LoginForm() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="ejemplo@correo.com"
-                className="pl-10"
+                placeholder="ejemplo@ejemplo.com"
+                className="pl-10 bg-white border-gray-300"
                 required
               />
             </div>
@@ -90,8 +93,8 @@ export function LoginForm() {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="pl-10"
+                placeholder="Ingresar contraseña"
+                className="pl-10 bg-white border-gray-300"
                 required
               />
               <button
@@ -106,10 +109,12 @@ export function LoginForm() {
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Checkbox
+              <input
+                type="radio"
                 id="remember"
                 checked={rememberMe}
-                onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">
                 Recordarme
@@ -120,18 +125,22 @@ export function LoginForm() {
             </Link>
           </div>
 
-          <Button type="submit" className="w-full bg-[#0077B6] hover:bg-[#005A8D]" disabled={isLoading}>
-            {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
+          <Button type="submit" className="w-full bg-[#1B1E4A] hover:bg-[#272C5B] text-white " disabled={isLoading}>
+            {isLoading ? "Iniciando sesión..." : "Ingresar"}
           </Button>
 
-          <div className="text-center mt-4">
-            <p className="text-sm text-gray-600">
-              ¿No tiene una cuenta?{" "}
-              <Link href="/registro" className="text-blue-600 hover:text-blue-800 font-medium">
-                Regístrese aquí
-              </Link>
-            </p>
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 text-gray-500">o continuar con</span>
+            </div>
           </div>
+
+          <Button type="button" className="w-full bg-gray-600 hover:bg-gray-700 text-white  " asChild>
+            <Link href="/registro">Crear nueva cuenta</Link>
+          </Button>
         </form>
       </div>
     </div>

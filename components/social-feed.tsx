@@ -117,7 +117,7 @@ export function SocialFeed() {
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-medium text-center text-plp-primary mb-4">NOTICIAS Y REDES SOCIALES</h2>
+        <h2 className="text-3xl font-medium text-center text-plp-primary text-bold mb-4">Noticias</h2>
         <p className="text-center text-plp-gray-600 mb-8 max-w-2xl mx-auto">
           Mantente al día con las últimas novedades y anuncios de Puerto La Plata.
         </p>

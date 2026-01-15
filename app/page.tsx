@@ -22,11 +22,12 @@ export default function Home() {
         {/* Eventos */}
         <EventosSection />
 
+        {/* Ayudas a la Navegación */}
+        <NavigationAids />
+
         {/* Mapa Interactivo */}
         <MapSection />
 
-        {/* Ayudas a la Navegación */}
-        <NavigationAids />
 
         {/* Estadísticas */}
         <StatisticsSection />

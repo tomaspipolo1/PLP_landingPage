@@ -6,6 +6,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/components/auth-context"
+import { EnlacesDestacados } from "@/components/enlaces-destacados"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {children}
               </main>
               <Footer />
+              <EnlacesDestacados />
             </div>
           </AuthProvider>
         </ThemeProvider>

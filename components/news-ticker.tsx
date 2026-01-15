@@ -49,10 +49,10 @@ export function NewsTicker() {
   }, [])
 
   return (
-    <div className="bg-[#002A5B]/80 backdrop-blur-sm text-white py-2 overflow-hidden border-t border-blue-800/50">
+    <div className="bg-[#1B1E4A] text-white py-2 overflow-hidden border-t border-blue-800/50">
       <div className="relative flex items-center">
         {/* Etiqueta de "Últimas Noticias" */}
-        <div className="hidden md:flex items-center bg-blue-700/90 px-4 py-2 font-bold z-10 whitespace-nowrap">
+        <div className="hidden md:flex items-center bg-[#6AB6F7] px-4 py-2 font-bold z-10 whitespace-nowrap">
           NOTICIAS
           <ChevronRight className="h-5 w-5 ml-1" />
         </div>

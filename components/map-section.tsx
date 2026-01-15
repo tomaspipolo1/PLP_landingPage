@@ -1,89 +1,323 @@
-import { MapPin } from "lucide-react"
+"use client"
+
+import { useEffect, useRef, useState } from 'react'
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { X, Phone, Globe, MapPin, ExternalLink } from "lucide-react"
+
+/// <reference types="google.maps" />
+
+declare global {
+  interface Window {
+    google: typeof google
+    initHomeMap: () => void
+  }
+}
+
+interface PlaceDetails {
+  name: string
+  formatted_address: string
+  formatted_phone_number?: string
+  website?: string
+  place_id: string
+}
 
 export function MapSection() {
+  const mapRef = useRef<HTMLDivElement>(null)
+  const mapCreatedRef = useRef(false)
+  const markerRef = useRef<google.maps.Marker | null>(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [placeDetails, setPlaceDetails] = useState<PlaceDetails | null>(null)
+
+  useEffect(() => {
+    // Si ya se creó el mapa, no hacer nada
+    if (mapCreatedRef.current) return
+
+    const createMap = () => {
+      if (mapCreatedRef.current) return
+
+      if (!mapRef.current) {
+        return false
+      }
+
+      if (!window.google || !window.google.maps) {
+        return false
+      }
+
+      try {
+        // Coordenadas de Puerto La Plata - Ortiz de Rosas esquina Gilgerto Gaggino, Ensenada
+        const puertoLaPlataPosition = { lat: -34.8738, lng: -57.8774 }
+        
+        const mapInstance = new window.google.maps.Map(mapRef.current, {
+          center: puertoLaPlataPosition, // Centrado en Puerto La Plata
+          zoom: 13, // Zoom más bajo para mostrar más área (Ensenada, Berisso, etc.)
+          mapTypeId: window.google.maps.MapTypeId.ROADMAP,
+          // Desactivar controles de capas por defecto
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: true, // Activar fullscreen como en la imagen
+          zoomControl: true,
+          zoomControlOptions: {
+            position: window.google.maps.ControlPosition.RIGHT_CENTER,
+          },
+          // Desactivar POI (Points of Interest) y otras capas
+          styles: [
+            {
+              featureType: 'poi',
+              elementType: 'all',
+              stylers: [{ visibility: 'off' }]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels',
+              stylers: [{ visibility: 'off' }]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'all',
+              stylers: [{ visibility: 'off' }]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'labels',
+              stylers: [{ visibility: 'off' }]
+            }
+          ],
+          // Desactivar tráfico por defecto
+          disableDefaultUI: false,
+        })
+
+        // Buscar Puerto La Plata usando Places API
+        const placesService = new window.google.maps.places.PlacesService(mapInstance)
+        
+        const request = {
+          query: 'Puerto La Plata, Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+          fields: ['name', 'geometry', 'formatted_address', 'place_id']
+        }
+
+        placesService.textSearch(request, (results, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK && results && results[0]) {
+            const place = results[0]
+            
+            // Centrar el mapa en el lugar encontrado
+            if (place.geometry && place.geometry.location) {
+              mapInstance.setCenter(place.geometry.location)
+              
+              // Crear marcador usando la ubicación real de Google Maps
+              const marker = new window.google.maps.Marker({
+                position: place.geometry.location,
+                map: mapInstance,
+                title: place.name || 'Puerto La Plata'
+              })
+
+              // Crear InfoWindow con la información nativa de Google Maps
+              const infoWindow = new window.google.maps.InfoWindow()
+              
+              const detailsRequest = {
+                placeId: place.place_id,
+                fields: ['name', 'formatted_address', 'formatted_phone_number', 'website']
+              }
+
+              placesService.getDetails(detailsRequest, (placeDetails, detailsStatus) => {
+                if (detailsStatus === window.google.maps.places.PlacesServiceStatus.OK && placeDetails) {
+                  setPlaceDetails({
+                    name: placeDetails.name || 'Puerto La Plata',
+                    formatted_address: placeDetails.formatted_address || 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+                    formatted_phone_number: placeDetails.formatted_phone_number,
+                    website: placeDetails.website,
+                    place_id: place.place_id
+                  })
+                } else {
+                  setPlaceDetails({
+                    name: place.name || 'Puerto La Plata',
+                    formatted_address: place.formatted_address || 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+                    place_id: place.place_id
+                  })
+                }
+              })
+
+              // Abrir sidebar al hacer clic en el marcador
+              marker.addListener('click', () => {
+                setSidebarOpen(true)
+              })
+
+              markerRef.current = marker
+            }
+          } else {
+            // Fallback si no se encuentra el lugar: usar coordenadas aproximadas
+            console.warn('No se encontró el lugar en Places API, usando coordenadas por defecto')
+            const marker = new window.google.maps.Marker({
+              position: puertoLaPlataPosition,
+              map: mapInstance,
+              title: 'Puerto La Plata'
+            })
+            markerRef.current = marker
+          }
+        })
+
+        mapCreatedRef.current = true
+        return true
+      } catch (error) {
+        console.error('Error creando mapa:', error)
+        return false
+      }
+    }
+
+    // Callback global único
+    window.initHomeMap = () => {
+      setTimeout(() => {
+        if (createMap()) {
+          console.log('HomeMap: Mapa creado en callback')
+        }
+      }, 100)
+    }
+
+    // Verificar si Google Maps ya está disponible
+    if (window.google && window.google.maps) {
+      createMap()
+    } else {
+      // Verificar si ya hay un script cargándose
+      const existingScript = document.querySelector('script[src*="maps.googleapis.com"]')
+      
+      if (existingScript) {
+        // Chequear cada 500ms por máximo 20 segundos
+        let attempts = 0
+        const maxAttempts = 40
+        
+        const checkInterval = setInterval(() => {
+          attempts++
+          if (window.google && window.google.maps) {
+            clearInterval(checkInterval)
+            createMap()
+          } else if (attempts >= maxAttempts) {
+            clearInterval(checkInterval)
+          }
+        }, 500)
+      } else {
+        const script = document.createElement('script')
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyB-cNjtmi6BU_SipbO1YlosMVytvI_QDKI&callback=initHomeMap&libraries=places&v=weekly`
+        script.async = true
+        script.defer = true
+        
+        script.onerror = () => {
+          console.error('Error cargando Google Maps')
+        }
+        
+        document.head.appendChild(script)
+      }
+    }
+
+    return () => {
+      // Cleanup si es necesario
+    }
+  }, [])
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-medium text-center text-blue-500 mb-8">MAPA INTERACTIVO</h2>
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="relative h-[500px] w-full">
-            {/* Imagen de ejemplo de un mapa */}
-            <img
-              src="/puerto-plata-satellite.png"
-              alt="Mapa interactivo del Puerto La Plata"
-              className="w-full h-full object-cover"
+        <h2 className="text-3xl font-medium text-center mb-8" style={{ color: '#1B1E4A' }}>
+          Mapa interactivo
+        </h2>
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden relative">
+          <div className="relative w-full h-[500px]" style={{ minHeight: '500px' }}>
+            {/* Mapa */}
+            <div 
+              ref={mapRef} 
+              className="w-full h-full"
             />
+            
+            {/* Sidebar dentro del mapa */}
+            {sidebarOpen && placeDetails && (
+              <div className="absolute left-0 top-0 h-full w-full md:w-[350px] bg-white shadow-2xl z-10 overflow-y-auto transform transition-transform duration-300">
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-6">
+                    <h3 className="text-xl font-bold" style={{ color: '#1B1E4A' }}>
+                      {placeDetails.name}
+                    </h3>
+                    <button
+                      onClick={() => setSidebarOpen(false)}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                      aria-label="Cerrar"
+                    >
+                      <X className="h-5 w-5 text-gray-600" />
+                    </button>
+                  </div>
 
-            {/* Marcadores de ejemplo */}
-            <div className="absolute top-1/4 left-1/3 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="bg-blue-600 text-white p-2 rounded-lg shadow-lg text-sm">
-                <div className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-1" />
-                  <span>Terminal de Contenedores</span>
+                  <div className="mb-4">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-medium text-gray-500 mb-1">Dirección</p>
+                        <p className="text-gray-700 text-sm leading-relaxed">
+                          {placeDetails.formatted_address}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {placeDetails.formatted_phone_number && (
+                    <div className="mb-4">
+                      <div className="flex items-center gap-3">
+                        <Phone className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-gray-500 mb-1">Teléfono</p>
+                          <a 
+                            href={`tel:${placeDetails.formatted_phone_number}`}
+                            className="text-[#1B1E4A] hover:underline text-sm"
+                          >
+                            {placeDetails.formatted_phone_number}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {placeDetails.website && (
+                    <div className="mb-6">
+                      <div className="flex items-center gap-3">
+                        <Globe className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-gray-500 mb-1">Sitio web</p>
+                          <a 
+                            href={placeDetails.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#1B1E4A] hover:underline text-sm flex items-center gap-1"
+                          >
+                            {placeDetails.website}
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-4 border-t border-gray-200">
+                    <a
+                      href={`https://www.google.com/maps/place/?q=place_id:${placeDetails.place_id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button className="w-full bg-[#1B1E4A] hover:bg-[#272C5B] text-white flex items-center justify-center gap-2">
+                        Ver en Google Maps
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="absolute top-1/2 left-2/3 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="bg-green-600 text-white p-2 rounded-lg shadow-lg text-sm">
-                <div className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-1" />
-                  <span>Terminal de Graneles</span>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
-
-          <div className="p-4 bg-white border-t border-gray-200">
-            <div className="flex flex-wrap justify-between items-center">
-              <div className="flex items-center mb-2 md:mb-0">
-                <Link href="/servicios/vision-comercial/mapa">
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-700 transition-colors">
-                    Ver mapa completo
-                  </button>
-                </Link>
-                <span className="text-gray-600 text-sm">Haga clic en los marcadores para más información</span>
-              </div>
-
-              <div className="flex space-x-2">
-                <button className="bg-gray-200 hover:bg-gray-300 p-2 rounded-md transition-colors">
-                  <span className="sr-only">Acercar</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
-                </button>
-                <button className="bg-gray-200 hover:bg-gray-300 p-2 rounded-md transition-colors">
-                  <span className="sr-only">Alejar</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
-                </button>
-              </div>
-            </div>
+          
+          {/* Botón para ver mapa completo */}
+          <div className="p-4 bg-white border-t border-gray-200 text-center">
+            <Link href="/servicios/vision-comercial/mapa">
+              <Button 
+                className="bg-[#1B1E4A] hover:bg-[#272C5B] text-white"
+              >
+                Ver mapa completo
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
