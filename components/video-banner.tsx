@@ -1,15 +1,19 @@
 import { NewsTicker } from "./news-ticker"
 import { Ship, Package, Weight } from "lucide-react"
+import Image from "next/image"
 
 
 export function VideoBanner() {
   return (
     <section className="w-full h-screen relative -mt-[var(--header-height,80px)]">
       {/* Imagen hero a pantalla completa */}
-      <img
+      <Image
         src="/hero.jpg"
         alt="Puerto La Plata"
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        priority
+        className="object-cover"
+        quality={90}
       />
 
       {/* Overlay con gradiente solo en la parte inferior para el texto */}
