@@ -48,6 +48,18 @@ const authorities = [
 export function AuthoritiesSection() {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     if (!api) {
@@ -74,7 +86,7 @@ export function AuthoritiesSection() {
               del gobierno provincial, los municipios de Berisso, Ensenada y La Plata, y sectores empresariales y sindicales.
             </p>
             
-            <div className="w-full max-w-6xl mx-auto relative px-16 md:px-20 py-4">
+            <div className="w-full max-w-6xl mx-auto relative px-12 sm:px-16 md:px-20 py-4">
               <Carousel 
                 setApi={setApi}
                 className="w-full"
@@ -87,7 +99,7 @@ export function AuthoritiesSection() {
                   {authorities.map((authority, idx) => {
                     const isCenter = current === idx
                     return (
-                      <CarouselItem key={idx} className="pl-4 basis-1/3">
+                      <CarouselItem key={idx} className="pl-4 basis-full md:basis-1/3">
                         <div className="h-full flex items-center justify-center py-6">
                           <Card 
                             className={`overflow-hidden shadow-lg transition-all duration-300 flex flex-col w-full ${
@@ -98,7 +110,7 @@ export function AuthoritiesSection() {
                               height: '240px',
                               width: '100%',
                               maxWidth: '100%',
-                              transform: isCenter ? 'scale(1.15)' : 'scale(0.85)',
+                              transform: isMobile ? 'scale(1)' : (isCenter ? 'scale(1.15)' : 'scale(0.85)'),
                               transformOrigin: 'center',
                             }}
                           >
@@ -128,8 +140,8 @@ export function AuthoritiesSection() {
                     )
                   })}
                 </CarouselContent>
-                <CarouselPrevious className="-left-12 md:-left-16 h-14 w-14 bg-white/90 hover:bg-white border-gray-300 shadow-lg [&>svg]:h-6 [&>svg]:w-6" />
-                <CarouselNext className="-right-12 md:-right-16 h-14 w-14 bg-white/90 hover:bg-white border-gray-300 shadow-lg [&>svg]:h-6 [&>svg]:w-6" />
+                <CarouselPrevious className="-left-8 sm:-left-12 md:-left-16 h-12 w-12 md:h-14 md:w-14 bg-white/90 hover:bg-white border-gray-300 shadow-lg [&>svg]:h-5 [&>svg]:w-5 md:[&>svg]:h-6 md:[&>svg]:w-6" />
+                <CarouselNext className="-right-8 sm:-right-12 md:-right-16 h-12 w-12 md:h-14 md:w-14 bg-white/90 hover:bg-white border-gray-300 shadow-lg [&>svg]:h-5 [&>svg]:w-5 md:[&>svg]:h-6 md:[&>svg]:w-6" />
               </Carousel>
             </div>
 
