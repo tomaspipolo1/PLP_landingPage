@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Share2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -6,50 +7,37 @@ export function Footer() {
   return (
     <footer className="bg-black text-white">
       {/* Barra azul superior */}
-      <div className="h-1 bg-blue-600"></div>
+      <div className="h-1" style={{ backgroundColor: '#79B5E3' }}></div>
       
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
-          {/* Columna 1: Logo, Slogan y Contacto */}
-          <div className="space-y-4">
-            {/* Logo PLP */}
-            <div>
-              <div className="text-4xl font-bold mb-1">PLP</div>
-              <div className="text-sm font-semibold mb-4">PUERTO LA PLATA</div>
+        {/* PRIMERA FILA: Logos y Columnas de Accesos Rápidos */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-6">
+          {/* Logos PLP y Provincia + Eslogan - Ocupa 2 columnas */}
+          <div className="md:col-span-2 space-y-4">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/logo-plp-white.png"
+                alt="PLP Puerto La Plata"
+                width={120}
+                height={60}
+                className="object-contain"
+              />
+              <Image
+                src="/logo-provincia.png"
+                alt="Gobierno de la Provincia de Buenos Aires"
+                width={180}
+                height={60}
+                className="object-contain"
+              />
             </div>
             
-            {/* Slogan */}
+            {/* Eslogan */}
             <p className="text-sm text-white/80 leading-relaxed">
-              Puerto La Plata, conectando Argentina con el mundo a través de la excelencia en servicios portuarios y logística integral.
+              Puerto La Plata es una puerta estratégica al comercio internacional, ofreciendo servicios portuarios de excelencia, infraestructura moderna y una ubicación privilegiada que conecta la región con los principales mercados del mundo. Comprometidos con la innovación, la sostenibilidad y el desarrollo económico de la provincia de Buenos Aires.
             </p>
-            
-            {/* Información de contacto */}
-            <div className="space-y-3 mt-6">
-              <div className="flex items-start gap-2">
-                <MapPin className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-white">Ortíz de Rosas 151, Ensenada, Buenos Aires, Argentina</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="h-5 w-5 text-white flex-shrink-0" />
-                <p className="text-sm text-white">+54 221 429-0000</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-5 w-5 text-white flex-shrink-0" />
-                <p className="text-sm text-white">info@puertolaplata.com.ar</p>
-              </div>
-            </div>
-            
-            {/* Botón Contactanos */}
-            <div className="mt-6">
-              <Link href="/contacto">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-2">
-                  Contactanos
-                </Button>
-              </Link>
-            </div>
           </div>
 
-          {/* Columna 2: Institucional */}
+          {/* Columna: Institucional */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-white mb-4">Institucional</h3>
             <ul className="space-y-2">
@@ -79,15 +67,9 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            
-            {/* Certificación ISO */}
-            <div className="mt-6 pt-6 border-t border-white/20">
-              <div className="text-xs text-white/60 mb-2">Certificado ISO 9001</div>
-              <div className="text-xs font-semibold text-white">ISO 9001:2015</div>
-            </div>
           </div>
 
-          {/* Columna 3: Servicios */}
+          {/* Columna: Servicios */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-white mb-4">Servicios</h3>
             <ul className="space-y-2">
@@ -119,7 +101,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Columna 4: Recursos */}
+          {/* Columna: Recursos */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-white mb-4">Recursos</h3>
             <ul className="space-y-2">
@@ -150,12 +132,55 @@ export function Footer() {
               </li>
             </ul>
           </div>
+        </div>
 
-          {/* Columna 5: Mapa */}
-          <div className="space-y-4">
-            <div className="relative h-64 rounded-lg overflow-hidden">
+        {/* SEGUNDA FILA: Información de Contacto, ISO y Mapa */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
+          {/* Información de contacto y botón - Ocupa 2 columnas */}
+          <div className="md:col-span-2 space-y-4">
+            <div className="space-y-3">
+              <div className="flex items-start gap-2">
+                <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#79B5E3', strokeWidth: 2 }} />
+                <p className="text-sm text-white">Ortíz de Rosas 151, Ensenada, Buenos Aires, Argentina</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-5 w-5 flex-shrink-0" style={{ color: '#79B5E3', strokeWidth: 2 }} />
+                <p className="text-sm text-white">+54 221 429-0000</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-5 w-5 flex-shrink-0" style={{ color: '#79B5E3', strokeWidth: 2 }} />
+                <p className="text-sm text-white">info@puertolaplata.com.ar</p>
+              </div>
+            </div>
+            
+            <div className="mt-6">
+              <Link href="/contacto">
+                <Button className="text-white rounded-lg px-6 py-2" style={{ backgroundColor: '#1B1E4A' }}>
+                  Contactanos
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Certificación ISO */}
+          <div className="space-y-2">
+            <div className="mb-3">
+              <Image
+                src="/iso.png"
+                alt="ISO 9001:2015"
+                width={80}
+                height={80}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-xs text-white/80">Certificado ISO 9001</div>
+          </div>
+
+          {/* Mapa - Ocupa 2 columnas */}
+          <div className="md:col-span-2">
+            <div className="relative h-32 rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.9968542348745!2d-57.8774!3d-34.8738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDUyJzI1LjciUyA1N8KwNTIjMzguNiJX!5e0!3m2!1ses!2sar!4v1650000000000!5m2!1ses!2sar"
+                src="https://www.google.com/maps?q=-34.8738,-57.8774&hl=es&z=15&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -168,13 +193,20 @@ export function Footer() {
               
               {/* Botón Compartir */}
               <div className="absolute bottom-3 right-3">
-                <Button 
-                  size="sm"
-                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 flex items-center gap-2"
+                <a
+                  href="https://maps.app.goo.gl/S2AfRRQgbFHzMaor7"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Share2 className="h-4 w-4" />
-                  Compartir
-                </Button>
+                  <Button 
+                    size="sm"
+                    className="text-white rounded-lg px-4 py-2 flex items-center gap-2"
+                    style={{ backgroundColor: '#1B1E4A' }}
+                  >
+                    <Share2 className="h-4 w-4" />
+                    Compartir
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

@@ -54,7 +54,7 @@ export function Header() {
       <div className={`relative z-10 transition-all duration-300 ease-in-out ${scrolled ? "py-1" : "py-2 sm:py-3"}`}>
         <div className="container mx-auto px-2 sm:px-3 md:px-4 flex items-center justify-between gap-2 sm:gap-3 md:gap-4 overflow-visible">
           {/* Logo - shrinks when scrolled */}
-          <div className="flex items-center flex-shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
             <Link href="/">
               <img
                 src="/logo-plp-white.png"
@@ -64,6 +64,13 @@ export function Header() {
                 }`}
               />
             </Link>
+            <img
+              src="/logo-provincia.png"
+              alt="Provincia de Buenos Aires"
+              className={`transition-all duration-300 h-8 sm:h-9 md:h-10 lg:h-12 xl:h-14 2xl:h-16 ${
+                scrolled ? "h-6 sm:h-7 md:h-8 lg:h-10 xl:h-12 2xl:h-14" : ""
+              }`}
+            />
           </div>
 
           {/* Mega Menu Navigation - responsive text sizes */}

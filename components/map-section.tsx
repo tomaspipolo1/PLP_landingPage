@@ -50,7 +50,7 @@ export function MapSection() {
         
         const mapInstance = new window.google.maps.Map(mapRef.current, {
           center: puertoLaPlataPosition, // Centrado en Puerto La Plata
-          zoom: 13, // Zoom más bajo para mostrar más área (Ensenada, Berisso, etc.)
+          zoom: 14, // Zoom más bajo para mostrar más área (Ensenada, Berisso, etc.)
           mapTypeId: window.google.maps.MapTypeId.ROADMAP,
           // Desactivar controles de capas por defecto
           mapTypeControl: false,
@@ -228,42 +228,58 @@ export function MapSection() {
             
             {/* Sidebar dentro del mapa */}
             {sidebarOpen && placeDetails && (
-              <div className="absolute left-0 top-0 h-full w-full md:w-[350px] bg-white shadow-2xl z-10 overflow-y-auto transform transition-transform duration-300">
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-6">
-                    <h3 className="text-xl font-bold" style={{ color: '#1B1E4A' }}>
+              <div className="absolute left-0 top-0 h-full w-full md:w-[380px] bg-white shadow-2xl z-10 overflow-y-auto transform transition-transform duration-300">
+                {/* Header con fondo celeste */}
+                <div className="p-4 pb-3" style={{ backgroundColor: '#CAE6FF' }}>
+                  <div className="flex items-start justify-between">
+                    <h3 className="text-xl font-bold pr-4" style={{ color: '#1B1E4A' }}>
                       {placeDetails.name}
                     </h3>
                     <button
                       onClick={() => setSidebarOpen(false)}
-                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                      className="p-2 hover:bg-white/50 rounded-full transition-colors flex-shrink-0"
                       aria-label="Cerrar"
+                      style={{ color: '#1B1E4A' }}
                     >
-                      <X className="h-5 w-5 text-gray-600" />
+                      <X className="h-5 w-5" />
                     </button>
                   </div>
+                </div>
 
-                  <div className="mb-4">
-                    <div className="flex items-start gap-3">
-                      <MapPin className="h-5 w-5 text-gray-500 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-sm font-medium text-gray-500 mb-1">Dirección</p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
+                {/* Contenido */}
+                <div className="p-4 pt-3">
+                  {/* Dirección */}
+                  <div className="mb-3">
+                    <div className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: '#F0F2F9' }}>
+                      <div className="p-2 rounded-lg flex-shrink-0" style={{ backgroundColor: '#CAE6FF' }}>
+                        <MapPin className="h-5 w-5" style={{ color: '#1B1E4A' }} />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: '#1B1E4A' }}>
+                          Dirección
+                        </p>
+                        <p className="text-sm text-gray-700 leading-relaxed">
                           {placeDetails.formatted_address}
                         </p>
                       </div>
                     </div>
                   </div>
 
+                  {/* Teléfono */}
                   {placeDetails.formatted_phone_number && (
-                    <div className="mb-4">
-                      <div className="flex items-center gap-3">
-                        <Phone className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                        <div>
-                          <p className="text-sm font-medium text-gray-500 mb-1">Teléfono</p>
+                    <div className="mb-3">
+                      <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: '#F0F2F9' }}>
+                        <div className="p-2 rounded-lg flex-shrink-0" style={{ backgroundColor: '#CAE6FF' }}>
+                          <Phone className="h-5 w-5" style={{ color: '#1B1E4A' }} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: '#1B1E4A' }}>
+                            Teléfono
+                          </p>
                           <a 
                             href={`tel:${placeDetails.formatted_phone_number}`}
-                            className="text-[#1B1E4A] hover:underline text-sm"
+                            className="text-sm font-medium hover:underline block"
+                            style={{ color: '#1B1E4A' }}
                           >
                             {placeDetails.formatted_phone_number}
                           </a>
@@ -272,17 +288,23 @@ export function MapSection() {
                     </div>
                   )}
 
+                  {/* Sitio web */}
                   {placeDetails.website && (
-                    <div className="mb-6">
-                      <div className="flex items-center gap-3">
-                        <Globe className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                        <div>
-                          <p className="text-sm font-medium text-gray-500 mb-1">Sitio web</p>
+                    <div className="mb-3">
+                      <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: '#F0F2F9' }}>
+                        <div className="p-2 rounded-lg flex-shrink-0" style={{ backgroundColor: '#CAE6FF' }}>
+                          <Globe className="h-5 w-5" style={{ color: '#1B1E4A' }} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: '#1B1E4A' }}>
+                            Sitio web
+                          </p>
                           <a 
                             href={placeDetails.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#1B1E4A] hover:underline text-sm flex items-center gap-1"
+                            className="text-sm font-medium hover:underline flex items-center gap-1"
+                            style={{ color: '#1B1E4A' }}
                           >
                             {placeDetails.website}
                             <ExternalLink className="h-3 w-3" />
@@ -292,13 +314,14 @@ export function MapSection() {
                     </div>
                   )}
 
-                  <div className="pt-4 border-t border-gray-200">
+                  {/* Botón para ver en Google Maps */}
+                  <div className="pt-2">
                     <a
                       href={`https://www.google.com/maps/place/?q=place_id:${placeDetails.place_id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Button className="w-full bg-[#1B1E4A] hover:bg-[#272C5B] text-white flex items-center justify-center gap-2">
+                      <Button className="w-full bg-[#1B1E4A] hover:bg-[#272C5B] text-white flex items-center justify-center gap-2 py-4 rounded-lg font-medium">
                         Ver en Google Maps
                         <ExternalLink className="h-4 w-4" />
                       </Button>
@@ -308,17 +331,17 @@ export function MapSection() {
               </div>
             )}
           </div>
-          
-          {/* Botón para ver mapa completo */}
-          <div className="p-4 bg-white border-t border-gray-200 text-center">
-            <Link href="/servicios/vision-comercial/mapa">
-              <Button 
-                className="bg-[#1B1E4A] hover:bg-[#272C5B] text-white"
-              >
-                Ver mapa completo
-              </Button>
-            </Link>
-          </div>
+        </div>
+        
+        {/* Botón para ver mapa completo */}
+        <div className="text-center mt-6">
+          <Link href="/servicios/vision-comercial/mapa">
+            <Button 
+              className="bg-[#1B1E4A] hover:bg-[#272C5B] text-white"
+            >
+              Ver mapa completo
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
