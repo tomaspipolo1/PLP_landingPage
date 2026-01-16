@@ -52,9 +52,9 @@ export function Header() {
 
       {/* Main navigation bar - shrinks when scrolled */}
       <div className={`relative z-10 transition-all duration-300 ease-in-out ${scrolled ? "py-1" : "py-2 sm:py-3"}`}>
-        <div className="container mx-auto px-2 sm:px-3 md:px-4 flex items-center justify-between gap-2 sm:gap-3 md:gap-4 overflow-visible">
+        <div className="w-full px-4 md:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-3 md:gap-4 overflow-visible">
           {/* Logo - shrinks when scrolled */}
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0 pl-0">
             <Link href="/">
               <img
                 src="/logo-plp-white.png"
@@ -79,7 +79,7 @@ export function Header() {
           </div>
 
           {/* User Nav - compact and responsive */}
-          <div className={`flex items-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4 xl:space-x-5 transition-all duration-300 flex-shrink-0 ${
+          <div className={`flex items-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4 xl:space-x-5 transition-all duration-300 flex-shrink-0 pr-0 ${
             scrolled ? "scale-95" : ""
           }`}>
             {isLoggedIn ? <UserNav compact={scrolled} /> : <LoginButtons compact={scrolled} />}
