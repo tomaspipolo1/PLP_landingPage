@@ -62,7 +62,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="https://docs.google.com/forms/d/e/1FAIpQLScqP8q8xXZjCvbruYrh02RLZiLz8qr1LyCnMypkN57J73wfww/viewform?usp=sharing" className="text-sm text-white/80 hover:text-white transition-colors">
+                <Link href="/contacto/trabaja" className="text-sm text-white/80 hover:text-white transition-colors">
                   Trabajar con Nosotros
                 </Link>
               </li>

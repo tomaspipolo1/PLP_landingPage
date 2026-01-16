@@ -9,6 +9,7 @@ import { AuthProvider } from "@/components/auth-context"
 import { EnlacesDestacados } from "@/components/enlaces-destacados"
 import { BreadcrumbNav } from "@/components/breadcrumb-nav"
 import { HeroSection } from "@/components/hero-section"
+import { RelatedLinks } from "@/components/related-links"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <main className="flex-grow">
                 {children}
               </main>
+              <RelatedLinks />
               <Footer />
               <EnlacesDestacados />
             </div>

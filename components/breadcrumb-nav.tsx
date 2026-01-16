@@ -7,16 +7,42 @@ import { ChevronRight, Home } from 'lucide-react'
 export function BreadcrumbNav() {
   const pathname = usePathname()
 
-  // No mostrar en la home
-  if (pathname === '/') {
+  // No mostrar en páginas específicas
+  const pagesWithoutBreadcrumb = [
+    '/',
+    '/contacto/trabaja/exito',
+    '/contacto/trabaja',
+  ]
+
+  if (pagesWithoutBreadcrumb.includes(pathname)) {
     return null
   }
 
   // Generar breadcrumbs desde la ruta
   const segments = pathname.split('/').filter(Boolean)
   
+  // Mapeo de rutas especiales a títulos personalizados
+  const customTitles: Record<string, string> = {
+    'trabaja': 'Trabajar con nosotros',
+    'contacto': 'Contacto',
+    'nosotros': 'Nosotros',
+    'institucional': 'Institucional',
+    'servicios': 'Servicios',
+    'calidad': 'Calidad',
+    'comunicacion': 'Comunicación',
+    'comunidad': 'Comunidad',
+    'innovacion': 'Innovación',
+    'licitaciones': 'Licitaciones',
+    'estadisticas': 'Estadísticas'
+  }
+
   // Función para convertir el slug a texto legible
   const formatSegment = (segment: string) => {
+    // Verificar si hay un título personalizado
+    if (customTitles[segment]) {
+      return customTitles[segment]
+    }
+    
     return segment
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))

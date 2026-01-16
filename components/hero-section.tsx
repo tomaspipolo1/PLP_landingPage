@@ -21,13 +21,30 @@ const pagesWithoutHero = [
   '/login',
   '/registro',
   '/recuperar-contrasena',
+  '/contacto',
+  '/contacto/trabaja',
+  '/contacto/trabaja/exito',
+  '/estadisticas',
+]
+
+// Páginas que también tienen sección destacada propia
+const pagesWithHighlightSection = [
+  '/servicios/operadores-organismos/aduana',
+  '/servicios/operadores-organismos/zona-franca',
+  '/servicios/operadores-organismos/practicos',
+  '/servicios/operadores-organismos/migraciones',
+  '/servicios/operadores-organismos/prefectura',
+  '/servicios/terminales/areneras',
+  '/servicios/terminales/copetro',
+  '/servicios/terminales/contenedores',
+  '/servicios/terminales/ypf',
 ]
 
 export function HeroSection() {
   const pathname = usePathname()
 
-  // No mostrar hero en páginas específicas
-  if (pagesWithoutHero.includes(pathname)) {
+  // No mostrar hero en páginas específicas o páginas con sección destacada
+  if (pagesWithoutHero.includes(pathname) || pagesWithHighlightSection.includes(pathname)) {
     return null
   }
 

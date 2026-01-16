@@ -1,0 +1,116 @@
+"use client"
+
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { usePathname } from "next/navigation"
+
+// Define related links for each section
+const sectionRelatedLinks: Record<string, Array<{ title: string; href: string }>> = {
+  "/institucional": [
+    { title: "Autoridad Portuaria", href: "/institucional/autoridad-portuaria" },
+    { title: "Historia del Puerto", href: "/institucional/historia" },
+    { title: "Estructura Organizacional", href: "/institucional/estructura" },
+    { title: "Servicios Portuarios", href: "/servicios/vision-comercial/mapa" }
+  ],
+  "/servicios": [
+    { title: "Terminales", href: "/servicios/terminales/contenedores" },
+    { title: "Operadores y Organismos", href: "/servicios/operadores-organismos/aduana" },
+    { title: "Tarifario", href: "/servicios/tarifario" },
+    { title: "Visión Comercial", href: "/servicios/vision-comercial/mapa" }
+  ],
+  "/calidad": [
+    { title: "Certificaciones", href: "/calidad/certificaciones" },
+    { title: "Normas y Políticas", href: "/calidad/normas-politicas" },
+    { title: "Sostenibilidad", href: "/calidad/sostenibilidad" },
+    { title: "Innovación", href: "/innovacion/digitalizacion-tecnologica" }
+  ],
+  "/comunicacion": [
+    { title: "Noticias", href: "/comunicacion/noticias" },
+    { title: "Galería", href: "/comunicacion/galeria" },
+    { title: "Descargas", href: "/comunicacion/descargas" },
+    { title: "Eventos", href: "/comunidad/eventos" }
+  ],
+  "/comunidad": [
+    { title: "Eventos", href: "/comunidad/eventos" },
+    { title: "Visitas Educativas", href: "/comunidad/visitas-educativas" },
+    { title: "Museo", href: "/comunidad/museo" },
+    { title: "Noticias", href: "/comunicacion/noticias" }
+  ],
+  "/innovacion": [
+    { title: "Digitalización Tecnológica", href: "/innovacion/digitalizacion-tecnologica" },
+    { title: "Proyectos Estratégicos", href: "/innovacion/proyectos-estrategicos" },
+    { title: "Sostenibilidad", href: "/calidad/sostenibilidad" },
+    { title: "Estadísticas", href: "/estadisticas" }
+  ],
+  "/licitaciones": [
+    { title: "Licitaciones Abiertas", href: "/licitaciones/abiertas" },
+    { title: "Licitaciones Cerradas", href: "/licitaciones/cerradas" },
+    { title: "Oportunidades de Negocio", href: "/servicios/vision-comercial/oportunidades" },
+    { title: "Contacto", href: "/contacto" }
+  ],
+  "/contacto": [
+    { title: "Servicios Portuarios", href: "/servicios/vision-comercial/mapa" },
+    { title: "Licitaciones", href: "/licitaciones" },
+    { title: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
+    { title: "Nosotros", href: "/institucional/nosotros" }
+  ]
+}
+
+export function RelatedLinks() {
+  const pathname = usePathname()
+  
+  // Don't show on home page, login, register, or success pages
+  const pagesWithoutLinks = [
+    '/',
+    '/login',
+    '/registro',
+    '/contacto/trabaja/exito'
+  ]
+  
+  if (pagesWithoutLinks.includes(pathname)) {
+    return null
+  }
+
+  // Get the main section from pathname
+  const firstSegment = '/' + pathname.split('/').filter(Boolean)[0]
+  const links = sectionRelatedLinks[firstSegment]
+
+  // If no links defined for this section, don't render
+  if (!links || links.length === 0) {
+    return null
+  }
+
+  return (
+    <section className="w-full py-6 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="rounded-xl p-6 md:p-8" style={{ 
+            border: '2px solid #4A90E2',
+            backgroundColor: 'white'
+          }}>
+            <h2 className="text-xl md:text-2xl font-semibold mb-5" style={{ color: '#4A90E2' }}>
+              Otras secciones que podrían interesarte...
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+              {links.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  className="flex items-center justify-between p-3 rounded-lg transition-all duration-300 hover:bg-gray-50 group"
+                  style={{ 
+                    border: '1px solid #E5E7EB'
+                  }}
+                >
+                  <span className="text-sm font-medium group-hover:text-blue-600 transition-colors" style={{ color: '#4A90E2' }}>
+                    {link.title}
+                  </span>
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" style={{ color: '#4A90E2' }} />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
