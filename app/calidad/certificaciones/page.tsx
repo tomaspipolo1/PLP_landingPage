@@ -31,13 +31,6 @@ const certificados = [
 export default function Certificaciones() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <div className="relative w-full h-[300px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
-         <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-shadow">Certificaciones</h1>
-          </div>
-      </div>
-
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

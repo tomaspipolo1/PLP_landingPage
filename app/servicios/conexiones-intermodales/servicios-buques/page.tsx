@@ -240,32 +240,7 @@ const estadisticas = [
 export default function ServiciosBuques() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <div className="relative w-full h-[400px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
-        <div className="absolute inset-0 bg-plp-overlay-light" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-plp-overlay/10 backdrop-blur-sm" />
-        <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white text-shadow mb-4">Servicios a los Buques</h1>
-            <p className="text-xl text-white/90 mb-6">
-              Servicios prestados por el Consorcio de Gestión del Puerto La Plata y las Empresas de Servicios Portuarios. 
-              Categorización por tipo de servicio y proceso de solicitud.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
-                <FileText className="mr-2 h-5 w-5" />
-                Solicitar servicio
-              </Button>
-              <Link href="/servicios/operadores-organismos/empresas-servicios-portuarios">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
-                  <Building className="mr-2 h-5 w-5" />
-                  Ver Empresas de Servicios Portuarios
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Content */}
       <div className="container mx-auto px-4 py-12">

@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/components/auth-context"
 import { EnlacesDestacados } from "@/components/enlaces-destacados"
+import { BreadcrumbNav } from "@/components/breadcrumb-nav"
+import { HeroSection } from "@/components/hero-section"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,7 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AuthProvider>
             <div className="flex flex-col min-h-screen">
               <Header />
-              <main className="flex-grow pt-[var(--header-height,80px)]">
+              <div className="pt-[var(--header-height,80px)]">
+                <HeroSection />
+                <BreadcrumbNav />
+              </div>
+              <main className="flex-grow">
                 {children}
               </main>
               <Footer />

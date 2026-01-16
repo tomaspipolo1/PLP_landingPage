@@ -110,25 +110,25 @@ const noticiasRecientes = [
 export default function TerminalesContenedores() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-             <div className="relative w-full h-[400px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
-        <div className="absolute inset-0 bg-plp-overlay-light" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-plp-overlay/10 backdrop-blur-sm" />
-        <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white text-shadow mb-4">Terminales de contenedores</h1>
-            <p className="text-xl text-white/90 mb-6">
+      {/* Sección destacada */}
+      <div className="w-full py-12" style={{ backgroundColor: '#CAE6FF' }}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#1B1E4A' }}>
+              Terminales de contenedores
+            </h1>
+            <p className="text-lg mb-6" style={{ color: '#1B1E4A', opacity: 0.8 }}>
               Una nueva conexión de Argentina con el mundo a través de modernas instalaciones portuarias 
               operadas por TecPlata S.A., filial de ICTSI.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="https://www.tecplata.com/" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100">
+                <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
                   <ExternalLink className="mr-2 h-5 w-5" />
                   Visitar TecPlata
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="bg-color-blue border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-white bg-white/50 hover:bg-white" style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}>
                 <Phone className="mr-2 h-5 w-5" />
                 Contactar
               </Button>

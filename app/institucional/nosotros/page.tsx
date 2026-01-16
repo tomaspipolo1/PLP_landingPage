@@ -9,15 +9,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 export default function SobreNosotros() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero section con contenedor para imagen */}
-      <div className="relative w-full h-[300px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
-         <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-shadow text-left">
-            Sobre el Puerto La Plata
-          </h1>
-        </div>
-      </div>
-
       {/* Contenido principal */}
       <div className="container mx-auto px-4 py-12">
         {/* Descripción del Puerto La Plata */}

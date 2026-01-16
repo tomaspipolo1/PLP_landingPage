@@ -269,21 +269,26 @@ const empresas = {
 export default function EmpresasServiciosPortuarios() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <div className="relative w-full h-[400px] bg-gradient-to-r from-plp-primary to-plp-secondary overflow-hidden -mt-[var(--header-height,80px)]">
-        <div className="absolute inset-0 bg-plp-overlay-light" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-plp-overlay/10 backdrop-blur-sm" />
-        <div className="relative h-full container mx-auto px-4 flex items-center pt-[var(--header-height,80px)]">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white text-shadow mb-4">Empresas de Servicios Portuarios Habilitadas</h1>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
-                <Search className="mr-2 h-5 w-5" />
+      
+      {/* Sección destacada */}
+      <div className="w-full py-12" style={{ backgroundColor: '#CAE6FF' }}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#1B1E4A' }}>
+            Empresas de Servicios Portuarios Habilitadas
+            </h1>
+            <p className="text-lg mb-6" style={{ color: '#1B1E4A', opacity: 0.8 }}>
+              Centro de Información Integral para operadores del comercio exterior, 
+              facilitando la gestión aduanera y operaciones portuarias eficientes.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
+                <ExternalLink className="mr-2 h-5 w-5" />
                 Buscar empresa
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
-                <FileText className="mr-2 h-5 w-5" />
-                Ver categorías
+              <Button size="lg" variant="outline" className="border-white bg-white/50 hover:bg-white" style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}>
+                <Search className="mr-2 h-5 w-5" />
+                Ver categorias
               </Button>
             </div>
           </div>
