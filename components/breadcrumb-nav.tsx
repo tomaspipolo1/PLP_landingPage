@@ -3,18 +3,36 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { ChevronRight, Home } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 export function BreadcrumbNav() {
   const pathname = usePathname()
+  const [isNotFound, setIsNotFound] = useState(false)
 
-  // No mostrar en páginas específicas
+  // Detectar si estamos en página not-found
+  useEffect(() => {
+    const checkNotFound = () => {
+      setIsNotFound(document.body.classList.contains('page-not-found'))
+    }
+    
+    checkNotFound()
+    
+    // Observer para detectar cambios en las clases del body
+    const observer = new MutationObserver(checkNotFound)
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
+    
+    return () => observer.disconnect()
+  }, [])
+
+  // No mostrar en páginas específicas o en not-found
   const pagesWithoutBreadcrumb = [
     '/',
+    '/contacto',
     '/contacto/trabaja/exito',
     '/contacto/trabaja',
   ]
 
-  if (pagesWithoutBreadcrumb.includes(pathname)) {
+  if (pagesWithoutBreadcrumb.includes(pathname) || isNotFound) {
     return null
   }
 

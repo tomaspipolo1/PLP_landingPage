@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 // Define related links for each section
 const sectionRelatedLinks: Record<string, Array<{ title: string; href: string }>> = {
@@ -58,6 +59,22 @@ const sectionRelatedLinks: Record<string, Array<{ title: string; href: string }>
 
 export function RelatedLinks() {
   const pathname = usePathname()
+  const [isNotFound, setIsNotFound] = useState(false)
+
+  // Detectar si estamos en página not-found
+  useEffect(() => {
+    const checkNotFound = () => {
+      setIsNotFound(document.body.classList.contains('page-not-found'))
+    }
+    
+    checkNotFound()
+    
+    // Observer para detectar cambios en las clases del body
+    const observer = new MutationObserver(checkNotFound)
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
+    
+    return () => observer.disconnect()
+  }, [])
   
   // Don't show on home page, login, register, or success pages
   const pagesWithoutLinks = [
@@ -80,8 +97,11 @@ export function RelatedLinks() {
     return null
   }
 
+  // Usar fondo celeste si estamos en not-found, sino gris
+  const bgColor = isNotFound ? '#CAE6FF' : undefined
+
   return (
-    <section className="w-full py-6 bg-gray-50">
+    <section className="w-full py-6" style={{ backgroundColor: bgColor || '#F9FAFB' }}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="rounded-xl p-6 md:p-8" style={{ 

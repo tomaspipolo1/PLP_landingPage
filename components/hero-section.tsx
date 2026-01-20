@@ -1,6 +1,7 @@
 "use client"
 
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 // Mapeo de rutas a títulos de secciones principales
 const sectionTitles: Record<string, string> = {
@@ -42,9 +43,25 @@ const pagesWithHighlightSection = [
 
 export function HeroSection() {
   const pathname = usePathname()
+  const [isNotFound, setIsNotFound] = useState(false)
 
-  // No mostrar hero en páginas específicas o páginas con sección destacada
-  if (pagesWithoutHero.includes(pathname) || pagesWithHighlightSection.includes(pathname)) {
+  // Detectar si estamos en página not-found
+  useEffect(() => {
+    const checkNotFound = () => {
+      setIsNotFound(document.body.classList.contains('page-not-found'))
+    }
+    
+    checkNotFound()
+    
+    // Observer para detectar cambios en las clases del body
+    const observer = new MutationObserver(checkNotFound)
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
+    
+    return () => observer.disconnect()
+  }, [])
+
+  // No mostrar hero en páginas específicas, páginas con sección destacada, o not-found
+  if (pagesWithoutHero.includes(pathname) || pagesWithHighlightSection.includes(pathname) || isNotFound) {
     return null
   }
 

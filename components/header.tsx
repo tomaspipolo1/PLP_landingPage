@@ -59,16 +59,16 @@ export function Header() {
               <img
                 src="/logo-plp-white.png"
                 alt="PLP Logo"
-                className={`transition-all duration-300 h-8 sm:h-9 md:h-10 lg:h-12 xl:h-14 2xl:h-16 ${
-                  scrolled ? "h-6 sm:h-7 md:h-8 lg:h-10 xl:h-12 2xl:h-14" : ""
+                className={`transition-all duration-300 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 2xl:h-11 ${
+                  scrolled ? "h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10" : ""
                 }`}
               />
             </Link>
             <img
               src="/logo-provincia.png"
               alt="Provincia de Buenos Aires"
-              className={`transition-all duration-300 h-8 sm:h-9 md:h-10 lg:h-12 xl:h-14 2xl:h-16 ${
-                scrolled ? "h-6 sm:h-7 md:h-8 lg:h-10 xl:h-12 2xl:h-14" : ""
+              className={`transition-all duration-300 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 2xl:h-11 ${
+                scrolled ? "h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10" : ""
               }`}
             />
           </div>

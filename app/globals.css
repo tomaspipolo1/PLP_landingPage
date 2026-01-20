@@ -95,3 +95,9 @@
   scrollbar-width: thin;
   scrollbar-color: #1a1a1a #000000;
 }
+
+/* Ocultar breadcrumb y hero en página not-found */
+body.page-not-found nav[class*="breadcrumb"],
+body.page-not-found div[class*="hero"] {
+  display: none !important;
+}

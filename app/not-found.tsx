@@ -1,11 +1,24 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { useEffect } from "react"
 
 export default function NotFound() {
+  // Ocultar breadcrumb y hero usando CSS cuando estamos en not-found
+  useEffect(() => {
+    // Agregar clase al body para identificar página not-found
+    document.body.classList.add('page-not-found')
+    
+    return () => {
+      document.body.classList.remove('page-not-found')
+    }
+  }, [])
+
   return (
     <div 
-      className="w-full h-[calc(100vh-var(--header-height,80px))] flex items-center justify-center px-10 py-5"
+      className="w-full min-h-[calc(100vh-var(--header-height,80px)-200px)] flex items-center justify-center px-10 py-12"
       style={{ backgroundColor: '#CAE6FF' }}
     >
       <div className="max-w-7xl w-full flex flex-col md:flex-row items-center gap-1 md:gap-12">
