@@ -148,7 +148,7 @@ export function MobileMenu() {
       <Button 
         variant="ghost" 
         size="icon" 
-        className="xl:hidden text-white hover:text-blue-300 hover:bg-white/10"
+        className="text-white hover:text-blue-300 hover:bg-white/10"
         onClick={() => setOpen(!open)}
       >
         <Menu className="h-5 w-5" />

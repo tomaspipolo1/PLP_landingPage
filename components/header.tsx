@@ -73,8 +73,8 @@ export function Header() {
             />
           </div>
 
-          {/* Mega Menu Navigation - responsive text sizes */}
-          <div className={`hidden xl:block transition-all duration-300 flex-1 flex justify-center min-w-0 overflow-visible ${scrolled ? "scale-95" : ""}`}>
+          {/* Mega Menu Navigation - show from 1366px and up */}
+          <div className={`hidden min-[1366px]:flex transition-all duration-300 flex-1 justify-center min-w-0 overflow-visible ${scrolled ? "scale-95" : ""}`}>
             <MegaMenu />
           </div>
 
@@ -83,8 +83,8 @@ export function Header() {
             scrolled ? "scale-95" : ""
           }`}>
             {isLoggedIn ? <UserNav compact={scrolled} /> : <LoginButtons compact={scrolled} />}
-            {/* Mobile Menu - moved to the right side */}
-            <div className="xl:hidden">
+            {/* Mobile Menu - show below 1366px */}
+            <div className="min-[1366px]:hidden">
               <MobileMenu />
             </div>
           </div>

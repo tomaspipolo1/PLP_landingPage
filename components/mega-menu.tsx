@@ -158,12 +158,12 @@ export function MegaMenu() {
 
   return (
     <div className="hidden md:block relative overflow-visible" ref={menuRef}>
-      <ul className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 xl:gap-2.5 min-w-0 overflow-visible">
+      <ul className="flex items-center justify-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-1.5 xl:gap-2 min-w-0 overflow-visible">
         {menuItems.map((item) => (
           <li key={item.href} className="relative flex-shrink-0 overflow-visible">
             <button
               ref={(el) => (buttonRefs.current[item.label] = el)}
-              className={`flex items-center px-1 sm:px-1.5 md:px-2 lg:px-2.5 xl:px-3 py-1 sm:py-1.5 md:py-2 text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] lg:text-[0.85rem] xl:text-sm font-medium transition-colors hover:text-blue-300 text-white text-shadow whitespace-nowrap ${
+              className={`flex items-center px-1 sm:px-1.5 md:px-2 lg:px-2 xl:px-2 py-1 sm:py-1.5 md:py-2 text-[0.7rem] sm:text-[0.75rem] md:text-[0.78rem] lg:text-[0.8rem] xl:text-[0.8rem] font-medium transition-colors hover:text-blue-300 text-white text-shadow whitespace-nowrap ${
                 activeMenu === item.label ? "text-blue-300" : "text-white"
               }`}
               onClick={(e) => {
