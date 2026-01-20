@@ -13,14 +13,6 @@ const noticias = [
     tipo: "noticia"
   },
   {
-    id: "n2", 
-    titulo: "Llegada del MSC Magnifica",
-    contenido: "Nos complace anunciar la llegada del buque MSC Magnifica a nuestro puerto. Con 293 metros de eslora, es uno de los cruceros más grandes que hemos recibido este año.",
-    imagen: "/social/cruise-ship.png",
-    fecha: "2024-03-10T09:15:00",
-    tipo: "noticia"
-  },
-  {
     id: "ig1",
     titulo: "Amanecer en Puerto La Plata",
     contenido: "Comenzando un nuevo día de operaciones. #PuertoLaPlata #Amanecer #Logística",
@@ -60,46 +52,6 @@ const noticias = [
     fecha: "2024-03-03T16:20:00",
     tipo: "noticia"
   },
-  {
-    id: "n5",
-    titulo: "Mantenimiento en acceso principal",
-    contenido: "Este fin de semana realizaremos trabajos de mantenimiento en el acceso principal. Por favor utilicen la entrada alternativa por Avenida del Petróleo.",
-    imagen: "/social/INICIO_PANEL_CP 3.jpg",
-    fecha: "2024-03-01T13:10:00",
-    tipo: "noticia"
-  },
-  {
-    id: "n6",
-    titulo: "Nueva terminal de contenedores",
-    contenido: "Se inauguró la nueva terminal de contenedores con tecnología de última generación, aumentando significativamente nuestra capacidad operativa.",
-    imagen: "/social/INICIO_PANEL_TEC 1.jpg",
-    fecha: "2024-02-28T10:00:00",
-    tipo: "noticia"
-  },
-  {
-    id: "n7",
-    titulo: "Programa de sostenibilidad ambiental",
-    contenido: "Lanzamos nuestro nuevo programa de sostenibilidad ambiental con objetivos de reducción de emisiones y uso de energías renovables.",
-    imagen: "/social/INICIO_PANEL_MUP 1.jpg",
-    fecha: "2024-02-25T15:30:00",
-    tipo: "noticia"
-  },
-  {
-    id: "ig4",
-    titulo: "Puerto bajo las estrellas",
-    contenido: "Las operaciones nocturnas del puerto crean un espectáculo único bajo el cielo estrellado. #PuertoLaPlata #Noche #Operaciones #Estrellas",
-    imagen: "/social/colorful-harbor-town.png",
-    fecha: "2024-02-22T23:45:00",
-    tipo: "instagram"
-  },
-  {
-    id: "n8",
-    titulo: "Cumplimiento de objetivos anuales",
-    contenido: "Puerto La Plata superó todos los objetivos planteados para el año, consolidando su posición como uno de los puertos más eficientes de la región.",
-    imagen: "/social/DSC04672.JPG",
-    fecha: "2024-02-20T12:00:00",
-    tipo: "noticia"
-  }
 ]
 
 // Componente para el feed de noticias
