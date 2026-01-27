@@ -22,7 +22,16 @@ interface PlaceDetails {
   place_id: string
 }
 
-export function MapSection() {
+interface MapSectionProps {
+  /** Título de la sección (por defecto "Mapa interactivo") */
+  title?: string
+  /** Descripción opcional debajo del título */
+  description?: string
+  /** ID para anclas (ej. scroll desde hero "Ver mapa de rutas") */
+  id?: string
+}
+
+export function MapSection({ title = "Mapa interactivo", description, id }: MapSectionProps = {}) {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapCreatedRef = useRef(false)
   const markerRef = useRef<google.maps.Marker | null>(null)
@@ -213,11 +222,14 @@ export function MapSection() {
   }, [])
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section id={id} className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-medium text-center mb-8" style={{ color: '#1B1E4A' }}>
-          Mapa interactivo
+          {title}
         </h2>
+        {description && (
+          <p className="text-center text-plp-gray-700 mb-6 max-w-2xl mx-auto">{description}</p>
+        )}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden relative">
           <div className="relative w-full h-[500px]" style={{ minHeight: '500px' }}>
             {/* Mapa */}

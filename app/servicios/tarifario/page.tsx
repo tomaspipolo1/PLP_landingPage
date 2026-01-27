@@ -1,412 +1,172 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { 
-  Ship,
-  Truck,
-  Train,
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  Package,
-  Warehouse,
-  FileText,
-  Wrench,
-  Download,
-  CreditCard,
-  AlertCircle
-} from "lucide-react"
-import Link from "next/link"
+import { FileText, FileSearch, Download } from "lucide-react"
 
-// Categorías de tarifas
-const categoriasTarifas = [
-  {
-    id: "uso-puerto",
-    titulo: "Tarifa de Uso del Puerto",
-    descripcion: "Tarifas por utilización de instalaciones y servicios portuarios",
-    icon: Ship,
-    color: "bg-blue-500",
-    archivos: [
-      {
-        nombre: "Tarifa de Uso del Puerto 2024",
-        tipo: "PDF",
-        tamaño: "2.3 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas vigentes para uso de instalaciones portuarias"
-      },
-      {
-        nombre: "Tarifa de Uso del Puerto - Anexo I",
-        tipo: "PDF",
-        tamaño: "1.8 MB",
-        fecha: "Enero 2024",
-        descripcion: "Detalle de tarifas por tipo de buque y operación"
-      },
-      {
-        nombre: "Tarifa de Uso del Puerto - Anexo II",
-        tipo: "PDF",
-        tamaño: "1.5 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas especiales y descuentos aplicables"
-      }
-    ]
-  },
-  {
-    id: "importacion",
-    titulo: "Tarifa de Importación",
-    descripcion: "Tarifas y aranceles para operaciones de importación",
-    icon: Package,
-    color: "bg-green-500",
-    archivos: [
-      {
-        nombre: "Tarifa de Importación 2024",
-        tipo: "PDF",
-        tamaño: "3.1 MB",
-        fecha: "Enero 2024",
-        descripcion: "Aranceles y tarifas para mercancías de importación"
-      },
-      {
-        nombre: "Tarifa de Importación - Categorías",
-        tipo: "PDF",
-        tamaño: "2.7 MB",
-        fecha: "Enero 2024",
-        descripcion: "Clasificación arancelaria y tarifas por categoría"
-      },
-      {
-        nombre: "Tarifa de Importación - Procedimientos",
-        tipo: "PDF",
-        tamaño: "1.9 MB",
-        fecha: "Enero 2024",
-        descripcion: "Procedimientos y documentación requerida"
-      }
-    ]
-  },
-  {
-    id: "exportacion",
-    titulo: "Tarifa de Exportación",
-    descripcion: "Tarifas y aranceles para operaciones de exportación",
-    icon: Truck,
-    color: "bg-orange-500",
-    archivos: [
-      {
-        nombre: "Tarifa de Exportación 2024",
-        tipo: "PDF",
-        tamaño: "2.8 MB",
-        fecha: "Enero 2024",
-        descripcion: "Aranceles y tarifas para mercancías de exportación"
-      },
-      {
-        nombre: "Tarifa de Exportación - Incentivos",
-        tipo: "PDF",
-        tamaño: "1.6 MB",
-        fecha: "Enero 2024",
-        descripcion: "Incentivos y beneficios para exportadores"
-      },
-      {
-        nombre: "Tarifa de Exportación - Documentación",
-        tipo: "PDF",
-        tamaño: "2.1 MB",
-        fecha: "Enero 2024",
-        descripcion: "Documentación y procedimientos de exportación"
-      }
-    ]
-  },
-  {
-    id: "servicios-especiales",
-    titulo: "Tarifa de Servicios Especiales",
-    descripcion: "Tarifas por servicios especializados y adicionales",
-    icon: Wrench,
-    color: "bg-purple-500",
-    archivos: [
-      {
-        nombre: "Tarifa de Servicios Especiales 2024",
-        tipo: "PDF",
-        tamaño: "2.5 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas por servicios especializados portuarios"
-      },
-      {
-        nombre: "Tarifa de Servicios Especiales - Remolque",
-        tipo: "PDF",
-        tamaño: "1.4 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas de remolque y asistencia portuaria"
-      },
-      {
-        nombre: "Tarifa de Servicios Especiales - Emergencias",
-        tipo: "PDF",
-        tamaño: "1.2 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas por servicios de emergencia"
-      }
-    ]
-  },
-  {
-    id: "almacenamiento",
-    titulo: "Tarifa de Almacenamiento",
-    descripcion: "Tarifas por almacenamiento y custodia de mercancías",
-    icon: Warehouse,
-    color: "bg-red-500",
-    archivos: [
-      {
-        nombre: "Tarifa de Almacenamiento 2024",
-        tipo: "PDF",
-        tamaño: "2.9 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas por almacenamiento en terminales portuarias"
-      },
-      {
-        nombre: "Tarifa de Almacenamiento - Zona Franca",
-        tipo: "PDF",
-        tamaño: "2.2 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas especiales para zona franca"
-      },
-      {
-        nombre: "Tarifa de Almacenamiento - Contenedores",
-        tipo: "PDF",
-        tamaño: "1.8 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas específicas para contenedores"
-      }
-    ]
-  },
-  {
-    id: "transporte",
-    titulo: "Tarifa de Transporte",
-    descripcion: "Tarifas por servicios de transporte intermodal",
-    icon: Train,
-    color: "bg-indigo-500",
-    archivos: [
-      {
-        nombre: "Tarifa de Transporte Terrestre 2024",
-        tipo: "PDF",
-        tamaño: "2.4 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas por transporte terrestre desde/hacia el puerto"
-      },
-      {
-        nombre: "Tarifa de Transporte Ferroviario 2024",
-        tipo: "PDF",
-        tamaño: "2.0 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas por transporte ferroviario"
-      },
-      {
-        nombre: "Tarifa de Transporte Intermodal 2024",
-        tipo: "PDF",
-        tamaño: "2.6 MB",
-        fecha: "Enero 2024",
-        descripcion: "Tarifas combinadas para transporte intermodal"
-      }
-    ]
-  }
- ]
-
-// Información adicional
-const informacionAdicional = [
-  {
-    titulo: "Actualizaciones de Tarifas",
-    descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes.",
-    icon: AlertCircle
-  },
-  {
-    titulo: "Consultas Especiales",
-    descripcion: "Para consultas sobre tarifas especiales o casos particulares, contactar directamente con el departamento de tarifas.",
-    icon: Phone
-  },
-  {
-    titulo: "Documentación Requerida",
-    descripcion: "Cada operación requiere documentación específica. Consulte los manuales de procedimientos para más detalles.",
-    icon: FileText
-  },
-  {
-    titulo: "Medios de Pago",
-    descripcion: "Aceptamos diversos medios de pago: transferencias bancarias, tarjetas de crédito y débito, y otros medios autorizados.",
-    icon: CreditCard
-  }
+const documentosTarifarios = [
+  { titulo: "Tarifa de Uso del Puerto", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "2.3 MB", fecha: "Enero 2024" },
+  { titulo: "Tarifa de Importación", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "3.1 MB", fecha: "Enero 2024" },
+  { titulo: "Tarifa de Exportación", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "2.8 MB", fecha: "Enero 2024" },
+  { titulo: "Tarifa de Servicios Especiales", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "2.5 MB", fecha: "Enero 2024" },
+  { titulo: "Tarifa de Almacenamiento", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "2.9 MB", fecha: "Enero 2024" },
+  { titulo: "Tarifa de Transporte", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "2.4 MB", fecha: "Enero 2024" },
 ]
 
-export default function Tarifario() {
+const informacionAdicional = [
+  { titulo: "Documentación Requerida", descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes." },
+  { titulo: "Actualizaciones de Tarifas", descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes." },
+  { titulo: "Consultas Especiales", descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes." },
+  { titulo: "Procedimientos", descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes." },
+  { titulo: "Medios de Pago", descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes." },
+  { titulo: "Herramientas de Cálculo", descripcion: "Las tarifas se actualizan anualmente y pueden estar sujetas a modificaciones durante el año según las regulaciones vigentes." },
+]
+
+export default function TarifarioPage() {
   return (
     <div className="min-h-screen bg-white">
-      
-
-      {/* Content */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Introducción */}
-        <section className="mb-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-semibold text-plp-primary mb-4">Tarifas Unificadas del Puerto La Plata</h2>
-            <p className="text-lg text-plp-gray-700 max-w-3xl mx-auto">
-              Acceda a todas las tarifas vigentes del Puerto La Plata organizadas por categorías. 
-              Descargue los archivos PDF correspondientes y utilice nuestras herramientas de cálculo 
-              para estimar los costos de sus operaciones portuarias.
-            </p>
-          </div>
-        </section>
-
-        {/* Categorías de tarifas */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Categorías de Tarifas</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categoriasTarifas.map((categoria) => (
-              <Card key={categoria.id} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-3 ${categoria.color} rounded-lg`}>
-                    <categoria.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-plp-primary">{categoria.titulo}</h3>
-                </div>
-                <p className="text-plp-gray-700 mb-4">{categoria.descripcion}</p>
-                <div className="space-y-3">
-                  <p className="text-sm font-medium text-plp-gray-600">ARCHIVOS DISPONIBLES:</p>
-                  {categoria.archivos.map((archivo, index) => (
-                    <div key={index} className="p-3 bg-gray-50 rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <FileText className="h-4 w-4 text-plp-primary" />
-                          <span className="text-sm font-medium text-plp-gray-900">{archivo.nombre}</span>
-                        </div>
-                        <Badge variant="outline" className="text-xs">
-                          {archivo.tipo}
-                        </Badge>
-                      </div>
-                      <p className="text-xs text-plp-gray-600 mb-2">{archivo.descripcion}</p>
-                      <div className="flex items-center justify-between text-xs text-plp-gray-500">
-                        <span>{archivo.tamaño}</span>
-                        <span>{archivo.fecha}</span>
-                      </div>
-                      <Button size="sm" className="w-full mt-2">
-                        <Download className="mr-1 h-3 w-3" />
-                        Descargar
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            ))}
-          </div>
-                 </section>
-
-         {/* Información adicional */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-semibold text-plp-primary mb-8 text-center">Información Adicional</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {informacionAdicional.map((info, index) => (
-              <Card key={index} className="p-6 border border-gray-100 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-plp-primary/10 rounded-lg">
-                    <info.icon className="h-6 w-6 text-plp-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-plp-primary">{info.titulo}</h3>
-                </div>
-                <p className="text-plp-gray-700">{info.descripcion}</p>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Descarga masiva */}
-        <section className="mb-12">
-          <Card className="p-8 bg-gradient-to-r from-plp-primary/5 to-plp-secondary/5 border border-plp-primary/20">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-semibold text-plp-primary mb-4">Descarga Completa de Tarifas</h2>
-              <p className="text-plp-gray-700 max-w-3xl mx-auto">
-                Descargue el paquete completo de tarifas en formato ZIP que incluye todos los archivos PDF 
-                organizados por categorías para su consulta offline.
+      {/* Hero Tarifario — fondo gris, icono y título un poco a la izquierda */}
+      <section className="w-full py-10 md:py-14 bg-plp-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto -translate-x-2 md:-translate-x-6 grid md:grid-cols-2 gap-4 md:gap-6 items-center">
+            <div className="flex justify-center md:justify-start">
+              <FileText className="h-48 w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 text-plp-primary" strokeWidth={1.5} />
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-plp-primary mb-4">
+                Tarifario
+              </h1>
+              <p className="text-plp-gray-600 leading-relaxed mb-6">
+                Tarifas unificadas del Puerto La Plata. Descarga de archivos PDF y herramientas de cálculo para estimar costos de operaciones portuarias.
               </p>
-            </div>
-            <div className="text-center">
-              <Button size="lg" className="bg-plp-primary hover:bg-plp-primary/90">
-                <Download className="mr-2 h-5 w-5" />
-                Descargar Tarifario Completo (ZIP)
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-plp-primary bg-white text-plp-primary hover:bg-plp-gray-100"
+              >
+                Descargar tarifas
+                <Download className="ml-2 h-4 w-4" />
               </Button>
-              <p className="text-sm text-plp-gray-600 mt-2">Tamaño: 45.2 MB | Última actualización: Enero 2024</p>
             </div>
-          </Card>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        {/* Contacto */}
-        <section className="mb-12">
-          <Card className="p-8">
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div>
-                <h2 className="text-2xl font-semibold text-plp-primary mb-6">Contacto para Consultas</h2>
-                <div className="space-y-4">
-                                     <div className="flex items-center gap-3">
-                     <Phone className="h-5 w-5 text-plp-primary" />
-                     <div>
-                       <p className="font-medium text-plp-gray-900">Comercial</p>
-                       <p className="text-sm text-plp-gray-600">+54 221 123-4567</p>
-                     </div>
-                   </div>
-                   <div className="flex items-center gap-3">
-                     <Mail className="h-5 w-5 text-plp-primary" />
-                     <div>
-                       <p className="font-medium text-plp-gray-900">Email</p>
-                       <p className="text-sm text-plp-gray-600">comercial@puertolaplata.com</p>
-                     </div>
-                   </div>
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-plp-primary" />
-                    <div>
-                      <p className="font-medium text-plp-gray-900">Horarios de atención</p>
-                      <p className="text-sm text-plp-gray-600">Lunes a Viernes: 8:00 - 18:00 hs</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-plp-primary" />
-                    <div>
-                      <p className="font-medium text-plp-gray-900">Ubicación</p>
-                      <p className="text-sm text-plp-gray-600">Oficinas del CGPLP</p>
-                      <p className="text-sm text-plp-gray-600">Puerto La Plata, Buenos Aires</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-plp-primary mb-4">Sobre las Tarifas</h3>
-                <p className="text-plp-gray-700 mb-4 leading-relaxed">
-                  Las tarifas del Puerto La Plata están reguladas por el Consorcio de Gestión y se actualizan 
-                  periódicamente según las normativas vigentes y las condiciones del mercado.
-                </p>
-                <p className="text-plp-gray-700 mb-6 leading-relaxed">
-                  Todas las tarifas incluyen los impuestos correspondientes y están sujetas a modificaciones 
-                  según las regulaciones gubernamentales aplicables.
-                </p>
-                <div className="p-4 bg-plp-primary/5 rounded-lg">
-                  <p className="text-sm font-medium text-plp-primary mb-2">IMPORTANTE:</p>
-                  <p className="text-sm font-semibold text-plp-gray-700">
-                    Las tarifas mostradas son las vigentes al momento de la publicación. 
-                    Para operaciones específicas, consulte directamente con el departamento de tarifas.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </section>
-
-        {/* CTA final */}
-        <section>
-          <Card className="p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white text-center">
-            <h3 className="text-2xl font-bold mb-4">¿Necesitas ayuda con las tarifas?</h3>
-            <p className="text-lg mb-6 opacity-90">
-              Nuestro equipo de tarifas está disponible para ayudarte con cualquier consulta 
-              sobre costos y procedimientos portuarios.
+      {/* Tarifas Unificadas + grid de 6 cards de documentos */}
+      <section className="w-full pt-12 md:pt-16 pb-6 md:pb-8 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-plp-primary mb-6">
+              Tarifas Unificadas del Puerto La Plata
+            </h2>
+            <p className="text-plp-gray-600 leading-relaxed">
+              Acceda a todas las tarifas vigentes del Puerto La Plata organizadas por categorías. Descargue los archivos PDF correspondientes y utilice nuestras herramientas de cálculo para estimar los costos de sus operaciones portuarias.
             </p>
-                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-white/10">
-                 <Phone className="mr-2 h-4 w-4" />
-                 Contactar comercial
-               </Button>
-             </div>
-          </Card>
-        </section>
-      </div>
+          </div>
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {documentosTarifarios.map((doc, i) => (
+              <Card
+                key={i}
+                className="p-5 bg-plp-gray-50 rounded-xl shadow-sm border border-plp-gray-200"
+              >
+                <div className="flex items-start gap-3 mb-4">
+                  <FileSearch className="h-5 w-5 text-plp-primary shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-bold text-plp-primary">{doc.titulo}</h3>
+                    <p className="text-sm text-plp-gray-600">{doc.subtitulo}</p>
+                  </div>
+                </div>
+                <Card className="p-4 bg-white rounded-lg border border-plp-gray-200 shadow-sm">
+                  <div className="flex items-start gap-2 mb-3">
+                    <FileText className="h-4 w-4 text-plp-primary shrink-0 mt-0.5" />
+                    <h4 className="font-bold text-plp-primary text-sm">{doc.titulo}</h4>
+                  </div>
+                  <p className="text-xs text-plp-gray-600 mb-3">{doc.detalle}</p>
+                  <div className="flex justify-between text-xs text-plp-gray-600 mb-4">
+                    <span>{doc.tamano}</span>
+                    <span>{doc.fecha}</span>
+                  </div>
+                  <Button size="sm" className="w-full bg-plp-primary hover:bg-plp-primary/90 text-white">
+                    Descargar
+                  </Button>
+                </Card>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Descarga Completa de Tarifas */}
+      <section className="w-full py-6 md:py-8 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-plp-primary mb-6">
+              Descarga Completa de Tarifas
+            </h2>
+            <p className="text-plp-gray-600 leading-relaxed mb-8">
+              Descargue el paquete completo de tarifas en formato ZIP que incluye todos los archivos PDF organizados por categorías para su consulta offline.
+            </p>
+            <Button size="lg" className="bg-plp-primary hover:bg-plp-primary/90 text-white">
+              <Download className="mr-2 h-5 w-5" />
+              Descargar Tarifario completo (ZIP)
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Información adicional — 6 cards */}
+      <section className="w-full pt-6 md:pt-8 pb-12 md:pb-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-plp-primary mb-10 text-center">
+            Información adicional
+          </h2>
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {informacionAdicional.map((info, i) => (
+              <Card
+                key={i}
+                className="p-6 bg-plp-gray-50 rounded-xl shadow-sm border border-plp-gray-200"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-plp-primary/10 shrink-0">
+                    <FileText className="h-5 w-5 text-plp-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-plp-primary mb-2">{info.titulo}</h3>
+                    <p className="text-sm text-plp-gray-600 leading-relaxed">{info.descripcion}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA ¿Necesitas ayuda con las tarifas? — fondo plp-primary, menos ancho */}
+      <section className="w-full py-14 md:py-20 px-4">
+        <div className="max-w-4xl mx-auto bg-plp-primary rounded-3xl py-12 md:py-16 px-6 md:px-10 text-center text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            ¿Necesitas ayuda con las tarifas?
+          </h2>
+          <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
+            Nuestro equipo de tarifas está disponible para ayudarte con cualquier consulta sobre costos y procedimientos portuarios.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              className="bg-plp-secondary hover:bg-plp-secondary/90 text-white"
+            >
+              Contactar equipo comercial
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white bg-white text-plp-primary hover:bg-plp-gray-100"
+            >
+              Solicitar cotización
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

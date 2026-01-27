@@ -4,19 +4,12 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 
 const timelineData = [
   {
     period: "1731-1879",
     title: "Antecesor y primeras poblaciones",
-    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+    image: "/puerto-plata-satellite.png",
     imageAlt: "Puerto La Plata en sus orígenes",
     intro:
       "Surge el Puerto de la Ensenada ante la necesidad que tuvo la Corona Española de fortificar las costas del Río de la Plata en el siglo XVII, como parte de un sistema de transporte con un valor estratégico militar de incalculable importancia geopolítica.",
@@ -35,7 +28,7 @@ const timelineData = [
   {
     period: "1882-1890",
     title: "La Fundación",
-    images: ["/placeholder.jpg", "/placeholder.jpg"],
+    images: ["/banner.jpg", "/colorful-harbor-town.png"],
     imageAlt: "Construcción del Puerto La Plata",
     items: [
       {
@@ -58,7 +51,7 @@ const timelineData = [
   {
     period: "1904-1925",
     title: "Movimiento portuario",
-    images: ["/placeholder.jpg", "/placeholder.jpg"],
+    image: "/colorful-harbor-town.png",
     imageAlt: "Frigoríficos históricos",
     intro: "En esta etapa, caracterizada por el movimiento de productos agrícola ganaderos para exportación, el Puerto comenzó a tener mayor movimiento gracias a la instalación de nuevos frigoríficos Armour (1904) y Swift (1915) en la localidad de Berisso. Otro hecho significativo fue la construcción del Ferrocarril Provincial, conectado directamente al Puerto La Plata, y la construcción de un elevador de granos.",
     items: [
@@ -71,7 +64,7 @@ const timelineData = [
   {
     period: "1936-1960",
     title: "Complejo Industrial",
-    images: ["/placeholder.jpg"],
+    image: "/banner.jpg",
     imageAlt: "Complejo industrial portuario",
     items: [
       { year: "1936", text: "Instalación del Astillero Río Santiago." },
@@ -82,7 +75,7 @@ const timelineData = [
   {
     period: "1960-1999",
     title: "Especialización",
-    images: ["/placeholder.jpg", "/placeholder.jpg"],
+    images: ["/social/port-sunrise.png", "/banner.jpg"],
     imageAlt: "Puerto moderno",
     intro: "Aunque en esta época se produce la paralización de la actividad frigorífica, el surgimiento de varias empresas dio forma a la actual configuración del complejo portuario industrial.",
     items: [
@@ -99,7 +92,7 @@ const timelineData = [
   {
     period: "1999-Actualidad",
     title: "Primer puerto Argentino en el Rio de La Plata",
-    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+    image: "/banner.jpg",
     imageAlt: "Puerto La Plata actual",
     intro: "El Puerto ha fijado importantes objetivos para desarrollar su potencialidad, con el esfuerzo de toda la comunidad que lo rodea, permitirán el crecimiento de La Plata, Berisso y Ensenada.",
     items: [
@@ -125,20 +118,25 @@ export default function Historia() {
 
   return (
     <div className="min-h-screen bg-white">
-      
-
-      {/* Contenido principal */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Introducción */}
-        <div className="max-w-3xl mx-auto mb-16 text-center">
-          <p className="text-lg text-plp-gray-600 leading-relaxed">
-            Desde sus orígenes como puerto estratégico de la Corona Española hasta su actual rol como moderno 
-            puerto industrial, el Puerto La Plata ha sido testigo y protagonista de la historia argentina.
-          </p>
+      {/* Título e introducción (fondo blanco) */}
+      <div className="w-full bg-white pt-8 pb-6 md:pb-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Historia del puerto
+            </h1>
+            <p className="text-lg text-plp-gray-600 leading-relaxed">
+              Desde sus orígenes como puerto estratégico de la Corona Española hasta su actual rol como moderno
+              puerto industrial, el Puerto La Plata ha sido testigo y protagonista de la historia argentina.
+            </p>
+          </div>
         </div>
+      </div>
 
-        {/* Línea de tiempo interactiva */}
-        <div className="relative max-w-6xl mx-auto">
+      {/* Sección celeste: línea de tiempo + card */}
+      <div className="w-full py-10 md:py-14 pb-16 md:pb-20" style={{ backgroundColor: "#CAE6FF" }}>
+        <div className="container mx-auto px-4">
+          <div className="relative max-w-6xl mx-auto">
           {/* Timeline visual */}
           <div className="hidden md:flex items-center justify-between mb-12 px-12 relative h-28">
             {/* Línea base con segmentos */}
@@ -194,22 +192,13 @@ export default function Historia() {
           <div className="relative">
             <Card className="p-6 md:p-8 bg-white">
               <div className="grid md:grid-cols-2 gap-8">
-                {/* Carrusel de imágenes del hito */}
-                <div className="relative bg-plp-gray-100 rounded-lg overflow-hidden">
-                  <Carousel className="w-full">
-                    <CarouselContent>
-                      {timelineData[currentPeriod].images.map((src, i) => (
-                        <CarouselItem key={i} className="p-0">
-                          <div className="relative aspect-video md:aspect-square w-full h-full">
-                            {/* Esqueleto/placeholder para imágenes reales */}
-                            <img src={src} alt={timelineData[currentPeriod].imageAlt} className="object-cover w-full h-full" />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                  </Carousel>
+                {/* Imagen del período */}
+                <div className="relative bg-plp-gray-100 rounded-lg overflow-hidden aspect-video md:aspect-square w-full">
+                  <img
+                    src={timelineData[currentPeriod].image}
+                    alt={timelineData[currentPeriod].imageAlt}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
 
                 {/* Texto en formato de introducción + punteo por año */}
@@ -253,6 +242,7 @@ export default function Historia() {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

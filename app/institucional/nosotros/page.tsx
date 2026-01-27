@@ -2,81 +2,90 @@
 
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { FileText } from "lucide-react"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import { Skeleton } from "@/components/ui/skeleton"
+import { MapPin, Ship, Globe, Download } from "lucide-react"
+import Image from "next/image"
 
 export default function SobreNosotros() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Contenido principal */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Descripción del Puerto La Plata */}
-        <section className="max-w-6xl mx-auto mb-16 grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-plp-primary mb-6">
-              Puerto La Plata
-            </h2>
-            <p className="text-lg text-plp-gray-600 mb-6 leading-relaxed">
-              El Puerto La Plata es una terminal multipropósito ubicada sobre la ribera del Río de la Plata, en una zona estratégica del litoral bonaerense. Su localización lo posiciona como un nodo clave para el comercio exterior y la logística regional, articulando el intercambio de cargas con los principales polos productivos del entorno.
-            </p>
-            <p className="text-lg text-plp-gray-600 leading-relaxed">
-              En su área de influencia se encuentran importantes corredores industriales y de servicios, con acceso a redes viales y ferroviarias. Esta conectividad favorece operaciones eficientes y seguras para distintos tipos de cargas, impulsando el desarrollo económico y la integración logística de la región.
-            </p>
+      {/* Sección destacada: título, texto, botón e imagen */}
+      <div className="w-full py-10 md:py-14" style={{ backgroundColor: '#CAE6FF' }}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4" style={{ color: '#1B1E4A' }}>
+                Puerto La Plata
+              </h1>
+              <p className="text-base md:text-lg mb-4 leading-relaxed" style={{ color: '#1B1E4A', opacity: 0.9 }}>
+                El Puerto La Plata es una terminal multipropósito ubicada sobre la ribera del Río de la Plata, en una zona estratégica del litoral bonaerense. Su localización lo posiciona como un nodo clave para el comercio exterior y la logística regional, articulando el intercambio de cargas con los principales polos productivos del entorno.
+              </p>
+              <p className="text-base md:text-lg mb-6 leading-relaxed" style={{ color: '#1B1E4A', opacity: 0.9 }}>
+                En su área de influencia se encuentran importantes corredores industriales y de servicios, con acceso a redes viales y ferroviarias. Esta conectividad favorece operaciones eficientes y seguras para distintos tipos de cargas, impulsando el desarrollo económico y la integración logística de la región.
+              </p>
+              <Button
+                size="lg"
+                className="bg-[#1B1E4A] hover:bg-[#272C5B] text-white rounded-lg"
+                asChild
+              >
+                <a href="#" className="inline-flex items-center gap-2">
+                  <Download className="h-5 w-5" />
+                  Descargar plano del puerto
+                </a>
+              </Button>
+            </div>
+            <div className="relative w-full aspect-[4/3] max-h-[320px] md:max-h-[400px] rounded-lg overflow-hidden flex-shrink-0">
+              <Image
+                src="/puerto-plata-satellite.png"
+                alt="Vista del Puerto La Plata"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            </div>
           </div>
-          <div className="max-w-md md:ml-auto w-full">
-            <AspectRatio ratio={4/3}>
-              <Skeleton className="w-full h-full rounded-md bg-plp-gray-200/50" />
-            </AspectRatio>
-          </div>
-        </section>
+        </div>
+      </div>
 
-        {/* Bloques informativos del puerto */}
-        <section className="grid md:grid-cols-3 gap-6 mb-16">
-          <Card className="p-6 bg-white shadow-md hover:shadow-lg transition-shadow border-t-4 border-plp-primary group hover:bg-plp-primary-light">
-            <h3 className="text-xl font-semibold text-plp-primary mb-4 group-hover:text-plp-primary">Ubicación</h3>
-            <p className="text-plp-gray-600 group-hover:text-plp-gray-700">
+      {/* Tres tarjetas: Ubicación, Infraestructura, Conectividad */}
+      <div className="container mx-auto px-4 py-10 md:py-14">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+          <Card className="p-6 bg-white shadow-sm border border-gray-100 rounded-xl">
+            <div className="mb-4 flex items-center justify-center w-12 h-12 rounded-lg bg-[#1B1E4A]/10">
+              <MapPin className="h-6 w-6" style={{ color: '#1B1E4A' }} />
+            </div>
+            <h3 className="text-lg font-semibold mb-3" style={{ color: '#1B1E4A' }}>
+              Ubicación
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
               Situado en la margen del Río de la Plata, el puerto se integra al entramado urbano e industrial de su área metropolitana y a la red de accesos regionales, facilitando la conexión con centros productivos cercanos.
             </p>
           </Card>
 
-          <Card className="p-6 bg-white shadow-md hover:shadow-lg transition-shadow border-t-4 border-plp-secondary group hover:bg-plp-primary-light">
-            <h3 className="text-xl font-semibold text-plp-primary mb-4 group-hover:text-plp-primary">Infraestructura y Servicios</h3>
-            <p className="text-plp-gray-600 group-hover:text-plp-gray-700">
+          <Card className="p-6 bg-white shadow-sm border border-gray-100 rounded-xl">
+            <div className="mb-4 flex items-center justify-center w-12 h-12 rounded-lg bg-[#1B1E4A]/10">
+              <Ship className="h-6 w-6" style={{ color: '#1B1E4A' }} />
+            </div>
+            <h3 className="text-lg font-semibold mb-3" style={{ color: '#1B1E4A' }}>
+              Infraestructura y servicios
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
               Cuenta con instalaciones para contenedores, cargas generales y a granel, además de áreas operativas y de apoyo. La infraestructura está pensada para brindar operaciones confiables y adaptadas a distintas necesidades logísticas.
             </p>
           </Card>
 
-          <Card className="p-6 bg-white shadow-md hover:shadow-lg transition-shadow border-t-4 border-plp-accent group hover:bg-plp-primary-light">
-            <h3 className="text-xl font-semibold text-plp-primary mb-4 group-hover:text-plp-primary">Conectividad y Competitividad</h3>
-            <p className="text-plp-gray-600 group-hover:text-plp-gray-700">
+          <Card className="p-6 bg-white shadow-sm border border-gray-100 rounded-xl">
+            <div className="mb-4 flex items-center justify-center w-12 h-12 rounded-lg bg-[#1B1E4A]/10">
+              <Globe className="h-6 w-6" style={{ color: '#1B1E4A' }} />
+            </div>
+            <h3 className="text-lg font-semibold mb-3" style={{ color: '#1B1E4A' }}>
+              Conectividad y competitividad
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
               La proximidad a corredores logísticos y centros de consumo mejora los tiempos de tránsito y la previsibilidad. Su posicionamiento fortalece la competitividad regional y la integración con cadenas de valor.
             </p>
           </Card>
-        </section>
-
-        {/* Documentos */}
-        <section className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-semibold text-plp-primary mb-8">Información y Descargas</h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="w-full sm:w-auto flex items-center gap-2 bg-white hover:bg-plp-primary-light border-plp-primary text-plp-primary hover:text-plp-primary hover:border-plp-primary transition-colors"
-            >
-              <FileText className="h-5 w-5" />
-              Plano del Puerto
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="w-full sm:w-auto flex items-center gap-2 bg-white hover:bg-plp-primary-light border-plp-primary text-plp-primary hover:text-plp-primary hover:border-plp-primary transition-colors"
-            >
-              <FileText className="h-5 w-5" />
-              Guía del Usuario
-            </Button>
-          </div>
-        </section>
+        </div>
       </div>
     </div>
   )

@@ -28,19 +28,6 @@ const pagesWithoutHero = [
   '/estadisticas',
 ]
 
-// Páginas que también tienen sección destacada propia
-const pagesWithHighlightSection = [
-  '/servicios/operadores-organismos/aduana',
-  '/servicios/operadores-organismos/zona-franca',
-  '/servicios/operadores-organismos/practicos',
-  '/servicios/operadores-organismos/migraciones',
-  '/servicios/operadores-organismos/prefectura',
-  '/servicios/terminales/areneras',
-  '/servicios/terminales/copetro',
-  '/servicios/terminales/contenedores',
-  '/servicios/terminales/ypf',
-]
-
 export function HeroSection() {
   const pathname = usePathname()
   const [isNotFound, setIsNotFound] = useState(false)
@@ -60,8 +47,9 @@ export function HeroSection() {
     return () => observer.disconnect()
   }, [])
 
-  // No mostrar hero en páginas específicas, páginas con sección destacada, o not-found
-  if (pagesWithoutHero.includes(pathname) || pagesWithHighlightSection.includes(pathname) || isNotFound) {
+  // No mostrar hero solo en páginas específicas (login, contacto, etc.) o not-found.
+  // Terminales y operadores-organismos sí muestran el hero como el resto de secciones.
+  if (pagesWithoutHero.includes(pathname) || isNotFound) {
     return null
   }
 

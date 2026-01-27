@@ -40,8 +40,8 @@ const menuItems: MenuItem[] = [
     label: "Servicios y Negocios",
     href: "/servicios",
     items: [
-      { label: "Ventajas competitivas", href: "/servicios/vision-comercial/ventajas-competitivas" },
-      { label: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
+      { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
+      { label: "Oportunidades", href: "/servicios/oportunidades" },
       { label: "Mapa interactivo", href: "/servicios/vision-comercial/mapa" },
       {
         label: "Terminales",
@@ -65,16 +65,9 @@ const menuItems: MenuItem[] = [
           { label: "Empresas de Servicios Portuarios", href: "/servicios/operadores-organismos/empresas-servicios-portuarios" },
         ],
       },
-      {
-        label: "Conexiones intermodales",
-        href: "/servicios/conexiones-intermodales",
-        items: [
-          { label: "Servicios transporte terrestre", href: "/servicios/conexiones-intermodales/transporte-terrestre" },
-          { label: "Servicios a los buques", href: "/servicios/conexiones-intermodales/servicios-buques" },
-        ],
-      },
+      { label: "Transporte terrestre", href: "/servicios/transporte-terrestre" },
       { label: "Tarifario", href: "/servicios/tarifario" },
-      { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
+      { label: "Licitaciones publicadas", href: "/servicios/licitaciones" },
     ],
   },
   {

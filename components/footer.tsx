@@ -94,8 +94,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/servicios/conexiones-intermodales" className="text-sm text-white/80 hover:text-white transition-colors">
-                  Conexiones intermodales
+                <Link href="/servicios/conexiones-intermodales/transporte-terrestre" className="text-sm text-white/80 hover:text-white transition-colors">
+                  Transporte terrestre
                 </Link>
               </li>
             </ul>

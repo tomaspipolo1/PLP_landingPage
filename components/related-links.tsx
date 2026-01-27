@@ -75,6 +75,11 @@ export function RelatedLinks() {
     
     return () => observer.disconnect()
   }, [])
+
+  // No mostrar en página Not Found
+  if (isNotFound) {
+    return null
+  }
   
   // Don't show on home page, login, register, or success pages
   const pagesWithoutLinks = [
@@ -97,34 +102,31 @@ export function RelatedLinks() {
     return null
   }
 
-  // Usar fondo celeste si estamos en not-found, sino gris
-  const bgColor = isNotFound ? '#CAE6FF' : undefined
-
   return (
-    <section className="w-full py-6" style={{ backgroundColor: bgColor || '#F9FAFB' }}>
+    <section className="w-full py-4 md:py-5" style={{ backgroundColor: '#F9FAFB' }}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-xl p-6 md:p-8" style={{ 
-            border: '2px solid #4A90E2',
+          <div className="rounded-xl p-4 md:p-5 xl:p-6" style={{ 
+            border: '1px solid #4A90E2',
             backgroundColor: 'white'
           }}>
-            <h2 className="text-xl md:text-2xl font-semibold mb-5" style={{ color: '#4A90E2' }}>
+            <h2 className="text-base md:text-lg xl:text-xl font-semibold mb-3 md:mb-4" style={{ color: '#4A90E2' }}>
               Otras secciones que podrían interesarte...
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
               {links.map((link, index) => (
                 <Link
                   key={index}
                   href={link.href}
-                  className="flex items-center justify-between p-3 rounded-lg transition-all duration-300 hover:bg-gray-50 group"
+                  className="flex items-center justify-between p-2.5 md:p-3 rounded-lg transition-all duration-300 hover:bg-gray-50 group"
                   style={{ 
                     border: '1px solid #E5E7EB'
                   }}
                 >
-                  <span className="text-sm font-medium group-hover:text-blue-600 transition-colors" style={{ color: '#4A90E2' }}>
+                  <span className="text-xs md:text-sm font-medium group-hover:text-blue-600 transition-colors" style={{ color: '#4A90E2' }}>
                     {link.title}
                   </span>
-                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" style={{ color: '#4A90E2' }} />
+                  <ArrowRight className="h-3.5 w-3.5 md:h-4 md:w-4 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" style={{ color: '#4A90E2' }} />
                 </Link>
               ))}
             </div>

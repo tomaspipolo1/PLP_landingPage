@@ -66,14 +66,7 @@ const menuItems: MenuItem[] = [
           { label: "Empresas de Servicios Portuarios", href: "/servicios/operadores-organismos/empresas-servicios-portuarios" },
         ],
       },
-      {
-        label: "Conexiones intermodales",
-        href: "/servicios/conexiones-intermodales",
-        items: [
-          { label: "Servicios transporte terrestre", href: "/servicios/conexiones-intermodales/transporte-terrestre" },
-          { label: "Servicios a los buques", href: "/servicios/conexiones-intermodales/servicios-buques" },
-        ],
-      },
+      { label: "Transporte terrestre", href: "/servicios/conexiones-intermodales/transporte-terrestre" },
       { label: "Tarifario", href: "/servicios/tarifario" },
     ],
   },
