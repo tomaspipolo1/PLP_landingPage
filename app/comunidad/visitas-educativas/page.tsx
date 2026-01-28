@@ -1,129 +1,143 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { FileText, ExternalLink } from "lucide-react"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Card } from "@/components/ui/card"
+import { Download, MessageCircle } from "lucide-react"
+
+const HERO_DESCRIPTION =
+  "Programas para escuelas, universidades y grupos comunitarios con foco en historia portuaria, tecnología e impacto territorial."
+
+const visitasPuntos = [
+  "Recorridos guiados por áreas operativas y puntos históricos (según disponibilidad y protocolos).",
+  "Enfoque pedagógico por niveles: primaria, secundaria, terciario/universitario.",
+  "Duración estimada: 60-90 minutos. Cupos por grupo y requerimientos de seguridad.",
+  "Adaptables a contenidos curriculares: historia, ciudadanía, geografía, tecnología, ambiente.",
+]
+
+const visitasCierre =
+  "Todas las visitas se coordinan previamente y requieren aprobación según agenda operativa, normativa de seguridad y documentación del grupo responsable."
+
+const guiaPdfHref = "/docs/guia-visitas-educativas.pdf"
+
+const galeriaImages = [
+  { src: "/visita.jpg", alt: "Visita educativa" },
+  { src: "/social/Visita-Puerto-LP.jpeg", alt: "Visita al puerto" },
+  { src: "/social/DSC04672.JPG", alt: "Vista del puerto" },
+  { src: "/social/port-sunrise.png", alt: "Puerto al amanecer" },
+  { src: "/banner.jpg", alt: "Vista del puerto" },
+]
 
 export default function VisitasEducativas() {
-  const guiaPdfHref = "/docs/guia-visitas-educativas.pdf" // TODO: reemplazar cuando esté disponible
-
   return (
     <div className="min-h-screen bg-white">
-      
+      {/* Hero: título y pequeña descripción */}
+      <section className="w-full py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-3xl font-bold text-plp-primary md:text-4xl">
+              Visitas educativas y guiadas
+            </h1>
+            <p className="mt-4 text-plp-gray-600 leading-relaxed">{HERO_DESCRIPTION}</p>
+          </div>
+        </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Descripción */}
-        <section className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="p-5 md:col-span-2">
-            <h2 className="text-2xl font-semibold text-plp-primary mb-3">¿Cómo son las visitas?</h2>
-            <ul className="list-disc ml-5 space-y-2 text-plp-gray-700">
-              <li>Recorridos guiados por áreas operativas y puntos históricos (según disponibilidad y protocolos).</li>
-              <li>Enfoque pedagógico por niveles: primaria, secundaria, terciario/universitario.</li>
-              <li>Duración estimada: 60–90 minutos. Cupos por grupo y requerimientos de seguridad.</li>
-              <li>Adaptables a contenidos curriculares: historia, ciudadanía, geografía, tecnología, ambiente.</li>
-            </ul>
-            <p className="mt-4 text-plp-gray-700">
-              Todas las visitas se coordinan previamente y requieren aprobación según agenda operativa, normativa de
-              seguridad y documentación del grupo responsable.
-            </p>
-          </Card>
-
-          {/* CTA de solicitud */}
-          <Card className="p-5 flex flex-col justify-between">
+      {/* Sección ¿Cómo son las visitas? — fondo celeste, punteo izquierda, imagen derecha */}
+      <section className="w-full py-12 md:py-16 bg-sky-100">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 md:gap-10 md:items-center">
             <div>
-              <h3 className="text-lg font-semibold text-plp-primary mb-2">Solicitar una visita</h3>
-              <p className="text-sm text-plp-gray-600 mb-4">
-                Completá una breve solicitud indicando institución, cantidad de asistentes, nivel educativo y fecha
-                tentativa.
-              </p>
+              <h2 className="text-2xl font-bold text-plp-primary md:text-3xl mb-6">
+                ¿Cómo son las visitas?
+              </h2>
+              <ul className="list-disc ml-5 space-y-3 text-plp-gray-600">
+                {visitasPuntos.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+              <p className="mt-6 text-plp-gray-600 leading-relaxed">{visitasCierre}</p>
             </div>
-            <div className="flex gap-3">
-              {/* Botón placeholder a futuro módulo de solicitudes */}
-              <Button asChild className="bg-plp-primary hover:bg-plp-primary/90">
-                <a href="#" aria-label="Solicitar visita (módulo próximamente)">Solicitar visita</a>
-              </Button>
-              <Button asChild variant="outline" className="border-plp-primary text-plp-primary">
-                <a href="#" aria-label="Consultar disponibilidad (próximamente)">Consultar disponibilidad</a>
-              </Button>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-black/10">
+              <Image
+                src="/visita.jpg"
+                alt="Visita educativa al puerto"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
             </div>
-          </Card>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        {/* Guía en PDF */}
-        <section>
-          <Card className="p-5">
-            <div className="flex items-start md:items-center justify-between gap-4 flex-col md:flex-row">
-              <div>
-                <h3 className="text-lg font-semibold text-plp-primary mb-1">Guía para solicitar una visita</h3>
-                <p className="text-sm text-plp-gray-600 max-w-3xl">
-                  Descargá la guía con los pasos, requisitos y documentación necesaria para coordinar una visita
-                  educativa o guiada.
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <Button asChild variant="outline" className="border-plp-primary text-plp-primary">
-                  <a href={guiaPdfHref} download>
-                    <FileText className="h-4 w-4 mr-2" /> Descargar PDF
-                  </a>
-                </Button>
-                <Button asChild variant="ghost" className="text-plp-primary">
-                  <a href={guiaPdfHref} target="_blank" rel="noopener noreferrer">
-                    Ver online <ExternalLink className="h-4 w-4 ml-2" />
-                  </a>
-                </Button>
-              </div>
+      {/* Banner: fondo blanco, CARD celeste con título, descripción y botones (blanco + azul) */}
+      <section className="w-full py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-3xl rounded-xl bg-sky-100 py-10 px-6 text-center md:py-12 md:px-8">
+            <h2 className="text-2xl font-bold text-plp-primary md:text-3xl">
+              Guía para solicitar una visita
+            </h2>
+            <p className="mt-3 text-plp-gray-600">
+              Descargá la guía con los pasos, requisitos y documentación necesaria para coordinar una
+              visita educativa o guiada.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Button
+                asChild
+                className="bg-white text-plp-primary hover:bg-plp-gray-100 border-2 border-plp-gray-200"
+              >
+                <a href={guiaPdfHref} download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Descargar la guía
+                </a>
+              </Button>
+              <Button asChild className="bg-plp-primary hover:bg-plp-primary/90 text-white">
+                <Link href="/contacto">
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Realizar consulta
+                </Link>
+              </Button>
             </div>
-          </Card>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        {/* Preguntas frecuentes */}
-        <section className="mt-8">
-          <h2 className="text-2xl font-semibold text-plp-primary mb-4">Preguntas frecuentes</h2>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="faq-1">
-              <AccordionTrigger>¿Quiénes pueden solicitar visitas?</AccordionTrigger>
-              <AccordionContent>
-                Instituciones educativas de todos los niveles, universidades, organizaciones comunitarias y grupos
-                con fines pedagógicos. Las visitas están sujetas a disponibilidad operativa.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="faq-2">
-              <AccordionTrigger>¿Con cuánta anticipación debo pedir una visita?</AccordionTrigger>
-              <AccordionContent>
-                Recomendamos al menos 15 días hábiles de anticipación para coordinar agenda, validar protocolos de
-                seguridad y documentación del grupo.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="faq-3">
-              <AccordionTrigger>¿Qué documentación se requiere?</AccordionTrigger>
-              <AccordionContent>
-                Listado de asistentes, responsable a cargo, datos de contacto, carta de presentación institucional y
-                cualquier otra documentación que solicite el área de seguridad.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="faq-4">
-              <AccordionTrigger>¿Hay requisitos de seguridad o vestimenta?</AccordionTrigger>
-              <AccordionContent>
-                Sí. Se indicará vestimenta y elementos obligatorios según el recorrido. Algunas áreas requieren
-                casco y chaleco reflectivo provistos durante la visita.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="faq-5">
-              <AccordionTrigger>¿Las visitas tienen costo?</AccordionTrigger>
-              <AccordionContent>
-                No. Las visitas educativas y guiadas son gratuitas. El traslado hasta el punto de encuentro corre por
-                cuenta del grupo visitante.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
-      </div>
+      {/* Galería */}
+      <section className="w-full py-12 md:py-16 bg-plp-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-center text-2xl font-bold text-plp-primary md:text-3xl mb-8">
+            Galería
+          </h2>
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {galeriaImages.map((img, index) => (
+                <CarouselItem
+                  key={index}
+                  className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                >
+                  <Card className="overflow-hidden border border-plp-gray-200 shadow-sm">
+                    <div className="relative aspect-[16/10] w-full">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                      />
+                    </div>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="border-2 border-plp-gray-200 bg-white" />
+            <CarouselNext className="border-2 border-plp-gray-200 bg-white" />
+          </Carousel>
+        </div>
+      </section>
     </div>
   )
 }

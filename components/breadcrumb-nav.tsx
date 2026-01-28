@@ -46,12 +46,21 @@ export function BreadcrumbNav() {
     'nosotros': 'Nosotros',
     'institucional': 'Institucional',
     'servicios': 'Servicios',
-    'calidad': 'Calidad',
+    'calidad': 'Calidad y sostenibilidad',
+    'certificaciones': 'Certificaciones',
+    'normas-politicas': 'Normas y políticas',
+    'sostenibilidad': 'Sostenibilidad',
     'comunicacion': 'Comunicación',
     'comunidad': 'Comunidad',
     'innovacion': 'Innovación',
     'licitaciones': 'Licitaciones',
-    'estadisticas': 'Estadísticas'
+    'estadisticas': 'Estadísticas',
+    'descargas': 'Material descargable',
+    'galeria': 'Galería',
+    'noticias': 'Noticias',
+    'museo': 'Museo',
+    'visitas-educativas': 'Visitas educativas y guiadas',
+    'eventos': 'Eventos'
   }
 
   // Función para convertir el slug a texto legible

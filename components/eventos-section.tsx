@@ -123,11 +123,12 @@ export function EventosSection() {
                       </p>
 
                       {/* Botón de inscripción */}
-                      <Button 
+                      <Button
+                        asChild
                         className="w-full mt-auto rounded-lg"
                         style={{ backgroundColor: '#1B1E4A' }}
                       >
-                        Inscribirse
+                        <Link href="/comunidad/eventos/1">Inscribirse</Link>
                       </Button>
                     </div>
                   </Card>

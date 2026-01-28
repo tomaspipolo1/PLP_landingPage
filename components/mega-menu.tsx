@@ -67,7 +67,7 @@ const menuItems: MenuItem[] = [
       },
       { label: "Transporte terrestre", href: "/servicios/transporte-terrestre" },
       { label: "Tarifario", href: "/servicios/tarifario" },
-      { label: "Licitaciones publicadas", href: "/servicios/licitaciones" },
+      { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
     ],
   },
   {

@@ -1,136 +1,141 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import {
+  FileDown,
   FileText,
   Image as ImageIcon,
   PlayCircle,
-  Download,
-  BookOpen,
   Map,
-  Camera,
   FolderArchive,
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { DownloadCard } from "@/components/download-card"
 
 const recursos = [
   {
     id: "videos",
     titulo: "Videos institucionales",
-    descripcion:
-      "Material audiovisual del Puerto La Plata para prensa y presentaciones.",
+    descripcion: "Material audiovisual del Puerto La Plata para prensa y presentaciones.",
     icon: PlayCircle,
     href: "#",
-    etiqueta: "MP4 / HD"
+    fileSize: "—",
+    date: "—",
   },
   {
     id: "fotos",
     titulo: "Banco de imágenes",
-    descripcion:
-      "Fotografías en alta calidad de terminales, operaciones y áreas del puerto.",
-    icon: Camera,
+    descripcion: "Fotografías en alta calidad de terminales, operaciones y áreas del puerto.",
+    icon: ImageIcon,
     href: "#",
-    etiqueta: "JPG / PNG"
+    fileSize: "—",
+    date: "—",
   },
   {
     id: "brochure",
     titulo: "Brochure comercial",
-    descripcion:
-      "Presentación institucional con capacidades, servicios y ventajas competitivas.",
+    descripcion: "Presentación institucional con capacidades, servicios y ventajas competitivas.",
     icon: FileText,
     href: "#",
-    etiqueta: "PDF"
+    fileSize: "2.4 MB",
+    date: "Enero 2024",
   },
   {
     id: "mapas",
     titulo: "Mapas y planos",
-    descripcion:
-      "Plano general del puerto, accesos, batimetría y áreas operativas.",
+    descripcion: "Plano general del puerto, accesos, batimetría y áreas operativas.",
     icon: Map,
     href: "#",
-    etiqueta: "PDF / PNG"
+    fileSize: "1.8 MB",
+    date: "Enero 2024",
+  },
+  {
+    id: "tarifas",
+    titulo: "Tarifas y aranceles",
+    descripcion: "Tarifas y aranceles para operaciones de importación.",
+    icon: Map,
+    href: "#",
+    fileSize: "3.1 MB",
+    date: "Enero 2024",
   },
   {
     id: "kits",
     titulo: "Kit de prensa",
-    descripcion:
-      "Paquete con logos, lineamientos de marca y recursos de comunicación.",
+    descripcion: "Paquete con logos, lineamientos de marca y recursos de comunicación.",
     icon: FolderArchive,
     href: "#",
-    etiqueta: "ZIP"
+    fileSize: "—",
+    date: "—",
   },
 ]
 
-export default function PublicacionesDescargas() {
+const HERO_DESCRIPTION =
+  "En esta sección encontrarás enlaces de acceso a material en alta calidad: videos, fotografías, brochure comercial, mapas y recursos de prensa. Todo el contenido está preparado para uso institucional y comunicacional del Puerto La Plata."
+
+export default function MaterialDescargablePage() {
   return (
     <div className="min-h-screen bg-white">
-    
-
-      {/* Contenido */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Introducción */}
-        <section className="mb-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-lg text-plp-gray-700 leading-relaxed">
-              En esta sección encontrarás enlaces de acceso a material en alta calidad: videos, 
-              fotografías, brochure comercial, mapas y recursos de prensa. Todo el contenido está
-              preparado para uso institucional y comunicacional del Puerto La Plata.
-            </p>
+      {/* Hero — misma estructura que tarifario: fondo gris, contenido max-w-6xl, icono y título grandes */}
+      <section className="w-full py-10 md:py-14 bg-plp-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mr-auto -translate-x-1 md:-translate-x-4 grid md:grid-cols-2 gap-2 md:gap-3 items-center">
+            <div className="flex justify-center md:justify-end">
+              <FileDown
+                className="h-48 w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 text-plp-primary shrink-0"
+                strokeWidth={1.5}
+                aria-hidden
+              />
+            </div>
+            <div className="md:pl-0">
+              <h1 className="text-3xl md:text-4xl font-bold text-plp-primary mb-2 md:mb-3">
+                Material descargable
+              </h1>
+              <p className="text-plp-gray-600 leading-relaxed mb-0">
+                {HERO_DESCRIPTION}
+              </p>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Recursos descargables */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-plp-primary mb-6 text-center">Material disponible</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Grid de cards */}
+      <section className="w-full pt-12 md:pt-16 pb-6 md:pb-8 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {recursos.map((item) => (
-              <Card key={item.id} className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-plp-primary/10 rounded-lg">
-                    <item.icon className="h-6 w-6 text-plp-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold text-plp-primary">{item.titulo}</h3>
-                    <p className="text-sm text-plp-gray-700 mt-1">{item.descripcion}</p>
-                    <div className="mt-3 flex items-center gap-2">
-                      <Badge className="bg-plp-primary/10 text-plp-primary text-xs">{item.etiqueta}</Badge>
-                    </div>
-                    <div className="mt-4">
-                      <Link href={item.href}>
-                        <Button size="sm" className="bg-plp-primary hover:bg-plp-primary/90">
-                          <Download className="mr-2 h-4 w-4" />
-                          Acceder
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+              <DownloadCard
+                key={item.id}
+                icon={item.icon}
+                title={item.titulo}
+                description={item.descripcion}
+                fileSize={item.fileSize}
+                date={item.date}
+                href={item.href}
+              />
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Nota */}
-        <section className="mb-12">
-          <Card className="p-6 bg-gradient-to-r from-plp-primary/5 to-plp-secondary/5 border border-plp-primary/20">
-            <div className="text-center">
-              <p className="text-sm text-plp-gray-700">
-                Si necesitás otros formatos, materiales específicos o permisos de uso, 
-                ponete en contacto con nuestro equipo de comunicación.
-              </p>
-              <div className="mt-4">
-                <Link href="/contacto">
-                  <Button variant="outline" className="border-plp-primary text-plp-primary hover:bg-plp-primary/10">
-                    Contactar comunicación
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </Card>
-        </section>
-      </div>
+      {/* CTA — mismo estilo que tarifario: bloque azul max-w-4xl */}
+      <section className="w-full py-14 md:py-20 px-4">
+        <div className="max-w-4xl mx-auto bg-plp-primary rounded-3xl py-12 md:py-16 px-6 md:px-10 text-center text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            ¿No encontrás lo que buscabas?
+          </h2>
+          <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
+            Si necesitás otros formatos, materiales específicos o permisos de uso, ponete en
+            contacto con nuestro equipo de comunicación.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            className="bg-white text-plp-primary hover:bg-plp-gray-100 border-2 border-white"
+          >
+            <Link href="/contacto">Contactar equipo de comunicación</Link>
+          </Button>
+        </div>
+      </section>
     </div>
   )
 }
