@@ -127,13 +127,16 @@ export default function MaterialDescargablePage() {
             Si necesitás otros formatos, materiales específicos o permisos de uso, ponete en
             contacto con nuestro equipo de comunicación.
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-plp-primary hover:bg-plp-gray-100 border-2 border-white"
+          <Link
+            href={`/contacto?tipoConsulta=prensa&asunto=${encodeURIComponent(`Consulta sobre material`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos debido a que necesito material específico para una noticia o evento.`)}`}
+            >
+              <Button
+              size="lg"
+              className="bg-white text-plp-primary hover:bg-plp-gray-100 border-2 border-white w-full sm:w-auto"
           >
-            <Link href="/contacto">Contactar equipo de comunicación</Link>
+            Contactar equipo de comunicación
           </Button>
+          </Link>
         </div>
       </section>
     </div>

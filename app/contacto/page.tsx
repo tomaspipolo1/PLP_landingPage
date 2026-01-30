@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -25,17 +26,22 @@ import {
 const tiposConsulta = [
   { value: "general", label: "Consulta General" },
   { value: "comercial", label: "Consulta Comercial" },
+  { value: "licitacion", label: "Licitación" },
   { value: "operaciones", label: "Operaciones Portuarias" },
   { value: "tarifas", label: "Consulta de Tarifas" },
   { value: "visitas", label: "Solicitud de Visita" },
   { value: "eventos", label: "Eventos y Actividades" },
   { value: "prensa", label: "Prensa y Comunicación" },
+  { value: "cotizacion", label: "Solicitar cotización" },
+  { value: "calidad", label: "Consulta sobre calidad"},
+  { value: "sistemas", label: "Propuesta tecnológica"},
   { value: "otro", label: "Otro" }
 ]
 
 // Departamentos
 const departamentos = [
   { value: "comercial", label: "Comercial" },
+  { value: "compras", label: "Compras" },
   { value: "mesa-entradas", label: "Mesa de Entradas" },
   { value: "obras-ingenieria", label: "Obras e Ingeniería" },
   { value: "administracion", label: "Administración" },
@@ -43,8 +49,8 @@ const departamentos = [
   { value: "legales", label: "Legales" }
 ]
 
-export default function Contacto() {
-  const [formData, setFormData] = useState({
+function buildInitialFormData(searchParams: URLSearchParams | null) {
+  const base = {
     nombre: "",
     apellido: "",
     email: "",
@@ -56,10 +62,31 @@ export default function Contacto() {
     mensaje: "",
     newsletter: false,
     terminos: false
-  })
+  }
+  if (!searchParams) return base
+  const tipo = searchParams.get("tipoConsulta")
+  const depto = searchParams.get("departamento")
+  const asunto = searchParams.get("asunto")
+  const mensaje = searchParams.get("mensaje")
+  return {
+    ...base,
+    ...(tipo && { tipoConsulta: tipo }),
+    ...(depto && { departamento: depto }),
+    ...(asunto && { asunto: decodeURIComponent(asunto) }),
+    ...(mensaje && { mensaje: decodeURIComponent(mensaje) })
+  }
+}
 
+export default function Contacto() {
+  const searchParams = useSearchParams()
+  const [formData, setFormData] = useState(() => buildInitialFormData(searchParams))
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+
+  useEffect(() => {
+    const next = buildInitialFormData(searchParams)
+    setFormData(prev => ({ ...prev, ...next }))
+  }, [searchParams])
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({
@@ -129,9 +156,9 @@ export default function Contacto() {
       
 
         {/* Formulario y información adicional */}
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-[1fr_550px] gap-12">
           {/* Formulario */}
-          <div>
+          <div className="min-w-0">
             <Card className="p-8">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-semibold text-plp-primary mb-4">Formulario de Contacto</h2>
@@ -152,6 +179,26 @@ export default function Contacto() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Tipo de consulta y departamento */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="tipoConsulta" className="text-sm font-medium text-plp-gray-700">
+                        Tipo de Consulta *
+                      </Label>
+                      <Select value={formData.tipoConsulta} onValueChange={(value) => handleInputChange("tipoConsulta", value)}>
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="Selecciona el tipo de consulta" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {tiposConsulta.map((tipo) => (
+                            <SelectItem key={tipo.value} value={tipo.value}>
+                              {tipo.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
                   {/* Información personal */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -225,43 +272,7 @@ export default function Contacto() {
                     />
                   </div>
 
-                  {/* Tipo de consulta y departamento */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="tipoConsulta" className="text-sm font-medium text-plp-gray-700">
-                        Tipo de Consulta *
-                      </Label>
-                      <Select value={formData.tipoConsulta} onValueChange={(value) => handleInputChange("tipoConsulta", value)}>
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Selecciona el tipo de consulta" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {tiposConsulta.map((tipo) => (
-                            <SelectItem key={tipo.value} value={tipo.value}>
-                              {tipo.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="departamento" className="text-sm font-medium text-plp-gray-700">
-                        Departamento
-                      </Label>
-                      <Select value={formData.departamento} onValueChange={(value) => handleInputChange("departamento", value)}>
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Selecciona el departamento" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {departamentos.map((depto) => (
-                            <SelectItem key={depto.value} value={depto.value}>
-                              {depto.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
+                  
 
                   <div>
                     <Label htmlFor="asunto" className="text-sm font-medium text-plp-gray-700">
@@ -339,8 +350,8 @@ export default function Contacto() {
             </Card>
           </div>
 
-          {/* Información adicional */}
-          <div className="space-y-6">
+          {/* Información adicional — columna angosta */}
+          <div className="space-y-6 max-w-[500px] lg:max-w-none">
             {/* Información de contacto detallada */}
             <Card className="p-6">
               <h3 className="text-xl font-semibold text-plp-primary mb-4">Información de Contacto</h3>

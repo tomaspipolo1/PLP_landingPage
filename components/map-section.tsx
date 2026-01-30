@@ -96,73 +96,72 @@ export function MapSection({ title = "Mapa interactivo", description, id }: MapS
           disableDefaultUI: false,
         })
 
-        // Buscar Puerto La Plata usando Places API
-        const placesService = new window.google.maps.places.PlacesService(mapInstance)
-        
-        const request = {
-          query: 'Puerto La Plata, Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
-          fields: ['name', 'geometry', 'formatted_address', 'place_id']
+        const addDefaultMarkerAndDetails = () => {
+          const marker = new window.google.maps.Marker({
+            position: puertoLaPlataPosition,
+            map: mapInstance,
+            title: 'Puerto La Plata'
+          })
+          markerRef.current = marker
+          setPlaceDetails({
+            name: 'Puerto La Plata',
+            formatted_address: 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+            place_id: ''
+          })
+          marker.addListener('click', () => setSidebarOpen(true))
         }
 
-        placesService.textSearch(request, (results, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK && results && results[0]) {
-            const place = results[0]
-            
-            // Centrar el mapa en el lugar encontrado
-            if (place.geometry && place.geometry.location) {
-              mapInstance.setCenter(place.geometry.location)
-              
-              // Crear marcador usando la ubicación real de Google Maps
-              const marker = new window.google.maps.Marker({
-                position: place.geometry.location,
-                map: mapInstance,
-                title: place.name || 'Puerto La Plata'
-              })
-
-              // Crear InfoWindow con la información nativa de Google Maps
-              const infoWindow = new window.google.maps.InfoWindow()
-              
-              const detailsRequest = {
-                placeId: place.place_id,
-                fields: ['name', 'formatted_address', 'formatted_phone_number', 'website']
-              }
-
-              placesService.getDetails(detailsRequest, (placeDetails, detailsStatus) => {
-                if (detailsStatus === window.google.maps.places.PlacesServiceStatus.OK && placeDetails) {
-                  setPlaceDetails({
-                    name: placeDetails.name || 'Puerto La Plata',
-                    formatted_address: placeDetails.formatted_address || 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
-                    formatted_phone_number: placeDetails.formatted_phone_number,
-                    website: placeDetails.website,
-                    place_id: place.place_id
-                  })
-                } else {
-                  setPlaceDetails({
-                    name: place.name || 'Puerto La Plata',
-                    formatted_address: place.formatted_address || 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
-                    place_id: place.place_id
-                  })
-                }
-              })
-
-              // Abrir sidebar al hacer clic en el marcador
-              marker.addListener('click', () => {
-                setSidebarOpen(true)
-              })
-
-              markerRef.current = marker
-            }
-          } else {
-            // Fallback si no se encuentra el lugar: usar coordenadas aproximadas
-            console.warn('No se encontró el lugar en Places API, usando coordenadas por defecto')
-            const marker = new window.google.maps.Marker({
-              position: puertoLaPlataPosition,
-              map: mapInstance,
-              title: 'Puerto La Plata'
-            })
-            markerRef.current = marker
+        // Usar Places API solo si la librería está cargada
+        if (window.google.maps.places && window.google.maps.places.PlacesService) {
+          const placesService = new window.google.maps.places.PlacesService(mapInstance)
+          const request = {
+            query: 'Puerto La Plata, Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+            fields: ['name', 'geometry', 'formatted_address', 'place_id']
           }
-        })
+
+          placesService.textSearch(request, (results, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK && results && results[0]) {
+              const place = results[0]
+              if (place.geometry && place.geometry.location) {
+                mapInstance.setCenter(place.geometry.location)
+                const marker = new window.google.maps.Marker({
+                  position: place.geometry.location,
+                  map: mapInstance,
+                  title: place.name || 'Puerto La Plata'
+                })
+                const detailsRequest = {
+                  placeId: place.place_id,
+                  fields: ['name', 'formatted_address', 'formatted_phone_number', 'website']
+                }
+                placesService.getDetails(detailsRequest, (placeDetails, detailsStatus) => {
+                  if (detailsStatus === window.google.maps.places.PlacesServiceStatus.OK && placeDetails) {
+                    setPlaceDetails({
+                      name: placeDetails.name || 'Puerto La Plata',
+                      formatted_address: placeDetails.formatted_address || 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+                      formatted_phone_number: placeDetails.formatted_phone_number,
+                      website: placeDetails.website,
+                      place_id: place.place_id
+                    })
+                  } else {
+                    setPlaceDetails({
+                      name: place.name || 'Puerto La Plata',
+                      formatted_address: place.formatted_address || 'Ortiz de Rosas 151 185, B1925 Ensenada, Provincia de Buenos Aires',
+                      place_id: place.place_id
+                    })
+                  }
+                })
+                marker.addListener('click', () => setSidebarOpen(true))
+                markerRef.current = marker
+              } else {
+                addDefaultMarkerAndDetails()
+              }
+            } else {
+              addDefaultMarkerAndDetails()
+            }
+          })
+        } else {
+          addDefaultMarkerAndDetails()
+        }
 
         mapCreatedRef.current = true
         return true
@@ -329,7 +328,9 @@ export function MapSection({ title = "Mapa interactivo", description, id }: MapS
                   {/* Botón para ver en Google Maps */}
                   <div className="pt-2">
                     <a
-                      href={`https://www.google.com/maps/place/?q=place_id:${placeDetails.place_id}`}
+                      href={placeDetails.place_id
+                        ? `https://www.google.com/maps/place/?q=place_id:${placeDetails.place_id}`
+                        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeDetails.formatted_address)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

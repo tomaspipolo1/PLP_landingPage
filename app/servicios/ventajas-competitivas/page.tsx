@@ -222,12 +222,14 @@ export default function VentajasCompetitivas() {
               Nuestro equipo comercial está disponible para analizar tus necesidades y encontrar la mejor solución para tu operación.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+                      href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para consultar sobre una operación portuaria que desearía realizar y recibir más información.`)}`}
+                      className="flex-1"
+                    >
               <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100">
                 Contactar equipo comercial
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white bg-white text-plp-primary hover:bg-plp-gray-100">
-                Solicitar cotización
-              </Button>
+            </Link>
             </div>
           </Card>
         </div>

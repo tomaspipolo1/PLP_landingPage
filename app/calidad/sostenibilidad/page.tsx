@@ -103,12 +103,15 @@ export default function Sostenibilidad() {
             <p className="mt-3 text-sm text-gray-700 max-w-xl mx-auto leading-relaxed">
               Nuestro equipo de calidad está disponible para brindarte información detallada sobre nuestros procesos certificados.
             </p>
-            <Button
-              asChild
-              className="mt-5 bg-[#007B64] hover:bg-[#006450] text-white rounded-lg px-6 text-sm"
+            <Link
+              href={`/contacto?tipoConsulta=calidad&asunto=${encodeURIComponent(`Consulta calidad`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos debido a que necesito mas información sobre los procesos de calidad del Puerto La Plata.`)}`}
             >
-              <Link href="/contacto">Contactar equipo de calidad</Link>
-            </Button>
+              <Button
+                
+                className="mt-5 bg-[#007B64] hover:bg-[#006450] text-white rounded-lg px-6 text-sm"
+              > Contactar equipo de calidad
+              </Button>
+            </Link>
           </Card>
         </div>
       </section>

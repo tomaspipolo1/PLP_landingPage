@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { FileText, FileSearch, Download } from "lucide-react"
+import Link from "next/link"
 
 const documentosTarifarios = [
   { titulo: "Tarifa de Uso del Puerto", subtitulo: "Tarifas y aranceles para operaciones de importación", detalle: "Clasificación arancelaria y tarifas por categoría", tamano: "2.3 MB", fecha: "Enero 2024" },
@@ -151,19 +152,29 @@ export default function TarifarioPage() {
             Nuestro equipo de tarifas está disponible para ayudarte con cualquier consulta sobre costos y procedimientos portuarios.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-plp-secondary hover:bg-plp-secondary/90 text-white"
-            >
-              Contactar equipo comercial
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white bg-white text-plp-primary hover:bg-plp-gray-100"
-            >
-              Solicitar cotización
-            </Button>
+          <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para consultar sobre las tarifas vigentes.`)}`}
+              >
+                <Button
+                  size="lg"
+                  className="bg-white text-plp-primary hover:bg-plp-gray-100 w-full sm:w-auto"
+                >
+                  Contactar equipo comercial
+                </Button>
+              </Link>
+              <Link
+                href={`/contacto?tipoConsulta=cotizacion&asunto=${encodeURIComponent(`Solicitar cotización`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para solicitar una cotización para un proyecto que desearía realizar y recibir más información.`)}`}
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 bg-transparent w-full sm:w-auto"
+                >
+                  Solicitar cotización
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

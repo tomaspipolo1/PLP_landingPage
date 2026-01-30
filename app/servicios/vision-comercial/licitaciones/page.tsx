@@ -208,7 +208,10 @@ export default function LicitacionesPublicadas() {
                     </div>
                   </div>
                   <div className="flex gap-2 mt-auto">
-                    <Link href={`/servicios/vision-comercial/licitaciones/${lic.id}`} className="flex-1">
+                    <Link
+                      href={`/contacto?tipoConsulta=licitacion&departamento=compras&asunto=${encodeURIComponent(`Consulta licitacion ${lic.titulo}`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos por la licitación "${lic.titulo}" para la posibilidad de inscribirme y recibir más información.`)}`}
+                      className="flex-1"
+                    >
                       <Button size="sm" className="w-full bg-plp-primary hover:bg-plp-primary/90 text-white">
                         Contactar
                       </Button>

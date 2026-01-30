@@ -267,22 +267,28 @@ export default function TransporteTerrestrePage() {
               Nuestro equipo comercial está disponible para analizar tu propuesta y encontrar la
               mejor manera de hacerla realidad en el Puerto La Plata.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-plp-primary hover:bg-plp-gray-100"
-                asChild
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para consultar sobre un proyecto que desearía realizar y recibir más información.`)}`}
               >
-                <Link href="/contacto">Contactar equipo comercial</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 bg-transparent"
-                asChild
+                <Button
+                  size="lg"
+                  className="bg-white text-plp-primary hover:bg-plp-gray-100 w-full sm:w-auto"
+                >
+                  Contactar equipo comercial
+                </Button>
+              </Link>
+              <Link
+                href={`/contacto?tipoConsulta=cotizacion&asunto=${encodeURIComponent(`Solicitar cotización`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para solicitar una cotización para un proyecto que desearía realizar y recibir más información.`)}`}
               >
-                <Link href="/contacto">Solicitar cotización</Link>
-              </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 bg-transparent w-full sm:w-auto"
+                >
+                  Solicitar cotización
+                </Button>
+              </Link>
             </div>
           </Card>
         </div>

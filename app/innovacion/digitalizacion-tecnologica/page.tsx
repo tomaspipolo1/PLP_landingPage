@@ -190,12 +190,14 @@ export default function DigitalizacionTecnologia() {
             <h2 className="text-lg font-bold text-gray-900 md:text-xl max-w-2xl mx-auto leading-snug">
               ¿Sos proveedor tecnológico o tenés una propuesta de innovación?
             </h2>
-            <Button
-              asChild
-              className="mt-5 bg-plp-primary hover:bg-plp-primary/90 text-white rounded-lg px-6 text-sm"
+            <Link
+              href={`/contacto?tipoConsulta=sistemas&asunto=${encodeURIComponent(`Proyecto de innovación para el Puerto`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos debido a que me gustaría presentar una propuesta de innovación para el Puerto La Plata.`)}`}
             >
-              <Link href="/contacto">Postular solución</Link>
-            </Button>
+              <Button
+                className="mt-5 bg-plp-primary hover:bg-plp-primary/90 text-white rounded-lg px-6 text-sm"
+              >Postular solución
+              </Button>
+            </Link>
           </Card>
         </div>
       </section>

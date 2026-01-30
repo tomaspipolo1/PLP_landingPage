@@ -213,21 +213,25 @@ export default function MapaInteractivo() {
 
 
         {/* CTA final */}
-        <section>
-          <Card className="p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white text-center">
+        <section className="flex justify-center px-4">
+          <Card className="w-full max-w-4xl p-8 bg-gradient-to-r from-plp-primary to-plp-secondary text-white text-center rounded-xl">
             <h3 className="text-2xl font-bold mb-4">¿Interesado en operar en el puerto?</h3>
-            <p className="text-lg mb-6 opacity-90">
+            <p className="text-lg mb-6 opacity-90 max-w-xl mx-auto">
               Conecta con nuestros operadores o consulta sobre oportunidades de arrendamiento.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/servicios/vision-comercial/oportunidades">
-                <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/servicios/oportunidades">
+                <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100 w-full sm:w-auto">
                   Ver oportunidades
                 </Button>
               </Link>
-              <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100">
-                Contactar equipo comercial
-              </Button>
+              <Link
+                href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial por oportunidades`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para obtener más información sobre las oportunidades de arrendamiento que ofrecen.`)}`}
+              >
+                <Button size="lg" className="bg-white text-plp-primary hover:bg-gray-100 w-full sm:w-auto">
+                  Contactar equipo comercial
+                </Button>
+              </Link>
             </div>
           </Card>
         </section>

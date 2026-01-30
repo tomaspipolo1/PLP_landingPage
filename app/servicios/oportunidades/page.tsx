@@ -125,10 +125,15 @@ export default function OportunidadesPage() {
                   <span className="text-sm md:text-base">Plazos flexibles</span>
                 </div>
               </div>
-              <Button variant="outline" size="lg" className="border-2 border-plp-primary bg-white text-plp-primary hover:bg-plp-gray-100">
+              <Link
+                      href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial por oportunidades`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para obtener más información sobre las oportunidades de negocio que ofrecen.`)}`}
+                      className="flex-1"
+                    >
+                  <Button variant="outline" size="lg" className="border-2 border-plp-primary bg-white text-plp-primary hover:bg-plp-gray-100">
                 Consultar oportunidades
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+                  </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -170,9 +175,14 @@ export default function OportunidadesPage() {
               <h4 className="text-base font-bold text-plp-primary mb-3 line-clamp-2">{s.titulo}</h4>
               <p className="text-sm text-plp-gray-600 mb-1">Nombre del sitio: {s.nombreSitio}</p>
               <p className="text-sm text-plp-gray-600 mb-4">Longitud: {s.longitud}</p>
-              <Button className="mt-auto w-full" size="sm">
+              <Link
+                      href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial por sitios y muelles`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para obtener más información sobre los sitios y muelles disponibles para operar.`)}`}
+                      className="flex-1"
+                    >
+                    <Button className="mt-auto w-full" size="sm">
                 Solicitar información
               </Button>
+            </Link>
             </Card>
           </CarouselItem>
         ))}
@@ -201,9 +211,14 @@ export default function OportunidadesPage() {
               </div>
               <p className="text-sm text-plp-gray-600 mb-1">Superficie: {a.superficie}</p>
               <p className="text-sm text-plp-gray-600 mb-4">Uso: {a.uso}</p>
+              <Link
+                      href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial por áreas o zonas disponibles para arrendamiento`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para obtener más información sobre las áreas o zonas disponibles para arrendamiento.`)}`}
+                      className="flex-1"
+                    >
               <Button className="mt-auto w-full" size="sm">
                 Solicitar información
               </Button>
+            </Link>
             </Card>
           </CarouselItem>
         ))}
@@ -232,9 +247,14 @@ export default function OportunidadesPage() {
               </div>
               <p className="text-sm text-plp-gray-600 mb-1">Superficie: {p.superficie}</p>
               <p className="text-sm text-plp-gray-600 mb-4">Uso: {p.uso}</p>
+              <Link
+                      href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial por proyectos de expansión`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para obtener más información sobre los proyectos de expansión disponibles.`)}`}
+                      className="flex-1"
+                    >
               <Button className="mt-auto w-full" size="sm">
                 Solicitar información
               </Button>
+            </Link>
             </Card>
           </CarouselItem>
         ))}
@@ -249,12 +269,14 @@ export default function OportunidadesPage() {
               Nuestro equipo comercial está disponible para analizar tu propuesta y encontrar la mejor manera de hacerla realidad en el Puerto La Plata.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+                      href={`/contacto?tipoConsulta=comercial&asunto=${encodeURIComponent(`Consulta comercial por proyecto`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos para comentarles sobre un proyecto que quisiera llevar a cabo en el Puerto La Plata y recibir más información.`)}`}
+                      className="flex-1"
+                    >
               <Button size="lg" className="bg-white text-plp-primary hover:bg-plp-gray-100">
                 Contactar equipo comercial
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white bg-white text-plp-primary hover:bg-plp-gray-100">
-                Solicitar cotización
-              </Button>
+            </Link>
             </div>
           </Card>
         </div>

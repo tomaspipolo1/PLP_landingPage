@@ -50,7 +50,11 @@ export default function Museo() {
               variant="outline"
               className="mt-6 border-2 border-plp-primary bg-white text-plp-primary hover:bg-plp-gray-100"
             >
-              <Link href="/contacto">
+              <Link
+                href="https://maps.app.goo.gl/nJTvzBQM8JoctcvK7"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 ¿Cómo llegar?
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -74,7 +78,7 @@ export default function Museo() {
       </section>
 
       {/* Cards: Colecciones, Actividades educativas, Patrimonio vivo */}
-      <section className="w-full py-12 md:py-16 bg-white">
+      <section className="w-full py-8 md:py-10 bg-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
             {cards.map((item) => (
@@ -90,40 +94,43 @@ export default function Museo() {
         </div>
       </section>
 
-      {/* CTA: ¿Te gustaría visitar el museo? */}
-      <section className="w-full py-12 md:py-16 bg-plp-gray-100">
-        <div className="container mx-auto px-4">
-          <Card className="mx-auto max-w-3xl border-2 border-plp-primary/30 bg-white p-8 md:p-10 text-center shadow-sm">
-            <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
-              ¿Te gustaría visitar el museo?
-            </h2>
-            <p className="mt-3 text-plp-gray-600">
-              En el siguiente enlace vas a poder gestionar una visita al museo.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+      {/* CTA: ¿No encontrás lo que buscabas? */}
+      <section className="w-full py-8 md:py-10 px-4">
+        <div className="max-w-4xl mx-auto bg-plp-primary rounded-3xl py-8 md:py-10 px-6 md:px-10 text-center text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            ¿Necesitas más información?
+          </h2>
+          <p className="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
+              Solo tenés que contactarnos y nosotros te ayudaremos a resolver tus dudas o descargá la guía de visitas.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-2 border-white bg-white text-plp-primary hover:bg-plp-gray-100 w-full sm:w-auto"
+            >
+              <Link href="#">
+                <Download className="mr-2 h-4 w-4" />
+                Descargar la guía
+              </Link>
+            </Button>
+            <Link
+              href={`/contacto?tipoConsulta=visitas&asunto=${encodeURIComponent(`Consulta sobre visita para el museo`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos debido a que necesito realizar una visita al museo y quiero saber si hay disponibilidad.`)}`}
+            >
               <Button
-                asChild
-                variant="outline"
-                className="border-2 border-plp-gray-300 bg-white text-gray-800 hover:bg-plp-gray-100"
+                size="lg"
+                className="border-2 border-white bg-white text-plp-primary hover:bg-plp-gray-100 w-full sm:w-auto"
               >
-                <Link href="#">
-                  <Download className="mr-2 h-4 w-4" />
-                  Descargar la guía
-                </Link>
+                Consultar disponibilidad
               </Button>
-              <Button asChild className="bg-plp-primary hover:bg-plp-primary/90 text-white">
-                <Link href="/contacto">
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Realizar consulta
-                </Link>
-              </Button>
-            </div>
-          </Card>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Galería */}
-      <section className="w-full py-12 md:py-16 bg-white">
+      <section className="w-full py-8 md:py-10 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-2xl font-bold text-gray-900 md:text-3xl mb-8">
             Galería

@@ -199,12 +199,15 @@ export default function NormasPoliticas() {
               Nuestro equipo de calidad está disponible para brindarte información detallada sobre
               nuestros procesos certificados.
             </p>
-            <Button
+            <Link
+              href={`/contacto?tipoConsulta=calidad&asunto=${encodeURIComponent(`Consulta calidad`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos debido a que necesito mas información sobre los procesos de calidad del Puerto La Plata.`)}`}
+            >
+            <Button 
               asChild
               className="mt-5 bg-plp-primary hover:bg-plp-primary/90 text-white rounded-lg px-6 text-sm"
-            >
-              <Link href="/contacto">Contactar equipo de calidad</Link>
+            > Contactar al equipo de calidad
             </Button>
+            </Link>    
           </Card>
         </div>
       </section>

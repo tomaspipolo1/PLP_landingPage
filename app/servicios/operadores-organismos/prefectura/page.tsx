@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ContactoExternoModal } from "@/components/contacto-externo-modal"
 import { Separator } from "@/components/ui/separator"
 import { 
   Factory,
@@ -164,9 +166,22 @@ const recursos = [
   }
 ]
 
+const PREFECTURA_TELEFONO = "+54 221 456-7890"
+const PREFECTURA_EMAIL = "puertolaplata@prefecturanaval.gob.ar"
+
 export default function OperadoresPrefectura() {
+  const [modalContactoOpen, setModalContactoOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white">
+      <ContactoExternoModal
+        open={modalContactoOpen}
+        onOpenChange={setModalContactoOpen}
+        titulo="Contactar a Prefectura Naval"
+        telefono={PREFECTURA_TELEFONO}
+        email={PREFECTURA_EMAIL}
+      />
+
       {/* Sección destacada */}
       <div className="w-full py-12" style={{ backgroundColor: '#CAE6FF' }}>
         <div className="container mx-auto px-4">
@@ -183,7 +198,13 @@ export default function OperadoresPrefectura() {
                 <Shield className="mr-2 h-5 w-5" />
                 Consultar servicios
               </Button>
-              <Button size="lg" variant="outline" className="border-white bg-white/50 hover:bg-white" style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white bg-white/50 hover:bg-white"
+                style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}
+                onClick={() => setModalContactoOpen(true)}
+              >
                 <Phone className="mr-2 h-5 w-5" />
                 Contactar
               </Button>

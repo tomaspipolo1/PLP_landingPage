@@ -38,9 +38,16 @@ export function NoticiaCard({ noticia, destacada = false }: NoticiaCardProps) {
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes={destacada ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
           />
-          <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold bg-plp-primary text-white shadow-sm">
-            {noticia.categoria}
-          </span>
+          <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
+            {noticia.fuente === "instagram" && (
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-black/70 text-white shadow-sm">
+                Instagram
+              </span>
+            )}
+            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-plp-primary text-white shadow-sm">
+              {noticia.categoria}
+            </span>
+          </div>
         </div>
         <div className={`flex flex-col flex-1 ${destacada ? "p-2.5" : "p-4"}`}>
           <h3 className={`font-bold text-plp-primary line-clamp-2 group-hover:text-plp-secondary transition-colors ${destacada ? "text-sm mb-1" : "text-base mb-2"}`}>

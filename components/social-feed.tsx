@@ -1,56 +1,63 @@
 "use client"
 
+import Link from "next/link"
 import { Calendar, Instagram } from "lucide-react"
 
-// Datos de ejemplo para las noticias
+/** Items del feed: tipo "instagram" abre detalle Instagram (noticiaId 1 o 10), tipo "noticia" abre detalle estándar. */
 const noticias = [
   {
     id: "n1",
+    noticiaId: "2",
     titulo: "Nuevo récord en Puerto La Plata",
     contenido: "Hemos superado los 1.2M TEUs operados este año. Gracias a todo el equipo por su dedicación y profesionalismo.",
     imagen: "/social/INICIO_PANEL_TEC 1.jpg",
     fecha: "2024-03-12T14:30:00",
-    tipo: "noticia"
+    tipo: "noticia" as const,
   },
   {
     id: "ig1",
+    noticiaId: "1",
     titulo: "Amanecer en Puerto La Plata",
     contenido: "Comenzando un nuevo día de operaciones. #PuertoLaPlata #Amanecer #Logística",
     imagen: "/social/port-sunrise.png",
     fecha: "2024-03-08T07:30:00",
-    tipo: "instagram"
+    tipo: "instagram" as const,
   },
   {
     id: "ig2",
+    noticiaId: "10",
     titulo: "Operaciones nocturnas",
     contenido: "El puerto nunca duerme. Trabajando 24/7 para mantener la cadena logística en movimiento. #PuertoLaPlata #Operaciones #Logística",
     imagen: "/social/colorful-harbor-town.png",
     fecha: "2024-03-06T22:15:00",
-    tipo: "instagram"
+    tipo: "instagram" as const,
   },
   {
     id: "ig3",
+    noticiaId: "1",
     titulo: "Equipo en acción",
     contenido: "Nuestro equipo trabajando en la descarga de contenedores. Cada día es una nueva oportunidad de superarnos. #PuertoLaPlata #Equipo #Trabajo",
     imagen: "/social/diverse-group-city.png",
     fecha: "2024-03-04T14:30:00",
-    tipo: "instagram"
+    tipo: "instagram" as const,
   },
   {
     id: "n3",
+    noticiaId: "6",
     titulo: "Acuerdo con Puerto de Rotterdam",
     contenido: "Puerto La Plata se complace en anunciar la firma de un nuevo acuerdo de cooperación con el Puerto de Rotterdam para el intercambio de mejores prácticas en gestión portuaria.",
     imagen: "/social/INICIO_PANEL_MUP 1.jpg",
     fecha: "2024-03-05T11:45:00",
-    tipo: "noticia"
+    tipo: "noticia" as const,
   },
   {
     id: "n4",
+    noticiaId: "4",
     titulo: "Visita de estudiantes UNLP",
     contenido: "Hoy recibimos la visita de estudiantes de la Universidad Nacional de La Plata. Fue un placer mostrarles nuestras instalaciones y explicarles cómo funcionan las operaciones portuarias.",
     imagen: "/social/Visita-Puerto-LP.jpeg",
     fecha: "2024-03-03T16:20:00",
-    tipo: "noticia"
+    tipo: "noticia" as const,
   },
 ]
 
@@ -74,12 +81,13 @@ export function SocialFeed() {
           Mantente al día con las últimas novedades y anuncios de Puerto La Plata.
         </p>
 
-        {/* Grid de noticias */}
+        {/* Grid de noticias: Instagram → detalle Instagram; Noticia → detalle estándar */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
           {noticias.map((noticia) => (
-            <div
+            <Link
               key={noticia.id}
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
+              href={`/comunicacion/noticias/${noticia.noticiaId}`}
+              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col cursor-pointer"
             >
               {/* Imagen */}
               <div className="relative h-32">
@@ -109,15 +117,15 @@ export function SocialFeed() {
                     <span>{formatDate(noticia.fecha)}</span>
                   </div>
                   <div className={`px-2 py-1 rounded text-xs font-medium ${
-                    noticia.tipo === "instagram" 
-                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white" 
+                    noticia.tipo === "instagram"
+                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
                       : "bg-plp-primary text-white"
                   }`}>
                     {noticia.tipo === "instagram" ? "Instagram" : "Noticia"}
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

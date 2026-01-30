@@ -25,6 +25,12 @@ export interface Noticia {
   fecha: string
   /** Ruta de imagen en /public */
   imagen: string
+  /** Si es "instagram", la vista detalle usa layout celeste + gris con reel o galería */
+  fuente?: "instagram"
+  /** URL de embed del reel (ej. https://www.instagram.com/reel/XXX/embed). Si no hay, se muestra galeria. */
+  reelUrl?: string
+  /** Imágenes para carrusel cuando no hay reel (rutas en /public) */
+  galeria?: string[]
 }
 
 export const CATEGORIAS_FILTRO: readonly string[] = [
@@ -52,6 +58,20 @@ Las operaciones se vieron favorecidas por las mejoras en infraestructura y la op
     categoria: "Operaciones",
     fecha: "2025-03-10",
     imagen: "/banner.jpg",
+    fuente: "instagram",
+    galeria: [
+      "/banner.jpg",
+      "/social/port-sunrise.png",
+      "/social/DSC04672.JPG",
+      "/social/Visita-Puerto-LP.jpeg",
+      "/colorful-harbor-town.png",
+      "/social/cruise-ship.png",
+      "/museo.jpg",
+      "/visita.jpg",
+      "/puerto-plata-satellite.png",
+      "/social/diverse-group-city.png",
+      "/diverse-group-city.png",
+    ],
   },
   {
     id: "2",
@@ -160,6 +180,20 @@ El CGPLP agradeció el compromiso de todo el personal y de las empresas que oper
     categoria: "Comunidad",
     fecha: "2025-02-05",
     imagen: "/social/cruise-ship.png",
+    fuente: "instagram",
+    reelUrl: "https://www.instagram.com/reel/Cexample/embed/",
+    galeria: [
+      "/social/cruise-ship.png",
+      "/social/Visita-Puerto-LP.jpeg",
+      "/banner.jpg",
+      "/social/DSC04672.JPG",
+      "/social/port-sunrise.png",
+      "/visita.jpg",
+      "/museo.jpg",
+      "/colorful-harbor-town.png",
+      "/puerto-plata-satellite.png",
+      "/social/diverse-group-city.png",
+    ],
   },
 ]
 

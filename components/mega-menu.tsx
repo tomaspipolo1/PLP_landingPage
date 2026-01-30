@@ -42,7 +42,7 @@ const menuItems: MenuItem[] = [
     items: [
       { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
       { label: "Oportunidades", href: "/servicios/oportunidades" },
-      { label: "Mapa interactivo", href: "/servicios/vision-comercial/mapa" },
+      { label: "Mapa interactivo", href: "/servicios/mapa" },
       {
         label: "Terminales",
         href: "/servicios/terminales", 

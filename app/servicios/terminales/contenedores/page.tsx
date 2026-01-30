@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ContactoExternoModal } from "@/components/contacto-externo-modal"
 import { Separator } from "@/components/ui/separator"
 import { 
   Ship,
@@ -107,9 +109,23 @@ const noticiasRecientes = [
   }
 ]
 
+
+const TECPLATA_TELEFONO = "+54 221 123-4567"
+const TECPLATA_EMAIL = "contacto@tecplata.com"
+
 export default function TerminalesContenedores() {
+  const [modalContactoOpen, setModalContactoOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white">
+      <ContactoExternoModal
+        open={modalContactoOpen}
+        onOpenChange={setModalContactoOpen}
+        titulo="Contactar a TecPlata"
+        telefono={TECPLATA_TELEFONO}
+        email={TECPLATA_EMAIL}
+      />
+
       {/* Sección destacada */}
       <div className="w-full py-12" style={{ backgroundColor: '#CAE6FF' }}>
         <div className="container mx-auto px-4">
@@ -128,7 +144,13 @@ export default function TerminalesContenedores() {
                   Visitar TecPlata
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="border-white bg-white/50 hover:bg-white" style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white bg-white/50 hover:bg-white"
+                style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}
+                onClick={() => setModalContactoOpen(true)}
+              >
                 <Phone className="mr-2 h-5 w-5" />
                 Contactar
               </Button>
