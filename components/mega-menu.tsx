@@ -77,6 +77,7 @@ const menuItems: MenuItem[] = [
       { label: "Noticias", href: "/comunicacion/noticias" },
       { label: "Galeria", href: "/comunicacion/galeria" },
       { label: "Material descargable", href: "/comunicacion/descargas" },
+      { label: "Contacto", href: "/contacto" },
     ],
   },
   {
