@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Upload, X, Search, HelpCircle } from "lucide-react"
+import { Upload, X, HelpCircle } from "lucide-react"
 import { Card } from "@/components/ui/card"
 
 export function TrabajoForm() {
@@ -18,10 +18,11 @@ export function TrabajoForm() {
     apellido: "",
     genero: "",
     discapacidad: "",
+    descripcionDiscapacidad: "",
     celular: "",
     email: "",
     partidoResidencia: "",
-    añoNacimiento: "",
+    fechaNacimiento: "",
     nacionalidad: "",
     nivelEducativo: "",
     tituloObtenido: ""
@@ -108,7 +109,7 @@ export function TrabajoForm() {
               ¿Posee alguna discapacidad? <span className="text-red-500">*</span>
             </Label>
             <div className="relative">
-              <Select value={formData.discapacidad} onValueChange={(value) => setFormData({ ...formData, discapacidad: value })}>
+              <Select value={formData.discapacidad} onValueChange={(value) => setFormData({ ...formData, discapacidad: value, ...(value === "no" ? { descripcionDiscapacidad: "" } : {}) })}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Seleccionar..." />
                 </SelectTrigger>
@@ -119,9 +120,27 @@ export function TrabajoForm() {
               </Select>
               <HelpCircle className="absolute right-10 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             </div>
-            <p className="text-xs text-gray-500">Le pedimos que nos indique qué tipo de discapacidad posee</p>
+            <p className="text-xs text-gray-500">Si indicás que sí, describí la discapacidad en el campo siguiente.</p>
           </div>
         </div>
+
+        {/* Describa la discapacidad (solo si tiene discapacidad) */}
+        {formData.discapacidad === "si" && (
+          <div className="space-y-2">
+            <Label htmlFor="descripcionDiscapacidad" className="text-sm font-medium text-gray-700">
+              Describa la discapacidad que posee <span className="text-red-500">*</span>
+            </Label>
+            <Textarea
+              id="descripcionDiscapacidad"
+              rows={3}
+              required
+              placeholder="Ej.: movilidad reducida, visión, audición..."
+              className="w-full resize-none"
+              value={formData.descripcionDiscapacidad}
+              onChange={(e) => setFormData({ ...formData, descripcionDiscapacidad: e.target.value })}
+            />
+          </div>
+        )}
 
         {/* Celular y Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -153,7 +172,7 @@ export function TrabajoForm() {
           </div>
         </div>
 
-        {/* Partido de Residencia y Año de Nacimiento */}
+        {/* Partido de Residencia y Fecha de Nacimiento */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="partidoResidencia" className="text-sm font-medium text-gray-700">
@@ -169,18 +188,18 @@ export function TrabajoForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="añoNacimiento" className="text-sm font-medium text-gray-700">
-              Año de nacimiento <span className="text-red-500">*</span>
+            <Label htmlFor="fechaNacimiento" className="text-sm font-medium text-gray-700">
+              Fecha de nacimiento <span className="text-red-500">*</span>
             </Label>
             <Input
-              id="añoNacimiento"
-              type="number"
+              id="fechaNacimiento"
+              type="date"
               required
-              min="1940"
-              max="2010"
+              min="1940-01-01"
+              max="2010-12-31"
               className="w-full"
-              value={formData.añoNacimiento}
-              onChange={(e) => setFormData({ ...formData, añoNacimiento: e.target.value })}
+              value={formData.fechaNacimiento}
+              onChange={(e) => setFormData({ ...formData, fechaNacimiento: e.target.value })}
             />
           </div>
         </div>

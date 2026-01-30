@@ -120,7 +120,7 @@ export function RelatedLinks() {
 
   if (isNotFound) return null
 
-  const pagesWithoutLinks = ["/", "/login", "/registro", "/contacto/trabaja/exito"]
+  const pagesWithoutLinks = ["/", "/login", "/registro", "/contacto/trabaja", "/contacto/trabaja/exito"]
   if (pathname && pagesWithoutLinks.includes(pathname)) return null
 
   if (!links.length) return null
