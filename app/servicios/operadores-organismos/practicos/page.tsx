@@ -197,10 +197,7 @@ export default function OperadoresPracticos() {
               del Río de la Plata, garantizando la seguridad de personas, buques y medio ambiente.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
-                <Ship className="mr-2 h-5 w-5" />
-                Solicitar práctico
-              </Button>
+              
               <Button
                 size="lg"
                 variant="outline"

@@ -166,8 +166,8 @@ const recursos = [
   }
 ]
 
-const PREFECTURA_TELEFONO = "+54 221 456-7890"
-const PREFECTURA_EMAIL = "puertolaplata@prefecturanaval.gob.ar"
+const PREFECTURA_TELEFONO = "0800-888-7730  "
+const PREFECTURA_EMAIL = "info@prefecturanaval.gov.ar."
 
 export default function OperadoresPrefectura() {
   const [modalContactoOpen, setModalContactoOpen] = useState(false)
@@ -194,10 +194,12 @@ export default function OperadoresPrefectura() {
               protección ambiental y control de actividades ilícitas en el ámbito marítimo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
-                <Shield className="mr-2 h-5 w-5" />
-                Consultar servicios
-              </Button>
+              <Link href="https://www.argentina.gob.ar/prefecturanaval" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
+                  <Shield className="mr-2 h-5 w-5" />
+                  Visitar sitio web
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"
