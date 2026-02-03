@@ -64,13 +64,15 @@ export function Header() {
                 }`}
               />
             </Link>
-            <img
-              src="/logo-provincia.png"
-              alt="Provincia de Buenos Aires"
-              className={`transition-all duration-300 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 2xl:h-11 ${
-                scrolled ? "h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10" : ""
-              }`}
-            />
+            <Link href="/">
+              <img
+                src="/logo-provincia.png"
+                alt="Provincia de Buenos Aires"
+                className={`transition-all duration-300 h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10 2xl:h-11 ${
+                  scrolled ? "h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10" : ""
+                }`}
+              />
+            </Link>
           </div>
 
           {/* Mega Menu Navigation - show from 1366px and up */}

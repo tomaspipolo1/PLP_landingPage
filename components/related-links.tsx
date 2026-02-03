@@ -123,6 +123,8 @@ export function RelatedLinks() {
   const pagesWithoutLinks = ["/", "/login", "/registro", "/contacto/trabaja", "/contacto/trabaja/exito"]
   if (pathname && pagesWithoutLinks.includes(pathname)) return null
 
+  if (pathname?.startsWith("/comunicacion/noticias/")) return null
+
   if (!links.length) return null
 
   return (

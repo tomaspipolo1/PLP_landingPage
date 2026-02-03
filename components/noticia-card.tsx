@@ -40,7 +40,7 @@ export function NoticiaCard({ noticia, destacada = false }: NoticiaCardProps) {
           />
           <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
             {noticia.fuente === "instagram" && (
-              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-black/70 text-white shadow-sm">
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-sm">
                 Instagram
               </span>
             )}
