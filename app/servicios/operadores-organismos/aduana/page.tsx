@@ -1,8 +1,10 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ContactoExternoModal } from "@/components/contacto-externo-modal"
 import { Separator } from "@/components/ui/separator"
 import { 
   Factory,
@@ -151,9 +153,23 @@ const recursos = [
   }
 ]
 
+const ADUANA_TELEFONO = "+54 9 11 4342-9657"
+const ADUANA_EMAIL = "del.laplata@migraciones.gov.ar"
+
+
 export default function OperadoresAduana() {
+
+  const [modalContactoOpen, setModalContactoOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white">
+      <ContactoExternoModal
+          open={modalContactoOpen}
+          onOpenChange={setModalContactoOpen}
+          titulo="Contactar a Migraciones"
+          telefono={ADUANA_TELEFONO}
+          email={ADUANA_EMAIL}
+        />
       {/* Sección destacada */}
       <div className="w-full py-12" style={{ backgroundColor: '#CAE6FF' }}>
         <div className="container mx-auto px-4">
@@ -166,13 +182,21 @@ export default function OperadoresAduana() {
               facilitando la gestión aduanera y operaciones portuarias eficientes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
-                <ExternalLink className="mr-2 h-5 w-5" />
-                Visitar sitio web
-              </Button>
-              <Button size="lg" variant="outline" className="border-white bg-white/50 hover:bg-white" style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}>
-                <Search className="mr-2 h-5 w-5" />
-                Consultar servicios
+            <Link href="https://www.aduanaargentina.com/" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
+                  <Shield className="mr-2 h-5 w-5" />
+                  Visitar sitio web
+                </Button>
+              </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white bg-white/50 hover:bg-white"
+                style={{ color: '#1B1E4A', borderColor: '#1B1E4A' }}
+                onClick={() => setModalContactoOpen(true)}
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Contactar
               </Button>
             </div>
           </div>

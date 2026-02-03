@@ -174,10 +174,12 @@ export default function OperadoresZonaFranca() {
               como en obras de infraestructura, certificado IRAM-ISO-2015.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="https://www.bazflp.com/" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white hover:bg-gray-50" style={{ color: '#1B1E4A' }}>
                 <ExternalLink className="mr-2 h-5 w-5" />
                 Visitar sitio web
               </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"

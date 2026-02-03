@@ -195,7 +195,7 @@ export default function OperadoresMigraciones() {
                 onClick={() => setModalContactoOpen(true)}
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Consultar servicios
+                Contactar
               </Button>
             </div>
           </div>
