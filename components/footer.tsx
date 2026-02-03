@@ -179,17 +179,18 @@ export function Footer() {
           {/* Mapa - Ocupa 2 columnas */}
           <div className="md:col-span-2">
             <div className="relative h-32 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1337.223192140135!2d-57.8977876190512!3d-34.864630117667986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e43bde68f75f%3A0xbff9bdaa30a33c7!2sPuerto%20La%20Plata!5e0!3m2!1ses!2sus!4v1770138618905!5m2!1ses!2sus"
-                width="100%"
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13094.340195020419!2d-57.9004884552002!3d-34.866652399494775!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e43bde68f75f%3A0xbff9bdaa30a33c7!2sPuerto%20La%20Plata!5e0!3m2!1ses!2sus!4v1770138902554!5m2!1ses!2sus" 
+              width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Ubicación de Puerto La Plata"
-                className="w-full h-full"
-              ></iframe>
+                className="w-full h-full">
+              </iframe>
+              
               
               {/* Botón Compartir */}
               <div className="absolute bottom-3 right-3">
