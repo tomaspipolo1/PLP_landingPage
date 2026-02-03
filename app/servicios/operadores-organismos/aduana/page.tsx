@@ -14,7 +14,7 @@ import {
   Globe,
   Phone,
   Mail,
-  MapPin,
+  MapPin, 
   ExternalLink,
   Clock,
   Users,
