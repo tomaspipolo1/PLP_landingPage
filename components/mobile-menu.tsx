@@ -27,29 +27,28 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
   {
     label: "Institucional",
-    href: "/puerto",
+    href: "/institucional",
     items: [
-      { label: "Sobre nosotros", href: "/puerto/nosotros" },
-      { label: "Autoridad portuaria", href: "/puerto/autoridad-portuaria" },
-      { label: "Estructura", href: "/puerto/estructura" },
-      { label: "Historia del puerto", href: "/puerto/historia" },
+      { label: "Sobre nosotros", href: "/institucional/nosotros" },
+      { label: "Autoridad portuaria", href: "/institucional/autoridad-portuaria" },
+      { label: "Estructura", href: "/institucional/estructura" },
+      { label: "Historia del puerto", href: "/institucional/historia" },
     ],
   },
   {
     label: "Servicios y Negocios",
     href: "/servicios",
     items: [
-      { label: "Oportunidades", href: "/servicios/vision-comercial/oportunidades" },
-      { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
-      { label: "Ventajas competitivas", href: "/servicios/vision-comercial/ventajas-competitivas" },
-      { label: "Mapa interactivo", href: "/servicios/vision-comercial/mapa" },
+      { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
+      { label: "Oportunidades", href: "/servicios/oportunidades" },
+      { label: "Mapa interactivo", href: "/servicios/mapa" },
       {
         label: "Terminales",
         href: "/servicios/terminales", 
         items: [
           { label: "Terminal de Contenedores TecPlata", href: "/servicios/terminales/contenedores" },
           { label: "YPF", href: "/servicios/terminales/ypf" },
-          { label: "Coopetro", href: "/servicios/terminales/coopetro" },
+          { label: "Copetro", href: "/servicios/terminales/copetro" },
           { label: "Areneras", href: "/servicios/terminales/areneras" },
         ],
       },
@@ -62,12 +61,12 @@ const menuItems: MenuItem[] = [
           { label: "Migraciones", href: "/servicios/operadores-organismos/migraciones" },
           { label: "Prefectura", href: "/servicios/operadores-organismos/prefectura" },
           { label: "Prácticos", href: "/servicios/operadores-organismos/practicos" },
-          { label: "Sanidad de Fronteras", href: "/servicios/operadores-organismos/sanidad-fronteras" },
           { label: "Empresas de Servicios Portuarios", href: "/servicios/operadores-organismos/empresas-servicios-portuarios" },
         ],
       },
-      { label: "Transporte terrestre", href: "/servicios/conexiones-intermodales/transporte-terrestre" },
+      { label: "Transporte terrestre", href: "/servicios/transporte-terrestre" },
       { label: "Tarifario", href: "/servicios/tarifario" },
+      { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
     ],
   },
   {
@@ -77,6 +76,7 @@ const menuItems: MenuItem[] = [
       { label: "Noticias", href: "/comunicacion/noticias" },
       { label: "Galeria", href: "/comunicacion/galeria" },
       { label: "Material descargable", href: "/comunicacion/descargas" },
+      { label: "Contacto", href: "/contacto" },
     ],
   },
   {
@@ -94,13 +94,14 @@ const menuItems: MenuItem[] = [
     items: [
       { label: "Certificaciones", href: "/calidad/certificaciones" },
       { label: "Normas y políticas", href: "/calidad/normas-politicas" },
+      { label: "Sostenibilidad", href: "/calidad/sostenibilidad" },
     ],
   },
   {
     label: "Innovación y futuro",
     href: "/innovacion",
     items: [
-      { label: "Digitalización y tecnología", href: "/innovacion/digitalizacion-tecnologia" },
+      { label: "Digitalización y tecnologíca", href: "/innovacion/digitalizacion-tecnologica" },
       { label: "Proyectos estratégicos", href: "/innovacion/proyectos-estrategicos" },
     ],
   },
