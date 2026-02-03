@@ -92,16 +92,16 @@ export function BreadcrumbNav() {
   })
 
   return (
-    <nav className="w-full py-3 bg-gray-100 border-b border-gray-200">
-      <div className="container mx-auto px-4">
-        <ol className="flex items-center gap-2 text-sm">
+    <nav className="w-full py-3 bg-gray-100 border-b border-gray-200 overflow-hidden">
+      <div className="container mx-auto px-4 min-w-0">
+        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
           {breadcrumbs.map((crumb, index) => {
             const isLast = index === breadcrumbs.length - 1
-            
+
             return (
-              <li key={crumb.href} className="flex items-center gap-2">
+              <li key={crumb.href} className="flex items-center gap-1">
                 {index > 0 && (
-                  <ChevronRight className="h-4 w-4 text-gray-400" />
+                  <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-400 shrink-0" />
                 )}
                 {isLast ? (
                   <span className="flex items-center gap-1 font-semibold text-gray-900">
@@ -109,7 +109,7 @@ export function BreadcrumbNav() {
                     {crumb.label}
                   </span>
                 ) : (
-                  <Link 
+                  <Link
                     href={crumb.href}
                     className="flex items-center gap-1 text-gray-600 hover:text-gray-900 hover:underline transition-colors"
                   >
