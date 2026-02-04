@@ -11,6 +11,7 @@ const licitaciones = [
   {
     id: 1,
     titulo: "Servicios de mantenimiento de grúas portuarias",
+    tipo: "Pública",
     descripcion: "Mantenimiento preventivo y correctivo de equipos de izaje y manipulación de cargas en terminal de contenedores.",
     categoria: "Mantenimiento",
     monto: "$2.500.000",
@@ -22,6 +23,7 @@ const licitaciones = [
   {
     id: 2,
     titulo: "Suministro de combustible marino",
+    tipo: "Concurso de precios",
     descripcion: "Provisión de combustible para embarcaciones que operan en el puerto, incluyendo logística y almacenamiento.",
     categoria: "Suministros",
     monto: "$8.750.000",
@@ -33,6 +35,7 @@ const licitaciones = [
   {
     id: 3,
     titulo: "Obras de pavimentación en área de patios",
+    tipo: "Pública",
     descripcion: "Pavimentación y señalización de áreas de almacenamiento y circulación de vehículos pesados.",
     categoria: "Obras",
     monto: "$15.200.000",
@@ -44,6 +47,7 @@ const licitaciones = [
   {
     id: 4,
     titulo: "Servicios de limpieza y desinfección",
+    tipo: "Privada",
     descripcion: "Servicios integrales de limpieza, desinfección y mantenimiento de áreas comunes y sanitarios.",
     categoria: "Servicios",
     monto: "$1.800.000",
@@ -55,6 +59,7 @@ const licitaciones = [
   {
     id: 5,
     titulo: "Equipamiento informático y software",
+    tipo: "Concurso de precios",
     descripcion: "Adquisición de equipos informáticos, software de gestión y sistemas de seguridad digital.",
     categoria: "Tecnología",
     monto: "$3.500.000",
@@ -66,6 +71,7 @@ const licitaciones = [
   {
     id: 6,
     titulo: "Transporte de personal y servicios de seguridad",
+    tipo: "Pública",
     descripcion: "Servicios de transporte de personal y vigilancia privada para instalaciones portuarias.",
     categoria: "Servicios",
     monto: "$4.200.000",
@@ -171,15 +177,18 @@ export default function LicitacionesPublicadas() {
                   key={lic.id}
                   className="p-5 bg-plp-gray-100/40 rounded-xl shadow-sm border border-plp-gray-200 flex flex-col h-full"
                 >
-                  <div className="relative mb-4">
+                  <div className="relative mb-3">
                     <span
                       className={`absolute top-0 right-0 text-xs font-semibold px-2.5 py-1 rounded ${ESTADO_STYLES[lic.estado] ?? "bg-plp-gray-600 text-white"}`}
                     >
                       {lic.estado}
                     </span>
-                    <h3 className="text-base font-bold text-plp-primary pr-20 line-clamp-2">
+                    <h3 className="text-base font-bold text-plp-primary pr-20 line-clamp-2 mb-1">
                       {lic.titulo}
                     </h3>
+                    <p className="text-sm  text-gray-700 ">
+                      {lic.tipo}
+                    </p>
                   </div>
                   <p className="text-sm text-plp-gray-600 leading-relaxed mb-4 line-clamp-3 flex-1">
                     {lic.descripcion}
