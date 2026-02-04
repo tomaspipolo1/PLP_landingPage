@@ -1,11 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Card } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
+import Timeline, { TimelinePeriod } from "@/components/timeline"
 
-const timelineData = [
+const timelineData: TimelinePeriod[] = [
   {
     period: "1731-1879",
     title: "Antecesor y primeras poblaciones",
@@ -106,16 +103,6 @@ const timelineData = [
 ]
 
 export default function Historia() {
-  const [currentPeriod, setCurrentPeriod] = useState(0)
-
-  const nextPeriod = () => {
-    setCurrentPeriod((prev) => (prev + 1) % timelineData.length)
-  }
-
-  const prevPeriod = () => {
-    setCurrentPeriod((prev) => (prev - 1 + timelineData.length) % timelineData.length)
-  }
-
   return (
     <div className="min-h-screen bg-white">
       {/* Título e introducción (fondo blanco) */}
@@ -133,118 +120,8 @@ export default function Historia() {
         </div>
       </div>
 
-      {/* Sección celeste: línea de tiempo + card */}
-      <div className="w-full py-10 md:py-14 pb-16 md:pb-20" style={{ backgroundColor: "#CAE6FF" }}>
-        <div className="container mx-auto px-4">
-          <div className="relative max-w-6xl mx-auto">
-          {/* Timeline visual */}
-          <div className="hidden md:flex items-center justify-between mb-12 px-12 relative h-28">
-            {/* Línea base con segmentos */}
-            <div className="absolute left-0 right-0 flex items-center top-1/2 -translate-y-1/2">
-              {/* Flecha izquierda */}
-              <div className="absolute -left-2 -translate-y-1/2 top-1/2 w-3 h-3 border-t-2 border-l-2 border-plp-gray-300 transform -rotate-45" />
-              {/* Flecha derecha */}
-              <div className="absolute -right-2 -translate-y-1/2 top-1/2 w-3 h-3 border-r-2 border-t-2 border-plp-gray-300 transform rotate-45" />
-              
-              {/* Segmentos de la línea */}
-              {timelineData.map((_, index) => (
-                index < timelineData.length - 1 && (
-                  <div
-                    key={index}
-                    className={`h-1 flex-1 transition-all duration-300 ${
-                      index < currentPeriod ? "bg-plp-primary" : "bg-plp-gray-300"
-                    }`}
-                  />
-                )
-              ))}
-            </div>
-
-            {timelineData.map((period, index) => (
-              <button
-                key={period.period}
-                onClick={() => setCurrentPeriod(index)}
-                className={`relative flex flex-col items-center group pt-28 ${
-                  index === currentPeriod ? "cursor-default" : "cursor-pointer"
-                }`}
-              >
-                <div className="absolute top-1/2 -translate-y-1/2 z-10">
-                  <div className={`w-12 h-12 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-300 shadow-sm ${
-                    index === currentPeriod
-                      ? "scale-[2.6] ring-4 ring-plp-primary/40"
-                      : "group-hover:scale-110"
-                  }`}>
-                    {/* Esqueleto para futura imagen del hito */}
-                    <Skeleton className={`w-full h-full ${index <= currentPeriod ? "bg-plp-primary/40" : "bg-plp-gray-200"}`} />
-                  </div>
-                </div>
-                <span className={`text-base font-medium transition-all duration-300 ${
-                  index === currentPeriod
-                    ? "mt-14 text-plp-primary text-lg scale-110"
-                    : " text-plp-gray-500 group-hover:text-plp-secondary"
-                }`}>
-                  {period.period}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Contenido del período */}
-          <div className="relative">
-            <Card className="p-6 md:p-8 bg-white">
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Imagen del período */}
-                <div className="relative bg-plp-gray-100 rounded-lg overflow-hidden aspect-video md:aspect-square w-full">
-                  <img
-                    src={timelineData[currentPeriod].image}
-                    alt={timelineData[currentPeriod].imageAlt}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-
-                {/* Texto en formato de introducción + punteo por año */}
-                <div>
-                  <div className="md:hidden mb-4 text-plp-primary font-medium">
-                    {timelineData[currentPeriod].period}
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-plp-primary mb-4">
-                    {timelineData[currentPeriod].title}
-                  </h2>
-                  {timelineData[currentPeriod].intro && (
-                    <p className="text-plp-gray-600 leading-relaxed mb-4">
-                      {timelineData[currentPeriod].intro}
-                    </p>
-                  )}
-                  <ul className="space-y-4">
-                    {timelineData[currentPeriod].items.map((it, idx) => (
-                      <li key={idx} className="text-plp-gray-700 leading-relaxed">
-                        <span className="font-semibold text-plp-primary">{it.year}</span> {" "}
-                        <span className="text-plp-gray-600">{it.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </Card>
-
-            {/* Botones de navegación */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none px-4">
-              <button
-                onClick={prevPeriod}
-                className="pointer-events-auto bg-white/80 hover:bg-white text-plp-primary rounded-full p-2 shadow-lg transition-all duration-300 -translate-x-1/2"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                onClick={nextPeriod}
-                className="pointer-events-auto bg-white/80 hover:bg-white text-plp-primary rounded-full p-2 shadow-lg transition-all duration-300 translate-x-1/2"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
+      {/* Timeline reutilizable */}
+      <Timeline data={timelineData} backgroundColor="#CAE6FF" />
     </div>
   )
 }
