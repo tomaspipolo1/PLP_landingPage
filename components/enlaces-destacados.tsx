@@ -5,14 +5,14 @@ import Link from "next/link"
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 
 const enlacesDestacados = [
-  { label: "Acceso al portal", href: "/servicios/acceso-portal" },
+  { label: "Acceso al portal", href: "/login" },
   { label: "Ayudas a la navegación", href: "/servicios/ayudas-navegacion" },
   { label: "Terminal de contenedores TecPlata", href: "/servicios/terminales/contenedores" },
   { label: "Licitaciones publicadas", href: "/servicios/vision-comercial/licitaciones" },
   { label: "Tarifario", href: "/servicios/tarifario" },
-  { label: "Mapa interactivo", href: "/servicios/vision-comercial/mapa" },
+  { label: "Mapa interactivo", href: "/servicios/mapa" },
   { label: "Museo", href: "/comunidad/museo" },
-  { label: "Trabajar con nosotros", href: "https://docs.google.com/forms/d/e/1FAIpQLScqP8q8xXZjCvbruYrh02RLZiLz8qr1LyCnMypkN57J73wfww/viewform?usp=sharing" },
+  { label: "Trabajar con nosotros", href: "/contacto/trabaja" },
   { label: "Contacto", href: "/contacto" },
 ]
 
