@@ -188,7 +188,7 @@ export default function DigitalizacionTecnologia() {
         <div className="container mx-auto px-4">
           <Card className="mx-auto max-w-4xl overflow-hidden rounded-2xl border-0 bg-gradient-to-r from-sky-200/90 via-sky-100 to-sky-200/90 py-8 px-6 text-center shadow-sm md:py-10 md:px-10">
             <h2 className="text-lg font-bold text-gray-900 md:text-xl max-w-2xl mx-auto leading-snug">
-              ¿Sos proveedor tecnológico o tenés una propuesta de innovación?
+              ¿Tenés una propuesta de innovación<br />aplicable para el Puerto La Plata?
             </h2>
             <Link
               href={`/contacto?tipoConsulta=sistemas&asunto=${encodeURIComponent(`Proyecto de innovación para el Puerto`)}&mensaje=${encodeURIComponent(`Me gustaría contactarlos debido a que me gustaría presentar una propuesta de innovación para el Puerto La Plata.`)}`}
