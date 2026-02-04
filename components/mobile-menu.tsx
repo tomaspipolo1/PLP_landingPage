@@ -105,14 +105,6 @@ const menuItems: MenuItem[] = [
       { label: "Proyectos estratégicos", href: "/innovacion/proyectos-estrategicos" },
     ],
   },
-  {
-    label: "Contacto",
-    href: "/contacto",
-    items: [
-      { label: "Formulario de contacto", href: "/contacto/formulario" },
-      { label: "Trabajá con nosotros", href: "/contacto/trabaja" },
-    ],
-  },
 ]
 
 export function MobileMenu() {
