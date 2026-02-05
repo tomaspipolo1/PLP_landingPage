@@ -79,7 +79,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/servicios/terminales" className="text-sm text-white/80 hover:text-white transition-colors">
+                <Link href="/servicios/terminales/contenedores" className="text-sm text-white/80 hover:text-white transition-colors">
                   Terminales
                 </Link>
               </li>
