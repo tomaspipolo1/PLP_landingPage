@@ -32,7 +32,7 @@ export function AuthoritiesCarousel({ authorities, className = "" }: Authorities
 
   return (
     <div className={className}>
-      <div className="w-full max-w-6xl mx-auto relative px-8 sm:px-12 md:px-16 lg:px-20 py-4">
+      <div className="w-full max-w-6xl mx-auto relative px-12 sm:px-16 md:px-16 lg:px-20 py-4">
         <Carousel
           setApi={setApi}
           className="w-full"
@@ -43,16 +43,16 @@ export function AuthoritiesCarousel({ authorities, className = "" }: Authorities
               const isCenter = current === idx
               return (
                 <CarouselItem key={idx} className="pl-4 basis-full md:basis-1/3">
-                  <div className="h-full flex items-center justify-center py-6">
+                  <div className="h-full flex items-center justify-center py-6 px-2 sm:px-4">
                     <Card
-                      className={`overflow-hidden shadow-lg transition-all duration-300 flex flex-col w-full ${
+                      className={`overflow-hidden shadow-lg transition-all duration-300 flex flex-col w-full mx-auto ${
                         isCenter ? "z-10" : "opacity-90"
                       }`}
                       style={{
                         backgroundColor: "white",
                         height: "240px",
                         width: "100%",
-                        maxWidth: "100%",
+                        maxWidth: isMobile ? "280px" : "100%",
                         transform: isMobile ? "scale(1)" : isCenter ? "scale(1.15)" : "scale(0.85)",
                         transformOrigin: "center",
                       }}

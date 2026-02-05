@@ -5,7 +5,7 @@ import Image from "next/image"
 
 export function VideoBanner() {
   return (
-    <section className="w-full h-screen relative -mt-[var(--header-height,80px)]">
+    <section className="w-full h-screen relative -mt-[var(--header-height,80px)] overflow-hidden">
       {/* Imagen hero a pantalla completa */}
       <Image
         src="/banner.jpg"

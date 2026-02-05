@@ -17,10 +17,10 @@ const inter = Inter({ subsets: ["latin"] })
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light">
           <AuthProvider>
-            <div className="flex flex-col min-h-screen">
+            <div className="flex flex-col min-h-screen overflow-x-hidden">
               <LanguageBar />
               <Header />
               <div className="pt-[calc(var(--header-height,80px)+22px)]">

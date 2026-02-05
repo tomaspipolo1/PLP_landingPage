@@ -49,17 +49,17 @@ export function NewsTicker() {
   }, [])
 
   return (
-    <div className="bg-[#1B1E4A] text-white py-2 overflow-hidden border-t border-blue-800/50">
-      <div className="relative flex items-center">
+    <div className="w-full bg-[#1B1E4A] text-white py-2 overflow-hidden border-t border-blue-800/50">
+      <div className="relative flex items-center overflow-hidden">
         {/* Etiqueta de "Últimas Noticias" */}
-        <div className="hidden md:flex items-center bg-[#6AB6F7] px-4 py-2 font-bold z-10 whitespace-nowrap">
+        <div className="hidden md:flex items-center bg-[#6AB6F7] px-4 py-2 font-bold z-10 whitespace-nowrap flex-shrink-0">
           NOTICIAS
           <ChevronRight className="h-5 w-5 ml-1" />
         </div>
 
         {/* Contenedor del marquee con animación CSS */}
-        <div className="overflow-hidden flex-1 relative">
-          <div ref={scrollRef} className="ticker-scroll flex items-center space-x-8 whitespace-nowrap">
+        <div className="overflow-hidden flex-1 relative max-w-full">
+          <div ref={scrollRef} className="ticker-scroll flex items-center space-x-8 whitespace-nowrap will-change-transform">
             {duplicatedNews.map((news, index) => (
               <Link key={`${news.id}-${index}`} href={news.url} className="flex items-center group">
                 <span className="text-blue-300 font-medium mr-2">{news.date}</span>

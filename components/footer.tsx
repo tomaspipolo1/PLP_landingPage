@@ -74,7 +74,7 @@ export function Footer() {
             <h3 className="text-lg font-bold text-white mb-4">Servicios</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/servicios/vision-comercial/mapa" className="text-sm text-white/80 hover:text-white transition-colors">
+                <Link href="/servicios/mapa" className="text-sm text-white/80 hover:text-white transition-colors">
                   Mapa interactivo
                 </Link>
               </li>
@@ -89,12 +89,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/licitaciones" className="text-sm text-white/80 hover:text-white transition-colors">
+                <Link href="/servicios/vision-comercial/licitaciones" className="text-sm text-white/80 hover:text-white transition-colors">
                   Licitaciones publicadas
                 </Link>
               </li>
               <li>
-                <Link href="/servicios/conexiones-intermodales/transporte-terrestre" className="text-sm text-white/80 hover:text-white transition-colors">
+                <Link href="/servicios/transporte-terrestre" className="text-sm text-white/80 hover:text-white transition-colors">
                   Transporte terrestre
                 </Link>
               </li>

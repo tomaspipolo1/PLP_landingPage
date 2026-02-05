@@ -10,12 +10,12 @@ import { ScrollToTopButton } from "@/components/scroll-to-top-button"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Video Banner a pantalla completa con ticker integrado */}
       <VideoBanner />
 
       {/* El resto del contenido comienza después del banner */}
-      <main >
+      <main className="overflow-x-hidden">
         {/* Noticias y Redes Sociales */}
         <SocialFeed />
 
