@@ -11,7 +11,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true) // Por defecto iniciamos con sesión activa
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // Por defecto sin sesión
 
   const login = () => setIsLoggedIn(true)
   const logout = () => setIsLoggedIn(false)

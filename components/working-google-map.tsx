@@ -15,7 +15,7 @@ export default function WorkingGoogleMap() {
   const mapRef = useRef<HTMLDivElement>(null)
   const [status, setStatus] = useState('Iniciando...')
   const [map, setMap] = useState<google.maps.Map | null>(null)
-  const [kmlMethod, setKmlMethod] = useState<'layer' | 'direct'>('direct')
+  const [kmlMethod, setKmlMethod] = useState<'layer' | 'direct'>('layer')
   const [kmlData, setKmlData] = useState<any[]>([])
   const [markers, setMarkers] = useState<google.maps.Marker[]>([])
   const mapCreatedRef = useRef(false)
