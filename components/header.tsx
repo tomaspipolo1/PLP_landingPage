@@ -46,7 +46,7 @@ export function Header() {
   }, [scrolled])
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 overflow-visible shadow-2xl" ref={headerRef}>
+    <header className="fixed top-[22px] left-0 right-0 w-full z-50 overflow-visible shadow-2xl" ref={headerRef}>
       {/* Fondo con color estático */}
       <div className="absolute inset-0 bg-[#1B1E4A] pointer-events-none"></div>
 
