@@ -348,7 +348,7 @@ export function MapSection({ title = "Mapa interactivo", description, id }: MapS
         
         {/* Botón para ver mapa completo */}
         <div className="text-center mt-6">
-          <Link href="/servicios/vision-comercial/mapa">
+          <Link href="/servicios/mapa">
             <Button 
               className="bg-[#1B1E4A] hover:bg-[#272C5B] text-white"
             >
