@@ -42,6 +42,7 @@ const menuItems: MenuItem[] = [
     items: [
       { label: "Ventajas competitivas", href: "/servicios/ventajas-competitivas" },
       { label: "Oportunidades", href: "/servicios/oportunidades" },
+      { label: "Arrendamientos", href: "/servicios/arrendamientos" },
       { label: "Mapa interactivo", href: "/servicios/mapa" },
       {
         label: "Terminales",
