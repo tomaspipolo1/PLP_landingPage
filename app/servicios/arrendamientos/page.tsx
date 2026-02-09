@@ -197,7 +197,7 @@ export default function PermisosUsoPage() {
       <section id="selector-tipo" className="w-full pt-12 md:pt-16 pb-8 md:pb-12 bg-white scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-plp-primary mb-4 text-center">
-            ¿Qué tipo de espacio necesitás?
+            ¿ Qué tipo de espacio necesitás ?
           </h2>
           <p className="text-plp-gray-600 text-center mb-10 max-w-3xl mx-auto">
             Seleccioná el tipo de arrendamiento que mejor se adapte a tu situación para conocer más detalles sobre requisitos, usos habilitados y espacios disponibles.
