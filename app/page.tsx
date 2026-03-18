@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { MapSection } from "@/components/map-section"
 import { NavigationAids } from "@/components/navigation-aids"
+import { ScheduleSection } from "@/components/schedule-section"
 import { StatisticsSection } from "@/components/statistics-section"
 import { AuthoritiesSection } from "@/components/authorities-section"
 import { SocialFeed } from "@/components/social-feed"
@@ -24,6 +25,9 @@ export default function Home() {
 
         {/* Ayudas a la Navegación */}
         <NavigationAids />
+
+        {/* Arribos y Salidas */}
+        <ScheduleSection />
 
         {/* Mapa Interactivo */}
         <MapSection />

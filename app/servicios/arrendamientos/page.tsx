@@ -3,14 +3,14 @@
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Home, Building2, ArrowRight, CheckCircle2, FileText, Users, MapPin } from "lucide-react"
+import { Home, Building2, ArrowRight, CheckCircle2, FileText, Users, MapPin, Ship } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import WorkingGoogleMap from "@/components/working-google-map"
 
 const CELESTE = "#CAE6FF"
 
-type TipoArrendamiento = "vivienda" | "industrial" | "bien-publico" | null
+type TipoArrendamiento = "industrial" | "bien-publico" | "terminales" | null
 
 interface ArrendamientoType {
   id: TipoArrendamiento
@@ -29,13 +29,7 @@ interface ArrendamientoDetail {
 }
 
 const tiposArrendamiento: ArrendamientoType[] = [
-  {
-    id: "vivienda",
-    titulo: "Vivienda / Isleño",
-    descripcion: "Espacios destinados a residencia de trabajadores portuarios y habitantes de la zona.",
-    icon: Home,
-    color: "bg-plp-gray-50 border-plp-gray-300 hover:border-plp-secondary"
-  },
+  
   {
     id: "industrial",
     titulo: "Actividades industriales y/o comerciales",
@@ -49,26 +43,18 @@ const tiposArrendamiento: ArrendamientoType[] = [
     descripcion: "Espacios para organizaciones sin fines de lucro que presten servicios a la comunidad portuaria.",
     icon: Users,
     color: "bg-plp-gray-50 border-plp-gray-300 hover:border-plp-secondary"
+  },
+  {
+    id: "terminales",
+    titulo: "Terminales portuarias",
+    descripcion: "Áreas y muelles para operación de terminales de carga, contenedores, granos, combustibles y otras cargas especializadas.",
+    icon: Ship,
+    color: "bg-plp-gray-50 border-plp-gray-300 hover:border-plp-secondary"
   }
 ]
 
 const detallesArrendamiento: Record<string, ArrendamientoDetail> = {
-  vivienda: {
-    id: "vivienda",
-    consisteEn: "Permiso de ocupación de viviendas dentro del puerto destinadas a trabajadores portuarios, personal esencial y habitantes históricos de la zona (isleños). Este tipo de arrendamiento busca garantizar la continuidad habitacional de quienes desarrollan actividades en el puerto.",
-    quienesPueden: [
-      "Trabajadores portuarios con relación laboral activa",
-      "Personal de empresas con operaciones permanentes en el puerto",
-      "Habitantes históricos de la zona portuaria (isleños)",
-      "Familiares directos en casos especiales"
-    ],
-    usosHabilitados: [
-      "Vivienda permanente",
-      "Residencia temporal vinculada a actividad laboral",
-      "Uso habitacional exclusivo"
-    ],
-    modalidad: "Permiso de ocupación con renovación periódica"
-  },
+  
   industrial: {
     id: "industrial",
     consisteEn: "Arrendamiento de espacios, depósitos, oficinas y áreas operativas para desarrollar actividades comerciales, industriales o logísticas vinculadas a la operación portuaria. Incluye desde pequeñas oficinas hasta grandes superficies para almacenamiento y procesamiento.",
@@ -107,14 +93,36 @@ const detallesArrendamiento: Record<string, ArrendamientoDetail> = {
       "Espacios de encuentro comunitario"
     ],
     modalidad: "Permiso de uso gratuito o arrendamiento con condiciones preferenciales"
+  },
+  terminales: {
+    id: "terminales",
+    consisteEn: "Arrendamiento o concesión de áreas portuarias para la operación de terminales especializadas: contenedores, granos, combustibles, cargas generales u otras. Incluye el uso de muelles, patios de maniobras, instalaciones de almacenamiento y equipamiento asociado. Las terminales operan bajo normativa portuaria y acuerdos de largo plazo.",
+    quienesPueden: [
+      "Empresas operadoras portuarias",
+      "Terminales de contenedores",
+      "Terminales de granos y cereales",
+      "Terminales de combustibles y líquidos",
+      "Operadores de cargas generales y proyecto",
+      "Consorcios o joint ventures con experiencia portuaria"
+    ],
+    usosHabilitados: [
+      "Carga y descarga de contenedores",
+      "Operaciones de granos y cereales",
+      "Almacenamiento y despacho de combustibles",
+      "Cargas generales y de proyecto",
+      "Conectividad multimodal (ferroviaria, camión)",
+      "Servicios de estiba y desestiba",
+      "Almacenamiento en depósitos y patios"
+    ],
+    modalidad: "Concesión o arrendamiento a largo plazo mediante licitación o acuerdo directo según normativa vigente"
   }
 }
 
 const filtrosDisponibles = [
   { id: "todos", label: "Todos" },
   { id: "bien-publico", label: "Entidades de bien público" },
-  { id: "vivienda", label: "Vivienda / Isleño" },
-  { id: "industrial", label: "Actividades industriales y/o comerciales" }
+  { id: "industrial", label: "Actividades industriales y/o comerciales" },
+  { id: "terminales", label: "Terminales portuarias" }
 ]
 
 export default function PermisosUsoPage() {
